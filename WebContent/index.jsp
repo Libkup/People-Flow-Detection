@@ -26,11 +26,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
-    <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet">
-    <!-- If you'd like to support IE8 -->
-    <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
-    <script src="http://vjs.zencdn.net/5.5.3/video.js"></script>  
+	<link href="css/video-js.css" rel="stylesheet">
   </head>
   <body>
     <div class="page">
@@ -208,21 +204,6 @@
                    </div>
                 </div>
                 <div class="chart col-lg-5 col-12">
-                  <div class="line-chart-example card">
-                    <!-- <canvas id="lineCahrt"></canvas> -->
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">监控视频</h3>
-                    </div>
-                    <div class="card-body">
-                      <video id="my-video1" class="video-js" controls preload="auto" width="600" height="400" poster="img/timg.jpg"
-                      data-setup="{}">
-                      <source src="rtmp://localhost:1935/live/camera1" type="rtmp/flv"> </p>
-                      </video>
-                    </div>
-                  </div>
-               </div>
-
-                <div class="chart col-lg-5 col-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4" id="camera1CurrentThreshole">当前阈值：${sessionScope.camera1Threshole}人</h3>
@@ -238,6 +219,22 @@
                        </div>
                     </div>
                   </div>
+                  <div class="line-chart-example card">
+                    <!-- <canvas id="lineCahrt"></canvas> -->
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">监控视频</h3>
+                    </div>
+                    <div class="card-body">
+                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
+                      data-setup="{}">
+                      <source src="rtmp://localhost:1935/live/camera1" type="rtmp/flv"> </p>
+                      </video>
+                    </div>
+                  </div>
+               </div>
+
+                <div class="chart col-lg-5 col-12">
+                  
                   <div class="line-chart-example card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">近十分钟人流量</h3>
@@ -271,7 +268,7 @@
                   </div>
                   <div class="right-col col-lg-6 d-flex align-items-center">
                     <div class="time">
-                      <i class="fa fa-clock-o"></i><span id="cg2" class="hidden-sm-down">2016 / 12 / 21 ä¸å12:00:00</span>
+                      <i class="fa fa-clock-o"></i><span id="cg2" class="hidden-sm-down">2016 / 12 / 21上午12:00:00</span>
                     </div>
                     
                     <div class="project-progress">
@@ -320,9 +317,9 @@
                       <h3 class="h4">监控视频</h3>
                     </div>
                     <div class="card-body">
-                      <video id="my-video2" class="video-js" controls preload="auto" width="600" height="400" poster="img/timg.jpg"
+                      <video id="my-video2" class="video-js vjs-fluid" controls preload="auto" width="600" height="400" poster="img/timg.jpg"
                       data-setup="{}">
-                      <source src="rtmp://localhost:1935/live/camera2" type="rtmp/flv"> </p>
+                      <source src="rtmp://10.147.242.24:1935/live/camera1" type="rtmp/flv"> </p>
                       </video>
                     </div>
                   </div>
@@ -391,6 +388,8 @@
     <script src="js/charts-home.js"></script>
     <script src="js/charts-custom.js"></script>
     <script src="js/front.js"></script>
+    <script src="js/videojs-ie8.min.js"></script>
+    <script src="js/video.js"></script>
     <script>
         setInterval("cg.innerHTML=new Date().toLocaleString()",1000);
     </script>
@@ -440,6 +439,7 @@
 			});
 		};
 		setInterval('reloadView()', 1000);
+		
 		
 		function settingCamera1(){
 			var value = document.getElementById("camera1Threshold").value;

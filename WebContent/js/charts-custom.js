@@ -17,7 +17,7 @@ function updateChart1(x) {
 	});
 	lineChart1.update();
 };
-setInterval('updateChart1()', 500);
+setInterval('updateChart1()', 1000);
 function updateChart2(x) {
 	$.ajax({
 		type : 'GET', // 请求类型, 默认为 GET
@@ -32,7 +32,7 @@ function updateChart2(x) {
 	});
 	lineChart2.update();
 };
-setInterval('updateChart2()', 500);
+setInterval('updateChart2()', 1000);
 $(document).ready(function () {
 
     'use strict';
