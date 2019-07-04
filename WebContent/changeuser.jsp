@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,7 +43,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="adminindex.jsp" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -103,21 +105,21 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="index.html"> <i class="icon-home"></i>用户管理 </a></li>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
-                          <li><a href="adduser.html">添加用户</a></li>
-                          <li><a href="deleteuser.html">删除用户</a></li>
-                          <li  class="active"><a href="changeuser.html">更改用户信息 </a></li>
-                          <li><a href="finduser.html">查找用户</a></li>
+                          <li><a href="adduser.jsp">添加用户</a></li>
+                          <li><a href="deleteuser.jsp">删除用户</a></li>
+                          <li  class="active"><a href="changeuser.jsp">更改用户信息 </a></li>
+                          <li><a href="finduser.jsp">查找用户</a></li>
                         </ul>
                     </li>
                     <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
                         <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
-                            <li><a href="addcamera.html">添加摄像头</a></li>
-                            <li><a href="deletecamera.html">删除摄像头</a></li>
-                            <li><a href="changecamera.html">更改摄像头信息 </a></li>
-                            <li><a href="findcamdera.html">查找摄像头</a></li>
+                            <li><a href="addcamera.jsp">添加摄像头</a></li>
+                            <li><a href="deletecamera.jsp">删除摄像头</a></li>
+                            <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
+                            <li><a href="findcamera.jsp">查找摄像头</a></li>
                         </ul>
                     </li>
           </ul>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -45,7 +47,7 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form class="form-validate">
+                   <form action="Register" method="post" class="form-validate">
                     <div class="form-group">
                       <input id="register-username" type="text" name="registerUsername" required data-msg="Please enter your username" class="input-material">
                       <label for="register-username" class="label-material">User Name</label>
@@ -65,7 +67,7 @@
                     <div class="form-group">
                       <button id="regidter" type="submit" name="registerSubmit" class="btn btn-primary">Register</button>
                     </div>
-                  </form><small>Already have an account? </small><a href="login.html" class="signup">Login</a>
+                  </form><small>Already have an account? </small><a href="login.jsp" class="signup">Login</a>
                 </div>
               </div>
             </div>
