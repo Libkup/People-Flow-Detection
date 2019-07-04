@@ -13,13 +13,13 @@ public class UserDAO {
 	 * @return boolean true(user exited, and password correct)/false(user not exited
 	 *         or password wrong)
 	 */
-	public boolean verifyExit(String name) {
+	public boolean verifyExit(String email) {
 		boolean bool = false;
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
-			String sql = "select * from user where name=?";
+			String sql = "select * from user where email=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, name);
+			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				bool = true;
@@ -72,7 +72,7 @@ public class UserDAO {
 		String password = user.getPassword();
 		String gender = user.getGender();
 		String phoneNumber = user.getPhoneNumber();
-		String position = user.getPassword();
+		String position = user.getPosition();
 		String selfIntroduction = user.getSelfIntroduction();
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
