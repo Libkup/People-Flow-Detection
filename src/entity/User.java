@@ -1,20 +1,20 @@
 package entity;
 
 public class User extends Admin {
-	private String positon;
+	private String position;
 	private String selfIntroduction;
 	
 	/**
 	 * @return the positon
 	 */
-	public String getPositon() {
-		return positon;
+	public String getPosition() {
+		return position;
 	}
 	/**
 	 * @param positon the positon to set
 	 */
 	public void setPositon(String positon) {
-		this.positon = positon;
+		this.position = positon;
 	}
 	/**
 	 * @return the selfIntroduction
