@@ -72,7 +72,7 @@ public class UserDAO {
 		String password = user.getPassword();
 		String gender = user.getGender();
 		String phoneNumber = user.getPhoneNumber();
-		String position = user.getPassword();
+		String position = user.getPosition();
 		String selfIntroduction = user.getSelfIntroduction();
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
