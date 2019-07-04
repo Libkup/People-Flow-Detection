@@ -1,20 +1,29 @@
 package entity;
+public class User extends Person {
+	
 
-public class User extends Admin {
-	private String positon;
+	private String position;
 	private String selfIntroduction;
 	
+	public User(String name, String email, String password, String gender, String phoneNumber, String position,
+			String selfIntroduction) {
+		super(name, email, password, gender, phoneNumber);
+		this.position = position;
+		this.selfIntroduction = selfIntroduction;
+	}
+	
 	/**
-	 * @return the positon
+	 * @return the position
 	 */
-	public String getPositon() {
-		return positon;
+	public String getPosition() {
+		return position;
 	}
 	/**
-	 * @param positon the positon to set
+	 * @param position the position to set
 	 */
-	public void setPositon(String positon) {
-		this.positon = positon;
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	/**
 	 * @return the selfIntroduction
@@ -27,5 +36,7 @@ public class User extends Admin {
 	 */
 	public void setSelfIntroduction(String selfIntroduction) {
 		this.selfIntroduction = selfIntroduction;
-	}	
+	}
+	
+
 }

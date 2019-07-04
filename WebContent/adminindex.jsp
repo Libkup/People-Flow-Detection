@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>查找用户</title>
+    <title>主页</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -41,7 +43,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="adminindex.jsp" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -103,21 +105,21 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="index.html"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
-                        <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
-                          <li><a href="adduser.html">添加用户</a></li>
-                          <li><a href="deleteuser.html">删除用户</a></li>
-                          <li><a href="changeuser.html">更改用户信息 </a></li>
-                          <li  class="active"><a href="finduser.html">查找用户</a></li>
-                        </ul>
+                    <li  class="active"><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                      <ul id="exampledropdownDropdown" class="list-unstyled collapse">
+                        <li><a href="adduser.jsp">添加用户</a></li>
+                        <li><a href="deleteuser.jsp">删除用户</a></li>
+                        <li><a href="changeuser.jsp">更改用户信息 </a></li>
+                        <li><a href="finduser.jsp">查找用户</a></li>
+                      </ul>
                     </li>
                     <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
                         <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
-                            <li><a href="addcamera.html">添加摄像头</a></li>
-                            <li><a href="deletecamera.html">删除摄像头</a></li>
-                            <li><a href="changecamera.html">更改摄像头信息 </a></li>
-                            <li><a href="findcamdera.html">查找摄像头</a></li>
+                          <li><a href="addcamera.jsp">添加摄像头</a></li>
+                          <li><a href="deletecamera.jsp">删除摄像头</a></li>
+                          <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
+                          <li><a href="findcamera.jsp">查找摄像头</a></li>
                         </ul>
                     </li>
           </ul>
@@ -137,132 +139,105 @@
             </div>
           </header>
 
-          <section class="forms" > 
-                <div class="container-fluid">
-                  <div class="row" style="text-align: center;">
-                    <!-- Form Elements -->
-                    <div class="col-lg-2">
-
+          <!-- Dashboard Counts Section-->
+        <section class="dashboard-counts no-padding-bottom">
+            <div class="container-fluid">
+                <div class="row bg-white has-shadow">
+                    <!-- Item -->
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="item d-flex align-items-center">
+                            <div class="icon bg-violet">
+                                <i class="icon-user"></i>
+                            </div>
+                            <div class="title">
+                                <span>当前
+                                    <br>在线</span>
+                                <div class="progress">
+                                    <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                                </div>
+                            </div>
+                            <div class="number">
+                                <strong>25</strong>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8">
-                      <div class="card">
-                        <!-- <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div> -->
-                        <div class="card-header d-flex align-items-center">
-                          <h3 class="h4">查找用户</h3>
+                    <!-- Item -->
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="item d-flex align-items-center">
+                            <div class="icon bg-red">
+                                <i class="icon-padnote"></i>
+                            </div>
+                            <div class="title">
+                                <span>摄像头
+                                    <br>总数</span>
+                                <div class="progress">
+                                    <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                                </div>
+                            </div>
+                            <div class="number">
+                                <strong>70</strong>
+                            </div>
                         </div>
-                        <div class="card-body">
-                          <form class="form-horizontal">
-                            <div class="form-group row">
-                                <div class="col-sm-1">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div>
-                                            <select name="position" class="form-control">
-                                                <option>用户名</option>
-                                                <option>邮箱</option>
-                                                <option>性别</option>
-                                                <option>电话号码</option>
-                                                <option>职位</option>
-                                            </select>
-                                        </div>
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
+                    </div>
+                    <!-- Item -->
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="item d-flex align-items-center">
+                            <div class="icon bg-green">
+                                <i class="icon-bill"></i>
+                            </div>
+                            <div class="title">
+                                <span>全平台
+                                    <br>最高人数</span>
+                                <div class="progress">
+                                    <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-8">
-                                    <div class="daily-feeds">
-                                        <div class="card-body no-padding">
-                                            <!-- Item-->
-                                            <div class="item clearfix">
-                                                <div class="feed d-flex justify-content-between">
-                                                    <div class="feed-body d-flex justify-content-between">
-                                                        <a href="#" class="feed-profile">
-                                                            <img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">
-                                                        </a>
-                                                        <div class="content">
-                                                            <h5>用户名</h5>
-                                                            <span>邮箱</span>
-                                                            <div class="full-date">
-                                                                <small>电话号码</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="date text-right">
-                                                        <small>职位</small>
-                                                    </div>
-                                                </div>
-                                                <div class="quote has-shadow">
-                                                    <small>个人简介</small>
-                                                </div>
-                                            </div>
-
-                                            <!-- Item-->
-                                            <div class="item clearfix">
-                                                <div class="feed d-flex justify-content-between">
-                                                    <div class="feed-body d-flex justify-content-between">
-                                                        <a href="#" class="feed-profile">
-                                                            <img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">
-                                                        </a>
-                                                        <div class="content">
-                                                            <h5>用户名</h5>
-                                                            <span>邮箱</span>
-                                                            <div class="full-date">
-                                                                <small>电话号码</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="date text-right">
-                                                        <small>职位</small>
-                                                    </div>
-                                                </div>
-                                                <div class="quote has-shadow">
-                                                    <small>个人简介</small>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2"></div>
+                            <div class="number">
+                                <strong>40</strong>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-primary">确认删除</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
-                                </div>
-                            </div>
-
-                          </form>
                         </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="item d-flex align-items-center">
+                            <div class="icon bg-orange">
+                                <i class="icon-check"></i>
+                            </div>
+                            <div class="title">
+                                <span>Open
+                                    <br>Cases</span>
+                                <div class="progress">
+                                    <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                                </div>
+                            </div>
+                            <div class="number">
+                                <strong>50</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-header">
+                <div class="container-fluid">
+                  <div class="row">
+                    <!-- Statistics -->
+                    <div class="statistics col-lg-3 col-12">
+                      
+                    </div>
+                    <!-- Line Chart            -->
+                    <div class="chart col-lg-6 col-12">
+                      <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
+                        <canvas id="lineCahrt"></canvas>
                       </div>
                     </div>
-
-                    <div class="col-lg-2">
-
+                    <div class="chart col-lg-3 col-12">
+                      
                     </div>
                   </div>
                 </div>
               </section>
-          
-              <!-- Page Footer-->
-          
 
           <!-- Page Footer-->
           <footer class="main-footer">

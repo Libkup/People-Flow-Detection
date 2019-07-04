@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>添加用户</title>
+    <title>删除用户</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -41,7 +43,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="adminindex.jsp" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -103,21 +105,21 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="index.html"> <i class="icon-home"></i>用户管理 </a></li>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
-                          <li  class="active"><a href="adduser.html">添加用户</a></li>
-                          <li><a href="deleteuser.html">删除用户</a></li>
-                          <li><a href="changeuser.html">更改用户信息 </a></li>
-                          <li><a href="finduser.html">查找用户</a></li>
+                          <li><a href="adduser.jsp">添加用户</a></li>
+                          <li  class="active"><a href="deleteuser.jsp">删除用户</a></li>
+                          <li><a href="changeuser.jsp">更改用户信息 </a></li>
+                          <li><a href="finduser.jsp">查找用户</a></li>
                         </ul>
                     </li>
                     <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
                         <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
-                            <li><a href="addcamera.html">添加摄像头</a></li>
-                            <li><a href="deletecamera.html">删除摄像头</a></li>
-                            <li><a href="changecamera.html">更改摄像头信息 </a></li>
-                            <li><a href="findcamdera.html">查找摄像头</a></li>
+                            <li><a href="addcamera.jsp">添加摄像头</a></li>
+                            <li><a href="deletecamera.jsp">删除摄像头</a></li>
+                            <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
+                            <li><a href="findcamera.jsp">查找摄像头</a></li>
                         </ul>
                     </li>
           </ul>
@@ -153,74 +155,139 @@
                           </div>
                         </div> -->
                         <div class="card-header d-flex align-items-center">
-                          <h3 class="h4">添加用户</h3>
+                          <h3 class="h4">删除用户</h3>
                         </div>
                         <div class="card-body">
                           <form class="form-horizontal">
                             <div class="form-group row">
-                              <label class="col-sm-4 form-control-label">用户名</label>
-                              <div class="col-sm-7">
-                                <input type="text" placeholder="长度不超过20位" class="form-control">
-                              </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">邮箱</label>
                                 <div class="col-sm-7">
-                                    <input type="email" placeholder="请输入邮箱地址" class="form-control">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-primary">查询</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
                                 </div>
                             </div>
-                            
                             <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">性别</label>
-                                <div class="col-sm-7">
-                                    <select name="account" class="form-control mb-3">
-                                        <option>男</option>
-                                        <option>女</option>
-                                    </select>
+                            <div class="card-body text-center">
+                                <div class="client-avatar">
+                                    <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle">
+                                    <div class="status bg-green"></div>
                                 </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">电话号码</label>
-                                <div class="col-sm-7">
-                                    <input type="" placeholder="请输入电话号码" class="form-control">
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">职位</label>
-                                <div class="col-sm-7">
-                                    <select name="account" class="form-control mb-3">
-                                        <option>职位1</option>
-                                        <option>职位2</option>
-                                        <option>职位3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">个人简介</label>
-                                <div class="col-sm-7">
-                                    <input type="text" placeholder="请输入个人简介" class="form-control">
+                                <!-- <div class="client-title">
+                                    <h3>Jason Doe</h3>
+                                    <span>Web Developer</span>
+                                    <a href="#">Follow</a>
+                                </div> -->
+                                <div class="line"></div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                
+                                    </div>
+                                
+                                    <div class="col-sm-4">
+                                        <div class="card-body no-padding">
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>用户名</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>邮箱</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>性别</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>电话号码</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>职位</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                            <div class="line"></div>
+                                            <!-- Item-->
+                                            <div class="item d-flex justify-content-between">
+                                                <div class="info d-flex">
+                                                    <div class="title">
+                                                        <h5>个人简介</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <strong>sdfsdf</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-sm-4">
+                                
+                                    </div>
                                 </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <div class="col-sm-6 ">
-                                    <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
-                                    <button type="submit" class="btn btn-primary">保存更改</button>
+                                    <button type="submit" class="btn btn-primary">确认删除</button>
                                 </div>
                                 <div class="col-sm-6 ">
                                     <button type="submit" class="btn btn-secondary">取消</button>
-                                    <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
                                 </div>
                             </div>
+
                           </form>
                         </div>
                       </div>
+                    </div>
+
+                    <div class="col-lg-2">
+
                     </div>
                   </div>
                 </div>

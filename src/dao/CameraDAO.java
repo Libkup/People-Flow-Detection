@@ -111,4 +111,28 @@ public class CameraDAO {
 		}
 		return Highest_hour;
 	}
+	/**
+	 * This function is used to get threshold by id
+	 * 
+	 * @param id
+	 * @return threshold
+	 */
+	public int getthreshold(int id) {
+		int threshold = 0;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				threshold = rs.getInt("threshold");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return threshold;
+	}
 }

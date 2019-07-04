@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>主页</title>
+    <title>查看摄像头信息</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -41,7 +43,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="adminindex.jsp" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -103,21 +105,21 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li  class="active"><a href="index.html"> <i class="icon-home"></i>用户管理 </a></li>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
-                      <ul id="exampledropdownDropdown" class="list-unstyled collapse">
-                        <li><a href="adduser.html">添加用户</a></li>
-                        <li><a href="deleteuser.html">删除用户</a></li>
-                        <li><a href="changeuser.html">更改用户信息 </a></li>
-                        <li><a href="finduser.html">查找用户</a></li>
-                      </ul>
+                        <ul id="exampledropdownDropdown" class="list-unstyled collapse">
+                          <li><a href="adduser.jsp">添加用户</a></li>
+                          <li><a href="deleteuser.jsp">删除用户</a></li>
+                          <li><a href="changeuser.jsp">更改用户信息 </a></li>
+                          <li><a href="finduser.jsp">查找用户</a></li>
+                        </ul>
                     </li>
-                    <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
-                        <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
-                          <li><a href="addcamera.html">添加摄像头</a></li>
-                          <li><a href="deletecamera.html">删除摄像头</a></li>
-                          <li><a href="changecamera.html">更改摄像头信息 </a></li>
-                          <li><a href="findcamdera.html">查找摄像头</a></li>
+                    <li><a href="#exampledropdownDropdown1" aria-expanded="true" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
+                        <ul id="exampledropdownDropdown1" class="list-unstyled collapse show">
+                            <li><a href="addcamera.jsp">添加摄像头</a></li>
+                            <li><a href="deletecamera.jsp">删除摄像头</a></li>
+                            <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
+                            <li  class="active"><a href="findcamera.jsp">查看摄像头信息</a></li>
                         </ul>
                     </li>
           </ul>
@@ -133,109 +135,76 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">个人信息</h2>
+              <h2 class="no-margin-bottom">摄像头管理</h2>
             </div>
           </header>
 
-          <!-- Dashboard Counts Section-->
-        <section class="dashboard-counts no-padding-bottom">
-            <div class="container-fluid">
-                <div class="row bg-white has-shadow">
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="item d-flex align-items-center">
-                            <div class="icon bg-violet">
-                                <i class="icon-user"></i>
-                            </div>
-                            <div class="title">
-                                <span>当前
-                                    <br>在线</span>
-                                <div class="progress">
-                                    <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
-                                </div>
-                            </div>
-                            <div class="number">
-                                <strong>25</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="item d-flex align-items-center">
-                            <div class="icon bg-red">
-                                <i class="icon-padnote"></i>
-                            </div>
-                            <div class="title">
-                                <span>摄像头
-                                    <br>总数</span>
-                                <div class="progress">
-                                    <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                                </div>
-                            </div>
-                            <div class="number">
-                                <strong>70</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="item d-flex align-items-center">
-                            <div class="icon bg-green">
-                                <i class="icon-bill"></i>
-                            </div>
-                            <div class="title">
-                                <span>全平台
-                                    <br>最高人数</span>
-                                <div class="progress">
-                                    <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
-                                </div>
-                            </div>
-                            <div class="number">
-                                <strong>40</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="item d-flex align-items-center">
-                            <div class="icon bg-orange">
-                                <i class="icon-check"></i>
-                            </div>
-                            <div class="title">
-                                <span>Open
-                                    <br>Cases</span>
-                                <div class="progress">
-                                    <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
-                                </div>
-                            </div>
-                            <div class="number">
-                                <strong>50</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="dashboard-header">
+            <section class="forms" > 
                 <div class="container-fluid">
                   <div class="row">
-                    <!-- Statistics -->
-                    <div class="statistics col-lg-3 col-12">
-                      
+                    <!-- Form Elements -->
+                    <div class="col-lg-2">
+
                     </div>
-                    <!-- Line Chart            -->
-                    <div class="chart col-lg-6 col-12">
-                      <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
-                        <canvas id="lineCahrt"></canvas>
+                    <div class="col-lg-8">
+                      <div class="recent-activities card">
+                        <div class="card-close">
+                          <div class="dropdown">
+                            <button type="button" id="closeCard8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                            <div aria-labelledby="closeCard8" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                          </div>
+                        </div>
+                        <div class="card-header">
+                          <h3 class="h4">更改摄像头信息</h3>
+                        </div>
+                        <div class="card-body no-padding">
+                          <div class="item">
+                            <div class="row">
+                              <div class="col-3 date-holder text-center">
+                                <br>
+                                <h5>地点</h5>
+                              </div>
+                              <div class="col-9 content text-center">
+                                <h5>标识</h5>
+                                <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                              <div class="row">
+                                <div class="col-3 date-holder text-center">
+                                  <br>
+                                  <h5>地点</h5>
+                                </div>
+                                <div class="col-9 content text-center">
+                                  <h5>标识</h5>
+                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="item">
+                              <div class="row">
+                                <div class="col-3 date-holder text-center">
+                                  <br>
+                                  <h5>地点</h5>
+                                </div>
+                                <div class="col-9 content text-center">
+                                  <h5>标识</h5>
+                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="chart col-lg-3 col-12">
-                      
+
                     </div>
                   </div>
                 </div>
-              </section>
+                
+            </section>
+          
+              <!-- Page Footer-->
+          
 
           <!-- Page Footer-->
           <footer class="main-footer">
