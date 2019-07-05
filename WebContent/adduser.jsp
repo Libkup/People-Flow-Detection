@@ -158,18 +158,18 @@
                           <h3 class="h4">添加用户</h3>
                         </div>
                         <div class="card-body">
-                          <form class="form-horizontal">
+                          <form action="AddUser" method="post" class="form-horizontal">
                             <div class="form-group row">
                               <label class="col-sm-4 form-control-label">用户名</label>
                               <div class="col-sm-7">
-                                <input type="text" placeholder="长度不超过20位" class="form-control">
+                                <input type="text" name="UserName" placeholder="长度不超过20位" class="form-control">
                               </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">邮箱</label>
                                 <div class="col-sm-7">
-                                    <input type="email" placeholder="请输入邮箱地址" class="form-control">
+                                    <input type="email" name="UserEmail" placeholder="请输入邮箱地址" class="form-control">
                                     <small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">性别</label>
                                 <div class="col-sm-7">
-                                    <select name="account" class="form-control mb-3">
+                                    <select name="gender" class="form-control mb-3">
                                         <option>男</option>
                                         <option>女</option>
                                     </select>
@@ -188,14 +188,14 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">电话号码</label>
                                 <div class="col-sm-7">
-                                    <input type="" placeholder="请输入电话号码" class="form-control">
+                                    <input type="" name="PhoneNumber" placeholder="请输入电话号码" class="form-control">
                                 </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">职位</label>
                                 <div class="col-sm-7">
-                                    <select name="account" class="form-control mb-3">
+                                    <select name="position" class="form-control mb-3">
                                         <option>职位1</option>
                                         <option>职位2</option>
                                         <option>职位3</option>
@@ -206,19 +206,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">个人简介</label>
                                 <div class="col-sm-7">
-                                    <input type="text" placeholder="请输入个人简介" class="form-control">
+                                    <input type="text" name="Introduction" placeholder="请输入个人简介" class="form-control">
                                 </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
-                                <div class="col-sm-6 ">
                                     <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
                                     <button type="submit" class="btn btn-primary">保存更改</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
-                                    <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
-                                </div>
                             </div>
                           </form>
                         </div>
