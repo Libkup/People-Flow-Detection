@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%   String email = request.getParameter("emaliAddress");
-	  String t = "";
-	  email=(email == null ? null :t);%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,7 +139,7 @@
 														class="form-validate">
 														<div class="input-group">
 															<input id="emali-address" type="email"
-																name="emaliAddress"  placeholder=<%=request.getParameter("emaliAddress") %>  class="form-control">
+																name="emaliAddress"  placeholder="${emailAddress}"  class="form-control">
 															<div class="input-group-append">
 																<button type="submit" id="button"
 																	class="btn btn-primary">发送验证码</button>
@@ -150,17 +147,17 @@
 														</div>
 													</form>
 												</div>
-
-												<small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
+<!--  
+												<small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>-->
 											</div>
 										</div>
-										<form action="ChangePassword" method="post" class="form-horizontal">
+										<form action="ChangePassword" method="post" class="form-horizontal" onSubmit="return check()">
 											<div class="line"></div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">验证码</label>
 												<div class="col-sm-7">
-													<input type="text" name="verificationcode" placeholder="请输入验证码"
-														class="form-control">
+													<input type="text" id="verificationCode" name="verificationcode" placeholder="请输入验证码"
+														class="form-control" >
 												</div>
 											</div>
 											<div class="line"></div>
@@ -174,7 +171,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label"></label>
 												<div class="col-sm-7">
-													<input id="passwordconfirm" type="password" placeholder="请再次输入密码"
+													<input id="passwordConfirm" type="password" placeholder="请再次输入密码"
 														name="passwordconfirm" class="form-control">
 												</div>
 											</div>
@@ -227,23 +224,29 @@
 	<script src="js/charts-home.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
-	<script>
-(function(){
-    var sub = document.getElementById("button_save");
-    //初始化移入移出事件
-    if(sub.addEventListener){
-        sub.addEventListener("click", click);  
-    }else if(sub.attachEvent){
-        sub.attachEvent("onClick", click);
-    }
-})();
- 
-function click(){
-    var password = document.getElementById("password");
-    var passwordConfirm = document.getElementById("passwordconfirm");
-    if(password.value != passwordconfirm.value)
-        alert("对不起，您2次输入的密码不一致");
-}
+	<script type="text/javascript">
+	function check() {
+		var a="${sessionScope.verificationCode}";
+		
+		if ((document.getElementById("password").value == "")
+				|| (document.getElementById("passwordConfirm").value == "")) {
+			alert('密码不能为空！');
+			return false;
+		}
+		else if(document.getElementById("verificationCode").value ==""){
+			alert('验证码不能为空！');
+			return false;
+		}
+		else if(document.getElementById("password").value != document.getElementById("passwordConfirm").value){
+			alert('两次输入的密码不一致，请输入相同的密码');
+			return false;
+		}
+		//else if(a.value != document.getElementById("verificationCode").value){
+		//	alert('验证码不正确，请输入正确验证码！');
+		//	return false;
+		//}
+		return true;
+	};
 </script>
 </body>
 </html>

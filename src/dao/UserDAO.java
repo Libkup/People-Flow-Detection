@@ -116,4 +116,25 @@ public class UserDAO {
 		}
 		return email;
 	}
+	
+	/**
+	 * This function is used to change password of the user
+	 * 
+	 * @param email
+	 * @param password
+	 */
+	public void changePassword(String email, String password) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "update user set password = ? where email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,password);
+			ps.setString(2, email);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
