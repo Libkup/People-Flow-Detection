@@ -7,7 +7,7 @@ public class DBConn {
 
 	private String URL = "jdbc:mariadb://localhost/people_flow_detection";
 	private String USER = "root";
-	private String PASSWD = "123456";
+	private String PASSWD = "root";
 	private static DBConn INSTANCE;
 
 	static {

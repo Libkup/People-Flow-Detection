@@ -98,7 +98,7 @@ public class CameraDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				rtmpAddress = rs.getString("rtmpAddress");
+				rtmpAddress = rs.getString("rtmp_address");
 			}
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {

@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import dao.CameraDAO;
+import dao.UserDAO;
 import entity.Camera;
 import entity.User;
 
@@ -35,16 +38,32 @@ public class UserIndex extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String name = request.getParameter("loginUsername");
-		User user = new User();
+		String email = "13sd";
+		UserDAO userDAO = new UserDAO();
 		ArrayList<Integer> addedCameras = new ArrayList<>();
-		addedCameras = user.get;
-		Camera camera = new Camera();
+		addedCameras = userDAO.getadded_camera(email);
 		CameraDAO cameraDAO = new CameraDAO();
-		ArrayList<String> rtmpAddress = new ArrayList<>();
+		ArrayList<String> charts = new ArrayList<>();
+		ArrayList<ArrayList<String>> datas = new ArrayList<ArrayList<String>>();
+		HttpSession session = request.getSession();
 		for(int id: addedCameras){
-			rtmpAddress.add(cameraDAO.getRtmpAddress(id));
+			ArrayList<String> cameraInformation = new ArrayList<>();
+			cameraInformation.add(cameraDAO.getName(id));
+			cameraInformation.add(cameraDAO.getLocation(id));
+			cameraInformation.add(cameraDAO.getRtmpAddress(id));
+			cameraInformation.add("cameraChart" + id);
+			charts.add("cameraChart" + id);
+			session.setAttribute("camera" + id + "threshold", cameraDAO.getthreshold(id));
+			datas.add(cameraInformation);
 		}
+		request.setAttribute("datas", datas);
+		request.setAttribute("charts", charts);
+		for(ArrayList<String> list: datas){
+			for(String str: list){
+				System.out.println(str);
+			}
+		}
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**

@@ -142,231 +142,119 @@
           </header>
           
           <!-- Dashboard Header Section    -->
-          
-          <c:forEach items="${str}" var="s" begin="1" end="5" step="2" varStatus="status">
-		   <!-- &nbsp是换行符，在html中无论你敲多个空格键，最终在网页上只会显示一个空格，所以我们一般用这个作为空格 -->
-		        <c:out value="index属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        <c:out value="count属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        <c:out value="first属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        <c:out value="last属性：${s}"></c:out><br>
-		   </c:forEach>
-          <section class="dashboard-header">
-            <div class="container-fluid">
-              <!-- title -->
-              <div class="project">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow">
-                        <img src="img/project-1.jpg" alt="..." class="img-fluid">
-                      </div>
-                      <div class="text">
-                        <h3 class="h4">Camera 1</h3>
-                        <small>the Xi'an railway station</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
-                    <div class="time">
-                      <i class="fa fa-clock-o"></i>
-                      <span id="cg" class="hidden-sm-down">2018 / 12 / 21上午12:00:00</span>
-                    </div>
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- datas and groph -->
-              <div class="row">
-                <!-- Statistics -->
-                <div class="statistics col-lg-2 col-12">
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong id="Camera1currentCount">147</strong><br><small>当前人数</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                    <div class="text"><strong id="Camera1historyHighest">234</strong><br><small>历史最高人数</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                    <div class="text"><strong id="Camera1hourHighest">152</strong><br><small>近一小时最高人数</small></div>
-                  </div>
-                  
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-blue"><i class="fa fa-circle-thin"></i></div>
-                    <div class="text"><strong id="Camera1prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
-                  </div>
-                  <div class="articles card">
-                  	<div class="card-body no-padding">
-                      <div class="item d-flex align-items-center">
-                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="text"><a href="#">
-                            <h3 class="h5">Security Officer 1</h3></a><small>Tel: 18351567516</small></div>
-                      </div>
-                     </div>
-                   </div>
-                </div>
-                <div class="chart col-lg-5 col-12">
-                  <div class="card">
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4" id="camera1CurrentThreshole">当前阈值：${sessionScope.camera1Threshole}人</h3>
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group">
-                         <div class="input-group">
-                            <input id="camera1Threshold" type="text" class="form-control" placeholder="大于零的数字">
-                              <div class="input-group-append">
-                                <button type="button" onclick="settingCamera1()" class="btn btn-primary">Go!</button>
-                              </div>
-                         </div>
-                       </div>
-                    </div>
-                  </div>
-                  <div class="line-chart-example card">
-                    <!-- <canvas id="lineCahrt"></canvas> -->
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">监控视频</h3>
-                    </div>
-                    <div class="card-body">
-                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
-                      data-setup="{}">
-                      <source src="rtmp://localhost:1935/live/camera1" type="rtmp/flv"> </p>
-                      </video>
-                    </div>
-                  </div>
-               </div>
-
-                <div class="chart col-lg-5 col-12">
-                  
-                  <div class="line-chart-example card">
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">近十分钟人流量</h3>
-                    </div>
-                    <div class="card-body">
-                      <canvas id="lineChart1"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
+          <c:forEach items="${requestScope.datas}" var="data" varStatus="status">
+		       <section class="dashboard-header">
+		            <div class="container-fluid">
+		              <!-- title -->
+		              <div class="project">
+		                <div class="row bg-white has-shadow">
+		                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+		                    <div class="project-title d-flex align-items-center">
+		                      <div class="image has-shadow">
+		                        <img src="img/project-1.jpg" alt="..." class="img-fluid">
+		                      </div>
+		                      <div class="text">
+		                        <h3 class="h4">${data[0] }</h3>
+		                        <small>${data[1] }</small>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  <div class="right-col col-lg-6 d-flex align-items-center">
+		                    <div class="time">
+		                      <i class="fa fa-clock-o"></i>
+		                      <span id="cg" class="hidden-sm-down">2018 / 12 / 21上午12:00:00</span>
+		                    </div>
+		                    <div class="project-progress">
+		                      <div class="progress">
+		                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+		                      </div>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		              <!-- datas and groph -->
+		              <div class="row">
+		                <!-- Statistics -->
+		                <div class="statistics col-lg-2 col-12">
+		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+		                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
+		                    <div class="text"><strong id="Camera1currentCount">147</strong><br><small>当前人数</small></div>
+		                  </div>
+		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+		                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
+		                    <div class="text"><strong id="Camera1historyHighest">234</strong><br><small>历史最高人数</small></div>
+		                  </div>
+		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+		                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+		                    <div class="text"><strong id="Camera1hourHighest">152</strong><br><small>近一小时最高人数</small></div>
+		                  </div>
+		                  
+		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+		                    <div class="icon bg-blue"><i class="fa fa-circle-thin"></i></div>
+		                    <div class="text"><strong id="Camera1prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
+		                  </div>
+		                  <div class="articles card">
+		                  	<div class="card-body no-padding">
+		                      <div class="item d-flex align-items-center">
+		                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+		                        <div class="text"><a href="#">
+		                            <h3 class="h5">Security Officer 1</h3></a><small>Tel: 18351567516</small></div>
+		                      </div>
+		                     </div>
+		                   </div>
+		                </div>
+		                <div class="chart col-lg-5 col-12">
+		                  <div class="card">
+		                    <div class="card-header d-flex align-items-center">
+		                      <h3 class="h4" id="camera1CurrentThreshole">当前阈值：${sessionScope.camera1Threshole}人</h3>
+		                    </div>
+		                    <div class="card-body">
+		                      <div class="form-group">
+		                         <div class="input-group">
+		                            <input id="camera1Threshold" type="text" class="form-control" placeholder="大于零的数字">
+		                              <div class="input-group-append">
+		                                <button type="button" onclick="settingCamera1()" class="btn btn-primary">Go!</button>
+		                              </div>
+		                         </div>
+		                       </div>
+		                    </div>
+		                  </div>
+		                  <div class="line-chart-example card">
+		                    <!-- <canvas id="lineCahrt"></canvas> -->
+		                    <div class="card-header d-flex align-items-center">
+		                      <h3 class="h4">监控视频</h3>
+		                    </div>
+		                    <div class="card-body">
+		                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
+		                      data-setup="{}">
+		                      <source src="${data[2] }" type="rtmp/flv"> </p>
+		                      </video>
+		                    </div>
+		                  </div>
+		               </div>
+		
+		                <div class="chart col-lg-5 col-12">
+		                  
+		                  <div class="line-chart-example card">
+		                    <div class="card-header d-flex align-items-center">
+		                      <h3 class="h4">近十分钟人流量</h3>
+		                    </div>
+		                    <div class="card-body">
+		                      <canvas id="${data[3] }"></canvas>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </section>
+		       
+		  </c:forEach>
 
           
-          <section class="dashboard-header">
-            <div class="container-fluid">
-              <!-- title -->
-              <div class="project">
-                <div class="row bg-white has-shadow">
-                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                    <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow">
-                        <img src="img/project-1.jpg" alt="..." class="img-fluid">
-                      </div>
-                      <div class="text">
-                        <h3 class="h4">Camera 2</h3>
-                        <small>the NWPU</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="right-col col-lg-6 d-flex align-items-center">
-                    <div class="time">
-                      <i class="fa fa-clock-o"></i><span id="cg2" class="hidden-sm-down">2016 / 12 / 21上午12:00:00</span>
-                    </div>
-                    
-                    <div class="project-progress">
-                      <div class="progress">
-                        <div role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- datas and groph -->
-              <div class="row">
-                <!-- Statistics -->
-                <div class="statistics col-lg-2 col-12">
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-                    <div class="text"><strong id="Camera2currentCount">147</strong><br><small>目前人数</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-                    <div class="text"><strong id="Camera2historyHighest">234</strong><br><small>历史最高人数</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-                    <div class="text"><strong id="Camera2hourHighest">152</strong><br><small>近一小时最高人数</small></div>
-                  </div>
-                  <div class="statistic d-flex align-items-center bg-white has-shadow">
-                    <div class="icon bg-blue"><i class="fa fa-circle-thin"></i></div>
-                    <div class="text"><strong id="Camera2prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
-                  </div>
-                  <div class="articles card">
-                  	<div class="card-body no-padding">
-                      <div class="item d-flex align-items-center">
-                        <div class="image"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="text"><a href="#">
-                            <h3 class="h5">Security Officer 2</h3></a><small>Tel: 13798561254</small></div>
-                      </div>
-                     </div>
-                   </div>
-                </div>
-                <!-- Line Chart            -->
-                <div class="chart col-lg-5 col-12">
-                  <div class="line-chart-example card">
-                    <!-- <canvas id="lineCahrt"></canvas> -->
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">监控视频</h3>
-                    </div>
-                    <div class="card-body">
-                      <video id="my-video2" class="video-js vjs-fluid" controls preload="auto" width="600" height="400" poster="img/timg.jpg"
-                      data-setup="{}">
-                      <source src="rtmp://10.147.242.24:1935/live/camera1" type="rtmp/flv"> </p>
-                      </video>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="chart col-lg-5 col-12">
-                  <div class="card">
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4" id="camera2CurrentThreshole">当前阈值：${sessionScope.camera2Threshole}人</h3>
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group">
-                         <div class="input-group">
-                            <input type="text" id="camera2Threshold" class="form-control" placeholder="大于零的数字">
-                              <div class="input-group-append">
-                                <button type="button" onclick="settingCamera2()" class="btn btn-primary">Go!</button>
-                              </div>
-                         </div>
-                       </div>
-                    </div>
-                  </div>
-                  <div class="line-chart-example card">
-                    <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">近十分钟人流量</h3>
-                    </div>
-                    <div class="card-body">
-                      <canvas id="lineChart2"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- Projects Section-->
+          <input type="hidden" id="tempdatas" value="${requestScope.charts }">
           
-          <!-- Client Section-->
           
-          <!-- Feeds Section-->
-          
-          <!-- Updates Section                                                -->
+          <!-- Updates Section -->
           
           <!-- Page Footer-->
           <footer class="main-footer">
@@ -404,6 +292,8 @@
         setInterval("cg2.innerHTML=new Date().toLocaleString()",1000);
     </script>
 	<script>
+		
+	
 		function reloadView(x) {
 			
 			$.ajax({
