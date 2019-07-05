@@ -118,7 +118,7 @@ public class UserDAO {
 	}
 	
 	/**
-	 * This function is used to change password of the user
+	 * This function is used to change password of the user .
 	 * 
 	 * @param email
 	 * @param password

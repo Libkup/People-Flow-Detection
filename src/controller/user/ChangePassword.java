@@ -56,6 +56,9 @@ public class ChangePassword extends HttpServlet {
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("emailAddress");
 		String verificationCodeConfirm = (String) session.getAttribute("verificationCode");
+		//used to test
+//		System.out.println(passwordConfirm + " "+ password);
+		
 		//before initializing the out object, appoint the characterEncoding 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charsset=utf-8");
@@ -64,9 +67,10 @@ public class ChangePassword extends HttpServlet {
 		if (!verificationCode.equals(verificationCodeConfirm)) {
 			out.print("<script language='javascript'>alert('验证码不正确，请输入正确验证码!');window.location.href='changepassword.jsp';</script>");
 		} 
-		else if(!password.equals(passwordConfirm)) {
-			out.print("<script language='javascript'>alert('两次输入的密码不一致，请输入相同的密码!');window.location.href='changepassword.jsp';</script>");
-		}
+		else if (!password.equals(passwordConfirm)) {
+			out.print(
+					"<script language='javascript'>alert('两次输入的密码不一致，请输入相同的密码!');window.location.href='changepassword.jsp';</script>");
+		}	
 		else {
 			UserDAO userdao = new UserDAO();
 			userdao.changePassword(email, password);

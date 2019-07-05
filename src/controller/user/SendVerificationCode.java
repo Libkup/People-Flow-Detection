@@ -57,7 +57,7 @@ public class SendVerificationCode extends HttpServlet {
 		String verification = SendEmail.getVerificationCode();
 		session.setAttribute("verificationCode", verification);
 		session.setAttribute("emailAddress",email);
-		String message = "修改密码验证码：" + verification +"。守住验证码，打死也不要告诉别人哦！" + '\n' + "如非本人操作，请忽略";
+		String message = "修改密码验证码：" + verification +"。 守住验证码，打死也不要告诉别人哦！" + '\n' + "如非本人操作，请忽略";
 		SendEmail.sendEmail(email, message);
 		System.out.println(email + " "+ message);
 		
