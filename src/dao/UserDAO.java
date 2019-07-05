@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import util.DBConn;
 import entity.User;
@@ -74,9 +75,10 @@ public class UserDAO {
 		String phoneNumber = user.getPhoneNumber();
 		String position = user.getPosition();
 		String selfIntroduction = user.getSelfIntroduction();
+		String added_camera = user.getAdded_camera();
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
-			String sql = "insert into user values(?,?,?,?,?,?,?)";
+			String sql = "insert into user values(?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, email);
@@ -85,6 +87,7 @@ public class UserDAO {
 			ps.setString(5, phoneNumber);
 			ps.setString(6, position);
 			ps.setString(7,selfIntroduction);
+			ps.setString(8,added_camera);
 			ResultSet rs = ps.executeQuery();
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {
@@ -93,27 +96,118 @@ public class UserDAO {
 	}
 	
 	/**
-	 * This function is used to get email by name
+	 * This function is used to get name by email
 	 * 
-	 * @param name
-	 * @return email
+	 * @param eamil
+	 * @return name
 	 */
-	public String getemail(String name) {
-		String email = "";
+	public ArrayList<Integer> getadded_camera(String email) {
+		String added_camera = "";
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
-
-			String sql = "select * from user where name=?";
+	
+			String sql = "select * from user where email=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, name);
+			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				email = rs.getString("email");
+				added_camera = rs.getString("added_camera");
 			}
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return email;
+		String a[]  = added_camera.split("-");
+		ArrayList<Integer>  b = new ArrayList<Integer>();
+		for(int i=0;i<a.length;i++){
+		   b.add(Integer.valueOf(a[i]));
+		}
+		return b;
 	}
+
+	
+	/**
+	 * This function is used to get name by email
+	 * 
+	 * @param eamil
+	 * @return name
+	 */
+	public String getname(String email) {
+		String name = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+	
+			String sql = "select * from user where email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				name = rs.getString("name");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
+
+	/**
+	 * This function is used to get user by email
+	 * 
+	 * @param eamil
+	 * @return user
+	 */
+	public User getuser(String email) {
+		User user = new User();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	/**
+	 * This function is used to update user 
+	 * 
+	 * @param user
+	 * 
+	 */
+	public void UpdateUser(User user) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "update user set name=?, email=?, password=?, gender=?, phone_number=?, position=?, self_introduction=?, added_camera=? where email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.setString(4, user.getGender());
+			ps.setString(5, user.getPhoneNumber());
+			ps.setString(6, user.getPosition());
+			ps.setString(7, user.getSelfIntroduction());
+			ps.setString(8, user.getAdded_camera());
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

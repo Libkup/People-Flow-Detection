@@ -1,4 +1,4 @@
-package controller.user;
+package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.CameraDAO;
-import dao.UserDAO;
+import dao.AdminDAO;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/adminLogin")
+public class adminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public adminLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,22 +56,20 @@ public class Login extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();     //初始化out对象
-		String email = request.getParameter("loginUsername");
+		String email = request.getParameter("loginAdminName");
 		String pswd = request.getParameter("loginPassword");
 		HttpSession session = request.getSession();
-		UserDAO userdao = new UserDAO();
-		CameraDAO cameradao = new CameraDAO();
-		if(!(userdao.verifyExit(email))) {
+		AdminDAO admindao = new AdminDAO();
+		if(!(admindao.verifyExit(email))) {
 			out.print("<script language='javascript'>alert('用户不存在！');window.location.href='login.jsp';</script>");     
 		}else {
-		boolean match = userdao.verifyPswd(email,pswd);
+		boolean match = admindao.verifyPswd(email,pswd);
 		if (match) {			
-            session.setAttribute("loginUsername",userdao.getname(email));
-            request.setAttribute("loginUsername",userdao.getname(email));
+            session.setAttribute("loginAdminName",admindao.getadmin(email));
+            request.setAttribute("loginUsername",admindao.getadmin(email));
             session.setAttribute("email", email);
-            session.setAttribute("camera1Threshole", String.valueOf(cameradao.getthreshold(1)));
-            session.setAttribute("camera2Threshole", String.valueOf(cameradao.getthreshold(2)));
-            request.getRequestDispatcher("UserIndex").forward(request, response);
+            response.sendRedirect("adminindex.jsp");
+//	        request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else{
 			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='login.jsp';</script>"); 
 			}
