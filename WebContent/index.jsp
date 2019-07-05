@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -139,10 +140,16 @@
               <h2 class="no-margin-bottom">监控中心</h2>
             </div>
           </header>
-          <!-- Dashboard Counts Section-->
           
           <!-- Dashboard Header Section    -->
-        
+          
+          <c:forEach items="${str}" var="s" begin="1" end="5" step="2" varStatus="status">
+		   <!-- &nbsp是换行符，在html中无论你敲多个空格键，最终在网页上只会显示一个空格，所以我们一般用这个作为空格 -->
+		        <c:out value="index属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <c:out value="count属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <c:out value="first属性：${s}"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <c:out value="last属性：${s}"></c:out><br>
+		   </c:forEach>
           <section class="dashboard-header">
             <div class="container-fluid">
               <!-- title -->

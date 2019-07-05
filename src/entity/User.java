@@ -12,6 +12,10 @@ public class User extends Person {
 		this.selfIntroduction = selfIntroduction;
 	}
 	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the position
 	 */

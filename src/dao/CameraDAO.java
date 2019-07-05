@@ -6,6 +6,182 @@ import entity.Camera;
 import util.DBConn;
 
 public class CameraDAO {
+	
+	/**
+	 * This function is used to get name of camera.
+	 * 
+	 * @param id
+	 * @return name
+	 */
+	public String getName(int id) {
+		String name = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				name = rs.getString("name");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
+	
+	/**
+	 * This function is used to get location of camera.
+	 * 
+	 * @param id
+	 * @return location
+	 */
+	public String getLocation(int id) {
+		String location = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				location = rs.getString("location");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return location;
+	}
+	
+	/**
+	 * This function is used to get description of camera.
+	 * 
+	 * @param id
+	 * @return description
+	 */
+	public String getDescription(int id) {
+		String description = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				description = rs.getString("description");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return description;
+	}
+	
+	/**
+	 * This function is used to get rtmpAddress of camera.
+	 * 
+	 * @param id
+	 * @return rtmpAddress
+	 */
+	public String getRtmpAddress(int id) {
+		String rtmpAddress = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				rtmpAddress = rs.getString("rtmpAddress");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rtmpAddress;
+	}
+	
+	/**
+	 * This function is used to get highest_history number of people an hour.
+	 * 
+	 * @param id
+	 * @return highest_history
+	 */
+	public int getHighest(int id) {
+		int highest_history = 0;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				highest_history = rs.getInt("highest_history");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return highest_history;
+	}
+
+	/**
+	 * This function is used to get highest number of people an hour.
+	 * 
+	 * @param id
+	 * @return highest_hour
+	 */
+	public int getHighest_hour(int id) {
+		int Highest_hour = 0;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Highest_hour = rs.getInt("highest_hour");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Highest_hour;
+	}
+	
+	/**
+	 * This function is used to get threshold by id
+	 * 
+	 * @param id
+	 * @return threshold
+	 */
+	public int getthreshold(int id) {
+		int threshold = 0;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				threshold = rs.getInt("threshold");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return threshold;
+	}
+	
 	/**
 	 * This function is used to update the threshold of target camera
 	 * 
@@ -62,77 +238,7 @@ public class CameraDAO {
 		
 	}
 	
-	/**
-	 * This function is used to get highest_history number of people an hour.
-	 * 
-	 * @param id
-	 * @return highest_history
-	 */
-	public int getHighest(int id) {
-		int highest_history = 0;
-		try {
-			Connection conn = DBConn.getINSTANCE().getConnection();
 
-			String sql = "select * from camera where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				highest_history = rs.getInt("highest_history");
-			}
-			DBConn.closeConnection(conn, ps, rs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return highest_history;
-	}
-
-	/**
-	 * This function is used to get highest number of people an hour.
-	 * 
-	 * @param id
-	 * @return highest_hour
-	 */
-	public int getHighest_hour(int id) {
-		int Highest_hour = 0;
-		try {
-			Connection conn = DBConn.getINSTANCE().getConnection();
-
-			String sql = "select * from camera where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				Highest_hour = rs.getInt("highest_hour");
-			}
-			DBConn.closeConnection(conn, ps, rs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Highest_hour;
-	}
-	/**
-	 * This function is used to get threshold by id
-	 * 
-	 * @param id
-	 * @return threshold
-	 */
-	public int getthreshold(int id) {
-		int threshold = 0;
-		try {
-			Connection conn = DBConn.getINSTANCE().getConnection();
-
-			String sql = "select * from camera where id=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				threshold = rs.getInt("threshold");
-			}
-			DBConn.closeConnection(conn, ps, rs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return threshold;
-	}
+	
+	
 }
