@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import entity.Camera;
 import util.DBConn;
@@ -238,7 +239,68 @@ public class CameraDAO {
 		
 	}
 	
+	/**
+	 * This function is used to get a list of camera name
+	 * 
+	 * @return list <String>
+	 */
+	public ArrayList<String>  getNameList() {
+		String name = "";
+		ArrayList <String> list = new ArrayList<String> ();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
 
+			String sql = "select * from camera";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				name = rs.getString("name");
+				list.add(name);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
+	/**
+	 * This function is used to get id by name
+	 * 
+	 * @param name
+	 * @return id
+	 */
+	public int getId(String name) {
+		int id = 0;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where name=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+//	/**
+//	 * 
+//	 * @param args
+//	 */
+//	public static void main(String[] args) {
+//		CameraDAO cameradao = new CameraDAO();
+//		ArrayList<String> list = cameradao.getNameList();
+//		System.out.println(list.toString());
+//		
+//		for (int i = 0; i < list.size(); i++) {
+//			System.out.print(cameradao.getId(list.get(i))+" ");
+//		}
+//	}
 	
 }
