@@ -52,14 +52,15 @@ public class SendVerificationCode extends HttpServlet {
 	 * used to deal send verification code operation
 	 */
 	private void sendVerificationCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession sessionVerification = request.getSession();
+		HttpSession session = request.getSession();
 		String email = request.getParameter("emaliAddress");
 		String verification = SendEmail.getVerificationCode();
-		sessionVerification.setAttribute("verificationCode", verification);
-		String message = "修改密码验证码：" + verification +"。守住验证码，打死也不要告诉别人哦！" + '\n' + "如非本人操作，请忽略";
+		session.setAttribute("verificationCode", verification);
+		session.setAttribute("emailAddress",email);
+		String message = "修改密码验证码：" + verification +"。 守住验证码，打死也不要告诉别人哦！" + '\n' + "如非本人操作，请忽略";
 		SendEmail.sendEmail(email, message);
 		System.out.println(email + " "+ message);
-		//response.sendRedirect("changepassword.jsp");
+		
 		String url = "/changepassword.jsp";
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher(url);//通过request获取转发器
 		requestDispatcher.forward(request, response);
