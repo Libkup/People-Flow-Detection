@@ -158,23 +158,21 @@
                           <h3 class="h4">删除用户</h3>
                         </div>
                         <div class="card-body">
-                          <form class="form-horizontal">
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">邮箱</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="email" class="form-control">
+                                            <input id="Email" type="email" class="form-control">
                                             <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
+                                                <button  type="button"  class="btn btn-primary" onclick="settingUserInformation()">查询</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="card-body text-center">
+                            <div  id="lin1" style="display:none;" class="line"></div>
+                            <div id= "information" style="display:none;" class="card-body text-center">
                                 <div class="client-avatar">
                                     <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle">
                                     <div class="status bg-green"></div>
@@ -200,7 +198,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="username">sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -212,7 +210,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="useremail">sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -224,7 +222,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="gender">sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -236,7 +234,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="phonenumber">sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -248,7 +246,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="position">sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -260,7 +258,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong>sdfsdf</strong>
+                                                    <strong id="introduction">sdfsdf</strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -271,8 +269,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
+                            <div id="lin2" style="display:none;" class="line"></div>
+                            <div id="deleteuser" style="display:none;" class="form-group row">
                                 <div class="col-sm-6 ">
                                     <button type="submit" class="btn btn-primary">确认删除</button>
                                 </div>
@@ -281,7 +279,7 @@
                                 </div>
                             </div>
 
-                          </form>
+                     
                         </div>
                       </div>
                     </div>
@@ -323,5 +321,30 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+		function settingUserInformation(){
+			var value = document.getElementById("Email").value;
+			console.log("1111" + value);
+			$.ajax({
+				type : 'POST', 
+				url : "SearchUser", 
+				data: {Email: value}, 
+				success : function(result) {
+					var resultArr = result.split(",");
+					$("#username").html(resultArr[0]);
+					$("#useremail").html(resultArr[1]);
+					$("#gender").html(resultArr[2]);
+					$("#phonenumber").html(resultArr[3]);
+					$("#position").html(resultArr[4]);
+					$("#introduction").html(resultArr[5]);
+					document.getElementById("Email").value = "";
+					document.getElementById("lin1").style.display="";//显
+					document.getElementById("information").style.display="";//显
+					document.getElementById("lin2").style.display="";//显
+					document.getElementById("deleteuser").style.display="";//显
+				}
+			});
+		};
+	</script>
   </body>
 </html>
