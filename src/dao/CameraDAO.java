@@ -204,6 +204,47 @@ public class CameraDAO {
 	}
 
 	/**
+	 * This function is used to update the highest value of target camera
+	 * 
+	 * @param id
+	 * @param highestHistory
+	 */
+	public void updateHighestHistory(int id, int highestHistory) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "update camera set highest_history=? where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, highestHistory);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This function is used to update the highest_hour value of target camera
+	 * 
+	 * @param id
+	 * @param highestHour
+	 */
+	public void updateHighestHour(int id, int highestHour) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "update camera set highest_hour=? where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, highestHour);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
 	 * This function is used to add the camera 
 	 * 
 	 * @param camera
@@ -301,6 +342,8 @@ public class CameraDAO {
 //		for (int i = 0; i < list.size(); i++) {
 //			System.out.print(cameradao.getId(list.get(i))+" ");
 //		}
+//		cameradao.updateHighestHistory(1, 666);
+//		cameradao.updateHighestHour(1, 777);
 //	}
 	
 }
