@@ -162,7 +162,7 @@
 		                  <div class="right-col col-lg-6 d-flex align-items-center">
 		                    <div class="time">
 		                      <i class="fa fa-clock-o"></i>
-		                      <span id="cg" class="hidden-sm-down">2018 / 12 / 21上午12:00:00</span>
+		                      <span id="cg${data[4] }" class="hidden-sm-down">2018 / 12 / 21上午12:00:00</span>
 		                    </div>
 		                    <div class="project-progress">
 		                      <div class="progress">
@@ -178,20 +178,20 @@
 		                <div class="statistics col-lg-2 col-12">
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-		                    <div class="text"><strong id="Camera1currentCount">147</strong><br><small>当前人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }currentCount">147</strong><br><small>当前人数</small></div>
 		                  </div>
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-		                    <div class="text"><strong id="Camera1historyHighest">234</strong><br><small>历史最高人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }historyHighest">234</strong><br><small>历史最高人数</small></div>
 		                  </div>
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-		                    <div class="text"><strong id="Camera1hourHighest">152</strong><br><small>近一小时最高人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }hourHighest">152</strong><br><small>近一小时最高人数</small></div>
 		                  </div>
 		                  
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-blue"><i class="fa fa-circle-thin"></i></div>
-		                    <div class="text"><strong id="Camera1prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
 		                  </div>
 		                  <div class="articles card">
 		                  	<div class="card-body no-padding">
@@ -206,14 +206,14 @@
 		                <div class="chart col-lg-5 col-12">
 		                  <div class="card">
 		                    <div class="card-header d-flex align-items-center">
-		                      <h3 class="h4" id="camera1CurrentThreshole">当前阈值：${sessionScope.camera1Threshole}人</h3>
+		                      <h3 class="h4" id="camera${data[4] }CurrentThreshole">当前阈值：0人</h3>
 		                    </div>
 		                    <div class="card-body">
 		                      <div class="form-group">
 		                         <div class="input-group">
-		                            <input id="camera1Threshold" type="text" class="form-control" placeholder="大于零的数字">
+		                            <input id="camera${data[4] }Threshold" type="text" class="form-control" placeholder="大于零的数字">
 		                              <div class="input-group-append">
-		                                <button type="button" onclick="settingCamera1()" class="btn btn-primary">Go!</button>
+		                                <button id="button${data[4] }" type="button" onclick="check(this)" class="btn btn-primary">Go!</button>
 		                              </div>
 		                         </div>
 		                       </div>
@@ -286,84 +286,76 @@
     <script src="js/videojs-ie8.min.js"></script>
     <script src="js/video.js"></script>
     <script>
-        setInterval("cg.innerHTML=new Date().toLocaleString()",1000);
+        setInterval("#span.innerHTML=new Date().toLocaleString()",1000);
     </script>
     <script>
         setInterval("cg2.innerHTML=new Date().toLocaleString()",1000);
     </script>
 	<script>
+		function updatecgs(){
+			var cgs = "${requestScope.cgids}";
+			cgs = cgs.replace("[", "");
+			cgs = cgs.replace("]", "");
+			var cgsarray = cgs.split(",");
+			for(i = 0;i < cgsarray.length; i++ ){
+				var cgid = document.getElementById(cgsarray[i].replace(" ", ""));
+				cgid.innerHTML=new Date().toLocaleString();
+			}
+		}
+		setInterval("updatecgs()",1000);
 		
-	
+		var ids = "${requestScope.ids}";
+		ids = ids.replace("[", "");
+		ids = ids.replace("]", "");
+		var idsarray = ids.split(",");
+		for(i = 0; i < idsarray.length; i++){
+			idsarray[i] = idsarray[i].replace(" ","");
+		}
 		function reloadView(x) {
-			
 			$.ajax({
 				type : 'GET', // 请求类型, 默认为 GET
 				url : "PeopleCount", // 	必需。规定把请求发送到哪个 URL。
-				//data: "info="+value, // 可选。映射或字符串值。规定连同请求发送到服务器的数据。
+				data: {"ids": ids}, // 可选。映射或字符串值。规定连同请求发送到服务器的数据。
 				success : function(result) { // 可选。请求成功时执行的回调函数。
-					
 					var resultArr = result.split(",");
-					$("#Camera1historyHighest").html(resultArr[0]);
-					$("#Camera1hourHighest").html(resultArr[1]);
-					$("#Camera1currentCount").html(resultArr[2]);
-					$("#Camera1prediction").html(resultArr[3]);
-					var th1 = new Number(resultArr[4]);
-					$("#Camera2historyHighest").html(resultArr[5]);
-					$("#Camera2hourHighest").html(resultArr[6]);
-					$("#Camera2currentCount").html(resultArr[7]);
-					$("#Camera2prediction").html(resultArr[8]);
-					var th2 = new Number(resultArr[9]);
-					if(resultArr[2] >= th1){
-						var oPtxt=document.getElementById("Camera1currentCount");
-						oPtxt.style.fontSize='50px';
-						oPtxt.style.color='red';
-					}else{
-						var oPtxt=document.getElementById("Camera1currentCount");
-						oPtxt.style.fontSize='25px';
-						oPtxt.style.color='black';
-					}
-					
-					if(resultArr[7] >= th2){
-						var oPtxt=document.getElementById("Camera2currentCount");
-						oPtxt.style.fontSize='50px';
-						oPtxt.style.color='red';
-					}else{
-						var oPtxt=document.getElementById("Camera2currentCount");
-						oPtxt.style.fontSize='25px';
-						oPtxt.style.color='black';
+					for(i = 0; i < idsarray.length; i++){
+						console.log("555" + result);
+						$("#Camera"+idsarray[i]+"currentCount").html(resultArr[i*5+0]);
+						$("#Camera"+idsarray[i]+"historyHighest").html(resultArr[i*5+1]);
+						$("#Camera"+idsarray[i]+"hourHighest").html(resultArr[i*5+2]);
+						$("#Camera"+idsarray[i]+"prediction").html(resultArr[i*5+3]);
+						$("#camera"+idsarray[i]+"CurrentThreshole").html("当前阈值：" + resultArr[i*5+4] + "人");
+						var th = new Number(resultArr[i*5+4]);
+						if(resultArr[i*5+0] >= th){
+							var oPtxt=document.getElementById("Camera"+idsarray[i]+"currentCount");
+							oPtxt.style.fontSize='50px';
+							oPtxt.style.color='red';
+						}else{
+							var oPtxt=document.getElementById("Camera"+idsarray[i]+"currentCount");
+							oPtxt.style.fontSize='25px';
+							oPtxt.style.color='black';
+						}
 					}
 				}
 			});
 		};
 		setInterval('reloadView()', 1000);
 		
-		
-		function settingCamera1(){
-			var value = document.getElementById("camera1Threshold").value;
+		function check(obj) {
+			var buttonid = obj.id.substr(6);
+			var value = document.getElementById("camera" + buttonid + "Threshold").value;
+			console.log("666" + value);
 			$.ajax({
 				type : 'POST', // 请求类型, 默认为 GET
-				url : "ThresholeSetting", // 	必需。规定把请求发送到哪个 URL。
-				data: {Threshole: "camera1" + value}, 
+				url : "ThresholdSetting", // 	必需。规定把请求发送到哪个 URL。
+				data: {Threshold: buttonid + "@" + value}, 
 				success : function(result) { // 可选。请求成功时执行的回调函数。
-					th = result;
-					$("#camera1CurrentThreshole").html("当前阈值：" + result + "人");
+					$("#camera" + buttonid + "CurrentThreshole").html("当前阈值：" + result + "人");
 					document.getElementById("camera1Threshold").value = "";
 				}
 			});
-		};
+		}
 		
-		function settingCamera2(){
-			var value = document.getElementById("camera2Threshold").value;
-			$.ajax({
-				type : 'POST', 
-				url : "ThresholeSetting", 
-				data: {Threshole: "camera2" + value}, 
-				success : function(result) {
-					$("#camera2CurrentThreshole").html("当前阈值：" + result + "人");
-					document.getElementById("camera2Threshold").value = "";
-				}
-			});
-		};
 	</script>
 	<!-- Main File-->
     

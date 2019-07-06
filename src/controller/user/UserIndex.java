@@ -45,6 +45,8 @@ public class UserIndex extends HttpServlet {
 		CameraDAO cameraDAO = new CameraDAO();
 		ArrayList<String> charts = new ArrayList<>();
 		ArrayList<ArrayList<String>> datas = new ArrayList<ArrayList<String>>();
+		ArrayList<Integer> ids = new ArrayList<>();
+		ArrayList<String> cgids = new ArrayList<>();
 		HttpSession session = request.getSession();
 		for(int id: addedCameras){
 			ArrayList<String> cameraInformation = new ArrayList<>();
@@ -52,11 +54,17 @@ public class UserIndex extends HttpServlet {
 			cameraInformation.add(cameraDAO.getLocation(id));
 			cameraInformation.add(cameraDAO.getRtmpAddress(id));
 			cameraInformation.add("cameraChart" + id);
+			cameraInformation.add(String.valueOf(id));
+			cgids.add("cg" + id);
+			ids.add(id);
 			charts.add("cameraChart" + id);
-			session.setAttribute("camera" + id + "threshold", cameraDAO.getthreshold(id));
+			session.setAttribute("camera" + id + "Threshold", cameraDAO.getthreshold(id));
+			System.out.println("yshfioa" + cameraDAO.getthreshold(id));
 			datas.add(cameraInformation);
 		}
 		request.setAttribute("datas", datas);
+		request.setAttribute("cgids", cgids);
+		request.setAttribute("ids", ids);
 		request.setAttribute("charts", charts);
 //		for(ArrayList<String> list: datas){
 //			for(String str: list){

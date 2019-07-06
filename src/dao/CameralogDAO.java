@@ -313,8 +313,8 @@ public class CameralogDAO {
 
 			result =result+ String.valueOf(getPredict(id));
 			Timestamp time = new Timestamp(System.currentTimeMillis());
-			System.out.println(time);
-			System.out.println('\n');
+//			System.out.println(time);
+//			System.out.println('\n');
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,8 +1,6 @@
 package controller.user;
 
 import java.io.IOException;
-
-import javax.print.attribute.standard.MediaSize.NA;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CameraDAO;
-import dao.CameralogDAO;
 
 /**
- * Servlet implementation class ChartDataUpdate
+ * Servlet implementation class ThresholdSetting
  */
-@WebServlet("/ChartDataUpdate")
-public class ChartDataUpdate extends HttpServlet {
+@WebServlet("/ThresholdSetting")
+public class ThresholdSetting extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChartDataUpdate() {
+    public ThresholdSetting() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +29,7 @@ public class ChartDataUpdate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String charts = request.getParameter("charts");
-		charts = charts.replace(" ","");
-		String[] witchChart = charts.split(",");
-		CameralogDAO cameralogDAO = new CameralogDAO();
-		String datas = "";
-		for(int i = 0; i < witchChart.length; i ++){
-			datas = datas + cameralogDAO.getValues(Integer.valueOf((String) witchChart[i].subSequence(11, witchChart[i].length())))+",";
-		}
-		response.getWriter().print(datas);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -48,7 +37,11 @@ public class ChartDataUpdate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id = Integer.valueOf(request.getParameter("Threshold").split("@")[0]);
+		int threshold = Integer.valueOf(request.getParameter("Threshold").split("@")[1]);
+		CameraDAO cameraDAO = new CameraDAO();
+		cameraDAO.updateThreshold(id, threshold);
+		response.getWriter().print(threshold);
 	}
 
 }

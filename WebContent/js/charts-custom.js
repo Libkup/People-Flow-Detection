@@ -6,7 +6,7 @@ tempdatas = tempdatas.replace("[", "");
 tempdatas = tempdatas.replace("]", "");
 var cameracharts = tempdatas.split(",");
 
-function updateChart1() {
+function updateChart() {
     	$.ajax({
     		type : 'GET', // 请求类型, 默认为 GET
     		url : "ChartDataUpdate", // 	必需。规定把请求发送到哪个 URL。
@@ -14,14 +14,19 @@ function updateChart1() {
     		success : function(result) { // 可选。请求成功时执行的回调函数。
     			console.log("222" + result);
     			var datas = result.split(",");
-    			for(i = 0; i < datas.length; i++){
-    				lineChart1.data.datasets[0].data[i] = datas[i];
+    			for(i = 0; i < cameracharts.length; i++){
+    				for(j = 0; j < 7; j++){
+    					cameracharts[i].data.datasets[0].data[j] = datas[i*7+j];
+    				}
     			}
     		}
     	});
+    	for(i = 0; i < cameracharts.length; i++){
+				cameracharts[i].update();
+		}
 //    	lineChart1.update();
     };
-setInterval('updateChart1()', 1000);
+setInterval('updateChart()', 1000);
 
 
 $(document).ready(function () {
