@@ -58,11 +58,11 @@ public class UserIndex extends HttpServlet {
 		}
 		request.setAttribute("datas", datas);
 		request.setAttribute("charts", charts);
-		for(ArrayList<String> list: datas){
-			for(String str: list){
-				System.out.println(str);
-			}
-		}
+//		for(ArrayList<String> list: datas){
+//			for(String str: list){
+//				System.out.println(str);
+//			}
+//		}
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
