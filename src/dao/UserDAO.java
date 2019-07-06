@@ -112,7 +112,6 @@ public class UserDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				added_camera = rs.getString("added_camera");
-				System.out.println(added_camera);
 			}
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {

@@ -1,14 +1,33 @@
 /*global $, document*/
 
+var tempdatas = document.getElementById("tempdatas").value;
+	
+tempdatas = tempdatas.replace("[", "");
+tempdatas = tempdatas.replace("]", "");
+var cameracharts = tempdatas.split(",");
+
+function updateChart1() {
+    	$.ajax({
+    		type : 'GET', // 请求类型, 默认为 GET
+    		url : "ChartDataUpdate", // 	必需。规定把请求发送到哪个 URL。
+    		data:{charts: tempdatas},
+    		success : function(result) { // 可选。请求成功时执行的回调函数。
+    			console.log("222" + result);
+    			var datas = result.split(",");
+    			for(i = 0; i < datas.length; i++){
+    				lineChart1.data.datasets[0].data[i] = datas[i];
+    			}
+    		}
+    	});
+//    	lineChart1.update();
+    };
+setInterval('updateChart1()', 1000);
+
 
 $(document).ready(function () {
 	
+	console.log("333");
 	
-	var tempdatas = document.getElementById("tempdatas").value;
-	
-	tempdatas = tempdatas.replace("[", "");
-	tempdatas = tempdatas.replace("]", "");
-	var cameracharts = tempdatas.split(",");
     'use strict';
     // ------------------------------------------------------- //
     // Charts Gradients
@@ -22,36 +41,8 @@ $(document).ready(function () {
     gradient2.addColorStop(0, 'rgba(104, 179, 112, 0.85)');
     gradient2.addColorStop(1, 'rgba(76, 162, 205, 0.85)');
 
-    function updateChart1(x) {
-    	$.ajax({
-    		type : 'GET', // 请求类型, 默认为 GET
-    		url : "ChartDataUpdate", // 	必需。规定把请求发送到哪个 URL。
-    		data:{which: "1"},
-    		success : function(result) { // 可选。请求成功时执行的回调函数。
-    			var datas = result.split(",");
-    			for(i = 0; i < datas.length; i++){
-    				lineChart1.data.datasets[0].data[i] = datas[i];
-    			}
-    		}
-    	});
-    	lineChart1.update();
-    };
-    setInterval('updateChart1()', 1000);
-    function updateChart2(x) {
-    	$.ajax({
-    		type : 'GET', // 请求类型, 默认为 GET
-    		url : "ChartDataUpdate", // 	必需。规定把请求发送到哪个 URL。
-    		data:{which: "2"},
-    		success : function(result) { // 可选。请求成功时执行的回调函数。
-    			var datas = result.split(",");
-    			for(i = 0; i < datas.length; i++){
-    				lineChart2.data.datasets[0].data[i] = datas[i];
-    			}
-    		}
-    	});
-    	lineChart2.update();
-    };
-    setInterval('updateChart2()', 1000);
+    
+    
     // ------------------------------------------------------- //
     // Line Chart
     // ------------------------------------------------------ //
@@ -113,78 +104,78 @@ $(document).ready(function () {
 
 	
 	
-    LINECHART2  = $('#lineChart2');
-    lineChart2 = new Chart(LINECHART2, {
-        type: 'line',
-        options: {
-            legend: {labels:{fontColor:"#777", fontSize: 12}},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    gridLines: {
-                        color: '#eee'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    gridLines: {
-                        color: '#eee'
-                    }
-                }]
-            },
-        },
-        data: {
-        	labels: ["10分钟前", "8分钟前", "6分钟前", "4分钟前", "2分钟前", "现在", "预测两分钟后"],
-            datasets: [
-                {
-                    label: "人流量",
-                    fill: true,
-                    lineTension: 0.3,
-                    backgroundColor: gradient1,
-                    borderColor: gradient1,
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 1,
-                    pointBorderColor: gradient1,
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: gradient1,
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [30, 50, 40, 61, 42, 35, 40],
-                    spanGaps: false
-                },
-                // {
-                //     label: "Data Set Two",
-                //     fill: true,
-                //     lineTension: 0.3,
-                //     backgroundColor: gradient2,
-                //     borderColor: gradient2,
-                //     borderCapStyle: 'butt',
-                //     borderDash: [],
-                //     borderDashOffset: 0.0,
-                //     borderJoinStyle: 'miter',
-                //     borderWidth: 1,
-                //     pointBorderColor: gradient2,
-                //     pointBackgroundColor: "#fff",
-                //     pointBorderWidth: 1,
-                //     pointHoverRadius: 5,
-                //     pointHoverBackgroundColor: gradient2,
-                //     pointHoverBorderColor: "rgba(220,220,220,1)",
-                //     pointHoverBorderWidth: 2,
-                //     pointRadius: 1,
-                //     pointHitRadius: 10,
-                //     data: [50, 40, 50, 40, 45, 40, 30],
-                //     spanGaps: false
-                // }
-            ]
-        }
-    });
+//    LINECHART2  = $('#lineChart2');
+//    lineChart2 = new Chart(LINECHART2, {
+//        type: 'line',
+//        options: {
+//            legend: {labels:{fontColor:"#777", fontSize: 12}},
+//            scales: {
+//                xAxes: [{
+//                    display: true,
+//                    gridLines: {
+//                        color: '#eee'
+//                    }
+//                }],
+//                yAxes: [{
+//                    display: true,
+//                    gridLines: {
+//                        color: '#eee'
+//                    }
+//                }]
+//            },
+//        },
+//        data: {
+//        	labels: ["10分钟前", "8分钟前", "6分钟前", "4分钟前", "2分钟前", "现在", "预测两分钟后"],
+//            datasets: [
+//                {
+//                    label: "人流量",
+//                    fill: true,
+//                    lineTension: 0.3,
+//                    backgroundColor: gradient1,
+//                    borderColor: gradient1,
+//                    borderCapStyle: 'butt',
+//                    borderDash: [],
+//                    borderDashOffset: 0.0,
+//                    borderJoinStyle: 'miter',
+//                    borderWidth: 1,
+//                    pointBorderColor: gradient1,
+//                    pointBackgroundColor: "#fff",
+//                    pointBorderWidth: 1,
+//                    pointHoverRadius: 5,
+//                    pointHoverBackgroundColor: gradient1,
+//                    pointHoverBorderColor: "rgba(220,220,220,1)",
+//                    pointHoverBorderWidth: 2,
+//                    pointRadius: 1,
+//                    pointHitRadius: 10,
+//                    data: [30, 50, 40, 61, 42, 35, 40],
+//                    spanGaps: false
+//                },
+//                // {
+//                //     label: "Data Set Two",
+//                //     fill: true,
+//                //     lineTension: 0.3,
+//                //     backgroundColor: gradient2,
+//                //     borderColor: gradient2,
+//                //     borderCapStyle: 'butt',
+//                //     borderDash: [],
+//                //     borderDashOffset: 0.0,
+//                //     borderJoinStyle: 'miter',
+//                //     borderWidth: 1,
+//                //     pointBorderColor: gradient2,
+//                //     pointBackgroundColor: "#fff",
+//                //     pointBorderWidth: 1,
+//                //     pointHoverRadius: 5,
+//                //     pointHoverBackgroundColor: gradient2,
+//                //     pointHoverBorderColor: "rgba(220,220,220,1)",
+//                //     pointHoverBorderWidth: 2,
+//                //     pointRadius: 1,
+//                //     pointHitRadius: 10,
+//                //     data: [50, 40, 50, 40, 45, 40, 30],
+//                //     spanGaps: false
+//                // }
+//            ]
+//        }
+//    });
     // ------------------------------------------------------- //
     // Doughnut Chart
     // ------------------------------------------------------ //
