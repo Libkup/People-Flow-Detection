@@ -189,7 +189,7 @@ public class UserDAO {
 	 * @param user
 	 * 
 	 */
-	public void UpdateUser(User user) {
+	public void UpdateUser(User user,String email) {
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
 
@@ -203,6 +203,7 @@ public class UserDAO {
 			ps.setString(6, user.getPosition());
 			ps.setString(7, user.getSelfIntroduction());
 			ps.setString(8, user.getAdded_camera());
+			ps.setString(9, email);
 			ResultSet rs = ps.executeQuery();
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {
@@ -230,4 +231,24 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This function is used to delete user .
+	 * 
+	 * @param email
+	 */
+	public void DeleteUser(String email) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "delete from user where email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
