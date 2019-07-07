@@ -154,27 +154,26 @@
                             <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
                           </div>
                         </div> -->
+                         <form action="ChangeUser" method="post" class="form-validate" >
                         <div class="card-header d-flex align-items-center">
                           <h3 class="h4">更改用户信息</h3>
                         </div>
                         <div class="card-body">
-                          <form class="form-horizontal">
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">邮箱</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="email" class="form-control">
+                                             <input id="Email" name="Email" type="email" class="form-control">
                                             <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
+                                                <button  type="button"  class="btn btn-primary" onclick="settingUserInformation()">查询</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="card-body text-center">
+                            <div  id="lin1" style="display:none;" class="line"></div>
+                            <div id= "information" style="display:none;" class="card-body text-center">
                                 <div class="client-avatar">
                                     <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle">
                                     <div class="status bg-green"></div>
@@ -204,7 +203,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="text" placeholder="请输入用户名" class="form-control">
+                                                            <input type="text" id="username" name="username" placeholder="请输入用户名" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,7 +221,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="email" placeholder="请输入邮箱地址" class="form-control">
+                                                            <input type="email" id="useremail" name="useremail" placeholder="请输入邮箱地址" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,7 +239,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <select name="account" class="form-control">
+                                                            <select name="gender" id="gender"  class="form-control">
                                                                 <option>男</option>
                                                                 <option>女</option>
                                                             </select>
@@ -261,7 +260,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="text" placeholder="请输入电话号码" class="form-control">
+                                                            <input type="text" id="phonenumber" name="phonenumber" placeholder="请输入电话号码" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -279,7 +278,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <select name="position" class="form-control">
+                                                            <select name="position" id="position" class="form-control">
                                                                 <option>职位1</option>
                                                                 <option>职位2</option>
                                                             </select>
@@ -300,7 +299,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="text" placeholder="请输入个人简介" class="form-control">
+                                                            <input type="text" id="introduction" name="introduction" placeholder="请输入个人简介" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -313,13 +312,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
+                            <div id="lin2" style="display:none;" class="line"></div>
+                            <div id="changeuser" style="display:none;" class="form-group row">
                                 <div class="col-sm-6 ">
                                     <button type="submit" class="btn btn-primary">确认更改</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
                                 </div>
                             </div>
 
@@ -365,5 +361,28 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+		function settingUserInformation(){
+			var value = document.getElementById("Email").value;
+			$.ajax({
+				type : 'POST', 
+				url : "SearchUser", 
+				data: {Email: value}, 
+				success : function(result) {
+					var resultArr = result.split(",");
+					document.getElementById("lin1").style.display="";//显
+					document.getElementById("information").style.display="";//显
+					document.getElementById("lin2").style.display="";//显
+					document.getElementById("changeuser").style.display="";//显
+					document.getElementById("username").value=resultArr[0];
+					document.getElementById("useremail").value=resultArr[1];
+					document.getElementById("gender").value=resultArr[2];
+					document.getElementById("phonenumber").value=resultArr[3];
+					document.getElementById("position").value=resultArr[4];
+					document.getElementById("introduction").value=resultArr[5];
+				}
+			});
+		};
+	</script>
   </body>
 </html>
