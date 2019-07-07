@@ -119,7 +119,7 @@
                             <li  class="active"><a href="addcamera.jsp">添加摄像头</a></li>
                             <li><a href="deletecamera.jsp">删除摄像头</a></li>
                             <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
-                            <li><a href="findcamera.jsp">查找摄像头</a></li>
+                            <li><a href="findcamera.jsp">查看摄像头信息</a></li>
                         </ul>
                     </li>
           </ul>

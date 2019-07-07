@@ -230,4 +230,149 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<User> getUserByName(String name){
+		
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where name like %?_%";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	
+	public ArrayList<User> getUserByEmai(String email){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where email like %?%";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	public ArrayList<User> getUserByGender (String gender){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where gender = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, gender);
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	
+	public ArrayList<User> getUserByPhonenumber (String phonenumber){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where phone_number = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, phonenumber);
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	
+	public ArrayList<User> getUserByPosition (String position){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user where position = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, position);
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+			while (rs.next()) {
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
 }

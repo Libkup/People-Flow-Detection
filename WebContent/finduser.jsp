@@ -119,7 +119,7 @@
                             <li><a href="addcamera.jsp">添加摄像头</a></li>
                             <li><a href="deletecamera.jsp">删除摄像头</a></li>
                             <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
-                            <li><a href="findcamera.jsp">查找摄像头</a></li>
+                            <li><a href="findcamera.jsp">查看摄像头信息</a></li>
                         </ul>
                     </li>
           </ul>
@@ -158,31 +158,34 @@
                           <h3 class="h4">查找用户</h3>
                         </div>
                         <div class="card-body">
-                          <form class="form-horizontal">
-                            <div class="form-group row">
+                        <div class="form-group row">
                                 <div class="col-sm-1">
                                 </div>
                                 <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div>
-                                            <select name="position" class="form-control">
-                                                <option>用户名</option>
-                                                <option>邮箱</option>
-                                                <option>性别</option>
-                                                <option>电话号码</option>
-                                                <option>职位</option>
-                                            </select>
-                                        </div>
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
-                                        </div>
-                                    </div>
+                                	<form action="FindUser" method="post">
+	                                    <div class="input-group">
+	                                        <div>
+	                                            <select name="position" class="form-control">
+	                                                <option>用户名</option>
+	                                                <option>邮箱</option>
+	                                                <option>性别</option>
+	                                                <option>电话号码</option>
+	                                                <option>职位</option>
+	                                            </select>
+	                                        </div>
+	                                        <input name="input_type" type="text" class="form-control">
+	                                        <div class="input-group-append">
+	                                                <button type="submit" class="btn btn-primary">查询</button>
+	                                        </div>
+	                                    </div>
+	                                 </form>
                                 </div>
                                 <div class="col-sm-1">
                                 </div>
                             </div>
                             <div class="line"></div>
+                          <form class="form-horizontal">
+                            
                             <div class="form-group row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-8">
