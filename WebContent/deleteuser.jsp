@@ -171,6 +171,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <form action="DeleteUser" method="post" class="form-validate" >
                             <div  id="lin1" style="display:none;" class="line"></div>
                             <div id= "information" style="display:none;" class="card-body text-center">
                                 <div class="client-avatar">
@@ -210,7 +211,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <strong id="useremail">sdfsdf</strong>
+                                                    <strong id="useremail" >sdfsdf</strong>
                                                 </div>
                                             </div>
                                             <div class="line"></div>
@@ -272,13 +273,10 @@
                             <div id="lin2" style="display:none;" class="line"></div>
                             <div id="deleteuser" style="display:none;" class="form-group row">
                                 <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-primary">确认删除</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
+                                    <button id="useremail1" name="useremail1" type="submit" class="btn btn-primary" value=>确认删除</button>
                                 </div>
                             </div>
-
+						</form>
                      
                         </div>
                       </div>
@@ -337,6 +335,7 @@
 					$("#phonenumber").html(resultArr[3]);
 					$("#position").html(resultArr[4]);
 					$("#introduction").html(resultArr[5]);
+					document.getElementById("useremail1").value = resultArr[1];
 					document.getElementById("Email").value = "";
 					document.getElementById("lin1").style.display="";//显
 					document.getElementById("information").style.display="";//显

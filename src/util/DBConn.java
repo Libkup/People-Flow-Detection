@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class DBConn {
 
-	private String URL = "jdbc:mariadb://localhost/people_flow_detection";
+	private String URL = "jdbc:mariadb://localhost:3306/people_flow_detection";
 	private String USER = "root";
-	private String PASSWD = "root";
+	private String PASSWD = "123456";
 	private static DBConn INSTANCE;
 
 	static {
