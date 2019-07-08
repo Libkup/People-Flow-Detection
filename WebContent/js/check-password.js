@@ -2,14 +2,13 @@
  * 
  */
 function check() {
-	var a = "${sessionScope.verificationCode}";
 
-	if ((document.getElementById("password").value == "")
+	if (document.getElementById("verificationCode").value == "") {
+		alert('验证码不能为空！');
+		return false;
+	} else if ((document.getElementById("password").value == "")
 			|| (document.getElementById("passwordConfirm").value == "")) {
 		alert('密码不能为空！');
-		return false;
-	} else if (document.getElementById("verificationCode").value == "") {
-		alert('验证码不能为空！');
 		return false;
 	} else if (document.getElementById("password").value != document
 			.getElementById("passwordConfirm").value) {

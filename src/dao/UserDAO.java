@@ -257,12 +257,13 @@ public class UserDAO {
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
 
-			String sql = "select * from user where name like %?_%";
+			String sql = "select * from user where name like ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, name);
+			ps.setString(1, "%" + name + "%");
 			ResultSet rs = ps.executeQuery();
-			User user = new User();
+			
 			while (rs.next()) {
+				User user = new User();
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
@@ -286,12 +287,13 @@ public class UserDAO {
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
 
-			String sql = "select * from user where email like %?%";
+			String sql = "select * from user where email like ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, email);
+			ps.setString(1, "%" + email + "%");
 			ResultSet rs = ps.executeQuery();
-			User user = new User();
+			
 			while (rs.next()) {
+				User user = new User();
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
@@ -318,8 +320,8 @@ public class UserDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, gender);
 			ResultSet rs = ps.executeQuery();
-			User user = new User();
 			while (rs.next()) {
+				User user = new User();
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
@@ -343,12 +345,12 @@ public class UserDAO {
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
 
-			String sql = "select * from user where phone_number = ?";
+			String sql = "select * from user where phone_number like ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, phonenumber);
+			ps.setString(1, "%" + phonenumber + "%");
 			ResultSet rs = ps.executeQuery();
-			User user = new User();
 			while (rs.next()) {
+				User user = new User();
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
@@ -376,8 +378,8 @@ public class UserDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, position);
 			ResultSet rs = ps.executeQuery();
-			User user = new User();
 			while (rs.next()) {
+				User user = new User();
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));

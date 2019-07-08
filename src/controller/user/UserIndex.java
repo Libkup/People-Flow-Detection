@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import dao.CameraDAO;
 import dao.UserDAO;
-import entity.Camera;
-import entity.User;
 
 /**
  * Servlet implementation class UserIndex
@@ -38,7 +35,8 @@ public class UserIndex extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String email = "13sd";
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
 		UserDAO userDAO = new UserDAO();
 		ArrayList<Integer> addedCameras = new ArrayList<>();
 		addedCameras = userDAO.getadded_camera(email);
@@ -47,7 +45,6 @@ public class UserIndex extends HttpServlet {
 		ArrayList<ArrayList<String>> datas = new ArrayList<ArrayList<String>>();
 		ArrayList<Integer> ids = new ArrayList<>();
 		ArrayList<String> cgids = new ArrayList<>();
-		HttpSession session = request.getSession();
 		for(int id: addedCameras){
 			ArrayList<String> cameraInformation = new ArrayList<>();
 			cameraInformation.add(cameraDAO.getName(id));

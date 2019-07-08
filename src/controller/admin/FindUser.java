@@ -2,12 +2,16 @@ package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.UserDAO;
+import entity.User;
 
 /**
  * Servlet implementation class findUser
@@ -39,15 +43,45 @@ public class FindUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();     //初始化out对象
-		String position = request.getParameter("position");
-		String input = request.getParameter("input_type");
-		if(input.equals("")){
-			out.print("<script language='javascript'>alert('输入不能为空');window.location.href='finduser.jsp';</script>");
+//		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();     //初始化out对象
+		String option = request.getParameter("option");
+		String input = request.getParameter("input");
+		System.out.println(option + input);
+//		if(input.equals("")){
+//			out.print("<script language='javascript'>alert('输入不能为空');window.location.href='finduser.jsp';</script>");
+//		}
+		
+		UserDAO userDAO = new UserDAO();
+//		User user = new User();
+		ArrayList<User> users = new ArrayList<>();
+		switch (option) {
+		case "用户名":
+			users = userDAO.getUserByName(input);
+			break;
+		case "邮箱":
+			users = userDAO.getUserByEmai(input);
+			break;
+		case "性别":
+			users = userDAO.getUserByGender(input);
+			break;
+		case "电话号码":
+			users = userDAO.getUserByPhonenumber(input);
+			break;
+		case "职位":
+			users = userDAO.getUserByPosition(input);
+			break;
+		default:
+			out.print("<script language='javascript'>alert('请选择正确的选项');window.location.href='finduser.jsp';</script>");
+			break;
 		}
-		System.out.println(position + " " + input);
-//		doGet(request, response);
+		String result = "";
+		for(User user : users){
+			result += user.getName() + "," + user.getEmail() + "," + user.getPhoneNumber() + "," + user.getPosition() + "," + user.getSelfIntroduction() + "||";
+			
+		}
+		System.out.println(result);
+		response.getWriter().print(result);
 	}
 
 }
