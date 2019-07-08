@@ -89,10 +89,10 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理
+					<li><a href="adminindex.jsp"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理
 					</a>
 						<ul id="exampledropdownDropdown" class="list-unstyled collapse">
 							<li><a href="adduser.jsp">添加用户</a></li>
@@ -145,22 +145,22 @@
 										<h3 class="h4">删除摄像头</h3>
 									</div>
 									<div class="card-body">
-										<form class="form-horizontal">
+										<form action="DeleteCamera" method="post" class="form-horizontal">
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">标识</label>
 												<div class="col-sm-7">
 													<div class="form-group">
 														<div class="input-group">
-															<input type="text" class="form-control">
+															<input id="name" type="text" class="form-control">
 															<div class="input-group-append">
-																<button type="button" class="btn btn-primary">查询</button>
+																<button type="button" class="btn btn-primary" onclick="SearchCameraInfo()">查询</button>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-											<div class="line"></div>
-											<div class="card-body text-center">
+											<div id="lin1" style="display: none;" class="line"></div>
+											<div id="text1" style="display: none;" class="card-body text-center">
 												<!-- <div class="client-title">
                                     <h3>Jason Doe</h3>
                                     <span>Web Developer</span>
@@ -168,9 +168,9 @@
                                 </div> -->
 												<div class="line"></div>
 												<div class="form-group row">
-													<div class="col-sm-4"></div>
+													<div class="col-sm-3"></div>
 
-													<div class="col-sm-4">
+													<div class="col-sm-6">
 														<div class="card-body no-padding">
 															<!-- Item-->
 															<div class="item d-flex justify-content-between">
@@ -180,7 +180,7 @@
 																	</div>
 																</div>
 																<div class="text-right">
-																	<strong>sdfsdf</strong>
+																	<strong id="cameraname">sdfsdf</strong>
 																</div>
 															</div>
 															<div class="line"></div>
@@ -192,7 +192,7 @@
 																	</div>
 																</div>
 																<div class="text-right">
-																	<strong>sdfsdf</strong>
+																	<strong id="location">sdfsdf</strong>
 																</div>
 															</div>
 															<div class="line"></div>
@@ -204,23 +204,56 @@
 																	</div>
 																</div>
 																<div class="text-right">
-																	<strong>sdfsdf</strong>
+																	<strong id="description">sdfsdf</strong>
+																</div>
+															</div>
+															<div class="line"></div>
+															<!-- Item-->
+															<div class="item d-flex justify-content-between">
+																<div class="info d-flex">
+																	<div class="title">
+																		<h5>历史最高</h5>
+																	</div>
+																</div>
+																<div class="text-right">
+																	<strong id="history">sdfsdf</strong>
+																</div>
+															</div>
+															<div class="line"></div>
+															<!-- Item-->
+															<div class="item d-flex justify-content-between">
+																<div class="info d-flex">
+																	<div class="title">
+																		<h5>小时最高</h5>
+																	</div>
+																</div>
+																<div class="text-right">
+																	<strong id="hour">sdfsdf</strong>
+																</div>
+															</div>
+															<div class="line"></div>
+															<!-- Item-->
+															<div class="item d-flex justify-content-between">
+																<div class="info d-flex">
+																	<div class="title">
+																		<h5>阈值</h5>
+																	</div>
+																</div>
+																<div class="text-right">
+																	<strong id="threshold">sdfsdf</strong>
 																</div>
 															</div>
 															<div class="line"></div>
 														</div>
 													</div>
 
-													<div class="col-sm-4"></div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
-											<div class="line"></div>
-											<div class="form-group row">
+											<div id="lin2" style="display: none;" class="line"></div>
+											<div id="deletecamera" style="display: none;" class="form-group row">
 												<div class="col-sm-6 ">
-													<button type="submit" class="btn btn-primary">确认删除</button>
-												</div>
-												<div class="col-sm-6 ">
-													<button type="submit" class="btn btn-secondary">取消</button>
+													<button  id="cameraname1" name="cameraname1" type="submit" class="btn btn-primary">确认删除</button>
 												</div>
 											</div>
 
@@ -268,5 +301,37 @@
 	<script src="js/charts-home.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
+	<script>
+		function SearchCameraInfo() {
+			var value = document.getElementById("name").value;
+			$.ajax({
+				type : 'POST',
+				url : "SearchCamera",
+				data : {
+					name : value
+				},
+				success : function(result) {
+					console.log(result)
+					if(result == ""){
+    					alert("未查询到结果");}
+					else{
+					var resultArr = result.split(",");
+					$("#cameraname").html(resultArr[0]);
+					$("#location").html(resultArr[1]);
+					$("#description").html(resultArr[2]);
+					$("#history").html(resultArr[3]);
+					$("#hour").html(resultArr[4]);
+					$("#threshold").html(resultArr[5]);
+					document.getElementById("cameraname1").value = resultArr[0];
+					document.getElementById("name").value = "";
+					document.getElementById("lin1").style.display = "";//显
+					document.getElementById("text1").style.display = "";//显
+					document.getElementById("lin2").style.display = "";//显
+					document.getElementById("deletecamera").style.display = "";//显
+					}
+				}
+			});
+		};
+	</script>
 </body>
 </html>

@@ -84,10 +84,10 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理
+					<li><a href="adminindex.jsp"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理
 					</a>
 						<ul id="exampledropdownDropdown" class="list-unstyled collapse">
 							<li><a href="adduser.jsp">添加用户</a></li>
@@ -126,11 +126,11 @@
 										<h3 class="h4">添加摄像头</h3>
 									</div>
 									<div class="card-body">
-										<form class="form-horizontal">
+										<form action="AddCamera" method="post" class="form-horizontal" >
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">标识</label>
 												<div class="col-sm-7">
-													<input type="text" placeholder="长度不超过20位"
+													<input name="name" type="text" placeholder="长度不超过20位"
 														class="form-control">
 												</div>
 											</div>
@@ -138,7 +138,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">地址</label>
 												<div class="col-sm-7">
-													<input type="email" placeholder="请输入地址"
+													<input name="location" type="text" placeholder="请输入地址"
 														class="form-control">
 												</div>
 											</div>
@@ -146,18 +146,14 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">描述</label>
 												<div class="col-sm-7">
-													<input type="text" placeholder="请输入摄像头描述" class="form-control">
+													<input name="description" type="text" placeholder="请输入摄像头描述" class="form-control">
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
 												<div class="col-sm-6 ">
 													<!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
-													<button type="submit" class="btn btn-primary">保存更改</button>
-												</div>
-												<div class="col-sm-6 ">
-													<button type="submit" class="btn btn-secondary">取消</button>
-													<!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+													<button type="submit" class="btn btn-primary">添加</button>
 												</div>
 											</div>
 										</form>

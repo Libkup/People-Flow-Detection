@@ -219,14 +219,6 @@
                                 <div class="col-sm-2"></div>
                             </div>
                             <div class="line"></div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-primary">确认删除</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
-                                </div>
-                            </div>
 
                           </form>
                         </div>
@@ -274,7 +266,6 @@
     	function getUsers(){
     		var option = document.getElementById("option").value;
     		var input = document.getElementById("input_type").value;
-    		console.log("999 " + option + " " + input);
     		$.ajax({
     			type : "POST",
     			url : "FindUser",

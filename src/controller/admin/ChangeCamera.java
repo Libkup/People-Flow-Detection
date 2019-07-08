@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
-import entity.User;
+import dao.CameraDAO;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class ChangeCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/ChangeCamera")
+public class ChangeCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public ChangeCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +42,18 @@ public class SearchUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		PrintWriter out=response.getWriter();     //初始化out对象
+		String name = request.getParameter("name");
+		CameraDAO cameradao = new CameraDAO();
+		int id = cameradao.getId(name);
+		if(!name.equals(request.getParameter("cameraname"))&&cameradao.verifyExit(request.getParameter("cameraname"))) {
+			out.print("<script language='javascript'>alert('摄像头名字已存在！');window.location.href='changecamera.jsp';</script>"); 
+		}else {
+		cameradao.updateName(id, request.getParameter("cameraname"));
+		cameradao.updatelocation(id, request.getParameter("location"));
+		cameradao.updatedescription(id, request.getParameter("description"));
+		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='changecamera.jsp';</script>"); 
 		}
-		response.getWriter().print(data);
 	}
 
 }
