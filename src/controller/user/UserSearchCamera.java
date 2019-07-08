@@ -49,7 +49,6 @@ public class UserSearchCamera extends HttpServlet {
 		CameraDAO cameraDAO = new CameraDAO();
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
-		System.out.println(email);
 		UserDAO userDAO = new UserDAO();
 		ArrayList<Integer> addedCamera = userDAO.getadded_camera(email);
 		ArrayList<Camera> cameras = new ArrayList<>();
