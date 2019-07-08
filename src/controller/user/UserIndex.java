@@ -59,7 +59,6 @@ public class UserIndex extends HttpServlet {
 			ids.add(id);
 			charts.add("cameraChart" + id);
 			session.setAttribute("camera" + id + "Threshold", cameraDAO.getthreshold(id));
-			System.out.println("yshfioa" + cameraDAO.getthreshold(id));
 			datas.add(cameraInformation);
 		}
 		request.setAttribute("datas", datas);

@@ -155,9 +155,35 @@
                           </div>
                         </div>
                         <div class="card-header">
-                          <h3 class="h4">更改摄像头信息</h3>
+                          <h3 class="h4">查看摄像头信息</h3>
                         </div>
-                        <div class="card-body no-padding">
+                        
+                        <div class="card-body">
+                          <div class="form-group row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-10">
+                                	
+                                    <div class="input-group">
+                                        <div>
+                                            <select name="position" class="form-control">
+                                                <option>用户名</option>
+                                                <option>邮箱</option>
+                                                <option>性别</option>
+                                                <option>电话号码</option>
+                                                <option>职位</option>
+                                            </select>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-append">
+                                                <button type="button" class="btn btn-primary">查询</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                            <div class="line"></div>
                           <div class="item">
                             <div class="row">
                               <div class="col-3 date-holder text-center">

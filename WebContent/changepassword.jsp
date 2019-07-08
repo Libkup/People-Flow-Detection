@@ -53,7 +53,7 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a href="index.jsp" class="navbar-brand d-none d-sm-inline-block">
+							<a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
 								<div class="brand-text d-none d-lg-inline-block">
 									<strong>人流量监控平台</strong>
 								</div>
@@ -98,7 +98,7 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li><a href="index.jsp"> <i class="icon-home"></i>主页
+					<li><a href="UserIndex"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="true"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
@@ -188,7 +188,7 @@
 												</div>
 												<!--  
 												<div class="col-sm-6 ">
-													<button class="btn btn-secondary" onclick="location.href='index.jsp'">取消</button>
+													<button class="btn btn-secondary" onclick="location.href='UserIndex'">取消</button>
 												</div>  
 												-->
 											</div>
@@ -197,7 +197,7 @@
 											<div class="col-sm-6 "></div>
 											<div class="col-sm-6 ">
 												<button class="btn btn-secondary"
-													onclick="location.href='index.jsp'">取消</button>
+													onclick="location.href='UserIndex'">取消</button>
 											</div>
 										</div>
 									</div>

@@ -12,7 +12,6 @@ function updateChart() {
     		url : "ChartDataUpdate", // 	必需。规定把请求发送到哪个 URL。
     		data:{charts: tempdatas},
     		success : function(result) { // 可选。请求成功时执行的回调函数。
-    			console.log("222" + result);
     			var datas = result.split(",");
     			for(i = 0; i < cameracharts.length; i++){
     				for(j = 0; j < 7; j++){
@@ -30,8 +29,6 @@ setInterval('updateChart()', 1000);
 
 
 $(document).ready(function () {
-	
-	console.log("333");
 	
     'use strict';
     // ------------------------------------------------------- //
@@ -53,7 +50,6 @@ $(document).ready(function () {
     // ------------------------------------------------------ //
     for(i = 0; i < cameracharts.length; i++){
     	cameracharts[i] = cameracharts[i].replace(" ", "");
-    	console.log("111" + cameracharts[i]);
     	cameracharts[i] = $('#'+cameracharts[i]);
         cameracharts[i] = new Chart(cameracharts[i], {
             type: 'line',

@@ -43,7 +43,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.jsp" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -105,7 +105,7 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="index.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="UserIndex"> <i class="icon-home"></i>主页 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
                       <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
                         <li class="active"><a href="information.jsp">更改个人信息</a></li>

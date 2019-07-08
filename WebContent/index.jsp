@@ -45,7 +45,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="index.jsp" class="navbar-brand d-none d-sm-inline-block">
+                <!-- Navbar Brand --><a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -105,7 +105,7 @@
           <!-- Sidebar Navidation Menus-->
           <span class="heading">Main</span>
           <ul class="list-unstyled">
-                    <li class="active"><a href="index.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li class="active"><a href="UserIndex"> <i class="icon-home"></i>主页 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
                       <ul id="exampledropdownDropdown" class="list-unstyled collapse">
                         <li><a href="information.jsp">更改个人信息</a></li>
@@ -319,7 +319,6 @@
 				success : function(result) { // 可选。请求成功时执行的回调函数。
 					var resultArr = result.split(",");
 					for(i = 0; i < idsarray.length; i++){
-						console.log("555" + result);
 						$("#Camera"+idsarray[i]+"currentCount").html(resultArr[i*5+0]);
 						$("#Camera"+idsarray[i]+"historyHighest").html(resultArr[i*5+1]);
 						$("#Camera"+idsarray[i]+"hourHighest").html(resultArr[i*5+2]);
@@ -344,7 +343,6 @@
 		function check(obj) {
 			var buttonid = obj.id.substr(6);
 			var value = document.getElementById("camera" + buttonid + "Threshold").value;
-			console.log("666" + value);
 			$.ajax({
 				type : 'POST', // 请求类型, 默认为 GET
 				url : "ThresholdSetting", // 	必需。规定把请求发送到哪个 URL。
