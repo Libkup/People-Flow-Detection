@@ -403,6 +403,7 @@ public class CameraDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Camera camera = new Camera();
+				camera.setId(rs.getInt("id"));
 				camera.setName(rs.getString("name"));
 				camera.setLocation(rs.getString("location"));
 				camera.setDescription(rs.getString("description"));
@@ -429,9 +430,13 @@ public class CameraDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Camera camera = new Camera();
+				camera.setId(rs.getInt("id"));
 				camera.setName(rs.getString("name"));
 				camera.setLocation(rs.getString("location"));
 				camera.setDescription(rs.getString("description"));
+				camera.setHighestHistory(rs.getInt("highest_history"));
+				camera.setHighestHour(rs.getInt("highest_hour"));
+				camera.setThreshold(rs.getInt("threshold"));
 				cameras.add(camera);
 			}
 			DBConn.closeConnection(conn, ps, rs);

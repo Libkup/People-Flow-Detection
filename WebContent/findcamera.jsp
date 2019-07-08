@@ -184,7 +184,7 @@
                               </div>
                               <div class="col-9 content text-center">
                                 <h5>标识</h5>
-                                <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                                <p></p>
                                 <div class="row">
                                 	<div class="col-4 date-holder text-center">
                                 		<p>历史最高人数：</p>

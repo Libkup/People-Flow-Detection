@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>更改个人信息</title>
+    <title>删除摄像头</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -106,16 +106,16 @@
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
                     <li><a href="UserIndex"> <i class="icon-home"></i>主页 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
-                      <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
-                        <li class="active"><a href="information.jsp">更改个人信息</a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                      <ul id="exampledropdownDropdown" class="list-unstyled collapse">
+                        <li><a href="information.jsp">更改个人信息</a></li>
                         <li><a href="changepassword.jsp">更改个人密码</a></li>
                       </ul>
                     </li>
-                    <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>摄像头管理</a>
-                      <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
+                    <li><a href="#exampledropdownDropdown1" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>摄像头管理</a>
+                      <ul id="exampledropdownDropdown1" class="list-unstyled collapse show">
                         <li><a href="userAddCamera.jsp">添加摄像头</a></li>
-                        <li><a href="userDeleteCamera.jsp">删除摄像头</a></li>
+                        <li  class="active"><a href="userDeleteCamera.jsp">删除摄像头</a></li>
                       </ul>
                     </li>
           </ul>
@@ -138,87 +138,56 @@
           <!-- Forms Section-->
           <section class="forms" > 
                 <div class="container-fluid">
-                  <div class="row" style="text-align: center;">
+                  <div class="row">
                     <!-- Form Elements -->
                     <div class="col-lg-2">
 
                     </div>
                     <div class="col-lg-8">
-                      <div class="card">
-                        <!-- <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div> -->
-                        <div class="card-header d-flex align-items-center">
-                          <h3 class="h4">更新你的个人信息</h3>
+                      <div class="recent-activities card">
+                        <div class="card-header">
+                          <h3 class="h4">删除摄像头</h3>
                         </div>
+                        
                         <div class="card-body">
-                          <form action="ChangeInfo" method="post" class="form-horizontal">
-                            <div class="form-group row">
-                              <label class="col-sm-4 form-control-label">用户名</label>
-                              <div class="col-sm-7">
-                                <input type="text" name="username" placeholder="长度不超过20位" value="${sessionScope.User.name}" class="form-control">
+                          <div id = "items" style="display:none">
+                          <div class="item">
+                            <div class="row">
+                              <div class="col-2 date-holder text-center">
+                                <br>
+                                <h5>地点</h5>
+                              </div>
+                              <div class="col-8 content text-center">
+                                <h5>标识</h5>
+                                <p>地方官梵蒂冈</p>
+                                <div class="row">
+                                	<div class="col-4 date-holder text-center">
+                                		<p>历史最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>一小时内最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>摄像头阈值：</p>
+                                	</div>
+                                </div>
+                              </div>
+                              <div class="col-2 date-holder text-center">
+                                <br>
+                                <button id="useremail1" name="useremail1" type="submit"
+														class="btn btn-primary" value=>添加</button>
                               </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">邮箱</label>
-                                <div class="col-sm-7">
-                                    <input type="email" name="useremail" placeholder="请输入邮箱地址" value="${sessionScope.User.email}" class="form-control">
-                                </div>
-                            </div>
-                            
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">性别</label>
-                                <div class="col-sm-7">
-                                    <select  name="gender" value="${sessionScope.User.gender}" class="form-control mb-3">
-                                        <option>男</option>
-                                        <option>女</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">电话号码</label>
-                                <div class="col-sm-7">
-                                    <input type="text" name="phonenumber" value="${sessionScope.User.phoneNumber}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">职位</label>
-                                <div class="col-sm-7">
-                                    <select  name="position" value="${sessionScope.User.position}" class="form-control mb-3">
-                                        <option>职位1</option>
-                                        <option>职位2</option>
-                                        <option>职位3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">个人简介</label>
-                                <div class="col-sm-7">
-                                    <input type="text" name="introduction" placeholder="请输入个人简介" value="${sessionScope.User.selfIntroduction}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 ">
-                                    <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
-                                    <button type="submit" class="btn btn-primary">保存更改</button>
-                                </div>
-                            </div>
-                          </form>
+                          </div>
+                          </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
-              </section>
+                
+            </section>
           <!-- Page Footer-->
           <footer class="main-footer">
             <div class="container-fluid">
@@ -246,5 +215,75 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+    window.onload = getAddedCamera();
+    	function getAddedCamera(){
+        		$.ajax({
+        			type : "POST",
+        			url : "UserAddedCamera",
+        			error : function(){   
+        				alert('error');   
+        			},
+        			success: function(data){
+        				if(data == ""){
+        					alert("未查询到结果");
+        				}else{
+            		    	document.getElementById('items').style.display="";
+            				var user = data.split("||");
+            				var content = "";
+          					for(i = 0;i < user.length-1; i++){
+          						var attributes = user[i].split(",");
+          						content += '<div class="item">';
+          						content += '<div class="row">';
+          						content += '<div class="col-2 date-holder text-center">';
+          						content += '<br>';
+          						content += '<h5>标识：' + attributes[0] + '</h5>';
+          						content += '</div>';
+          						content += '<div class="col-8 content text-center">';
+          						content += '<h5><b>地点：</b>' + attributes[1] + '</h5>';
+          						content += '<p><b>描述：</b>' + attributes[2] + '</p>';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>历史最高人数：</b>' + attributes[3] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>一小时内最高人数：</b>' + attributes[4] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>摄像头阈值：</b>' + attributes[5] + '</p>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '<div class="col-2 date-holder text-center">';
+          						content += '<br>';
+          						content += '<button id="' + attributes[0] + '" type="button" class="btn btn-primary" onclick="deleteCamera(this)">删除</button>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						
+          					}
+            				
+            				//document.getElementById('userItem').innerHTML="";
+            				$("#items").html(content);
+        				}
+        			}
+    		})
+    	}
+    
+    	function deleteCamera(obj){
+    		var cameraName = obj.id;
+    		console.log(cameraName);
+    		$.ajax({
+				type : 'POST', // 请求类型, 默认为 GET
+				url : "UserDeleteCamera", // 	必需。规定把请求发送到哪个 URL。
+				data: {cameraName: cameraName}, 
+				success : function(result) { // 可选。请求成功时执行的回调函数。
+					alert("删除成功")
+					location.reload();
+				}
+			});
+    	}
+    	
+    </script>
   </body>
 </html>

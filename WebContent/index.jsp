@@ -112,6 +112,12 @@
                         <li><a href="changepassword.jsp">更改个人密码</a></li>
                       </ul>
                     </li>
+                    <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>摄像头管理</a>
+                      <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
+                        <li><a href="userAddCamera.jsp">添加摄像头</a></li>
+                        <li><a href="userDeleteCamera.jsp">删除摄像头</a></li>
+                      </ul>
+                    </li>
                     <!-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li> -->
                     <!-- <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li> -->
                     <!-- <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li> -->
