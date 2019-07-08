@@ -49,7 +49,7 @@
                 <div class="content">
                    <form action="Login" method="post" class="form-validate" >
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
+                      <input id="login-username" type="email" name="loginUsername" required data-msg="Please enter your email" class="input-material">
                       <label for="login-username" class="label-material">Email   </label>
                     </div>
                     <div class="form-group">
@@ -57,7 +57,7 @@
                       <label for="login-password" class="label-material">Password</label>
                     </div> <input type="submit" value="Login" id="button" class="btn btn-primary">
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                  </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                  </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.jsp" class="signup">Signup</a>
                 </div>
               </div>
             </div>

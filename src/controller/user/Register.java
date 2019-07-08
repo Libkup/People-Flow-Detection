@@ -1,6 +1,8 @@
 package controller.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDAO;
+import entity.User;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -53,12 +56,15 @@ public class Register extends HttpServlet {
 		String name = request.getParameter("registerUsername");
 		String email = request.getParameter("registerEmail");
 		String pswd = request.getParameter("registerPassword");
+		PrintWriter out=response.getWriter();     //初始化out对象
 		UserDAO userdao = new UserDAO();
-		if(userdao.verifyExit(name)) {
-			response.sendRedirect("register.jsp?isMatch=1");
+		if(userdao.verifyExit(email)) {
+			out.print("<script language='javascript'>alert('邮件已经被注册！');window.location.href='register.jsp';</script>"); 
 		}
-//		User user = new User(name,email,pswd);
-//		client.register(user);
-		response.sendRedirect("login.jsp");
+		User user = new User(name,email,pswd,"","","","","");
+		userdao.register(user);
+		
+	
+		out.print("<script language='javascript'>alert('注册成功！');window.location.href='login.jsp';</script>"); 
 	}
 }
