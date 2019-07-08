@@ -47,7 +47,6 @@ public class FindUser extends HttpServlet {
 		PrintWriter out=response.getWriter();     //初始化out对象
 		String option = request.getParameter("option");
 		String input = request.getParameter("input");
-		System.out.println(option + input);
 //		if(input.equals("")){
 //			out.print("<script language='javascript'>alert('输入不能为空');window.location.href='finduser.jsp';</script>");
 //		}
@@ -80,7 +79,6 @@ public class FindUser extends HttpServlet {
 			result += user.getName() + "," + user.getEmail() + "," + user.getPhoneNumber() + "," + user.getPosition() + "," + user.getSelfIntroduction() + "||";
 			
 		}
-		System.out.println(result);
 		response.getWriter().print(result);
 	}
 

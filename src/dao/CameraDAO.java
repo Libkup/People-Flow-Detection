@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import entity.Camera;
+import entity.User;
 import util.DBConn;
 
 public class CameraDAO {
@@ -329,6 +330,57 @@ public class CameraDAO {
 		}
 		return id;
 	}
+	
+	
+	public ArrayList<Camera> getCameraByName(String name) {
+		ArrayList<Camera> cameras = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where name like ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + name + "%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Camera camera = new Camera();
+				camera.setName(rs.getString("name"));
+				camera.setLocation(rs.getString("location"));
+				camera.setDescription(rs.getString("description"));
+				camera.setHighestHistory(rs.getInt("highest_history"));
+				camera.setHighestHour(rs.getInt("highest_hour"));
+				camera.setThreshold(rs.getInt("threshold"));
+				cameras.add(camera);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cameras;
+	}
+	
+	public ArrayList<Camera> getCameraByLocation(String location) {
+		ArrayList<Camera> cameras = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera where location like ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + location + "%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Camera camera = new Camera();
+				camera.setName(rs.getString("name"));
+				camera.setLocation(rs.getString("location"));
+				camera.setDescription(rs.getString("description"));
+				cameras.add(camera);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cameras;
+	}
+	
 	
 //	/**
 //	 * 

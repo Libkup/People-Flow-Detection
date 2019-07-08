@@ -110,6 +110,20 @@
                         </div>
                         <div class="card-body">
                           <form class="form-horizontal">
+                          	<div class="form-group row">
+												<label class="col-sm-4 form-control-label">标识</label>
+												<div class="col-sm-7">
+													<div class="form-group">
+														<div class="input-group">
+															<input type="text" class="form-control">
+															<div class="input-group-append">
+																<button type="button" class="btn btn-primary">查询</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+							<div class="line"></div>
                             <div class="form-group row">
                               <label class="col-sm-4 form-control-label">标识</label>
                               <div class="col-sm-7">

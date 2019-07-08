@@ -89,10 +89,10 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理
+					<li><a href="adminindex.jsp"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理
 					</a>
 						<ul id="exampledropdownDropdown" class="list-unstyled collapse">
 							<li><a href="adduser.jsp">添加用户</a></li>
@@ -168,9 +168,9 @@
                                 </div> -->
 												<div class="line"></div>
 												<div class="form-group row">
-													<div class="col-sm-4"></div>
+													<div class="col-sm-3"></div>
 
-													<div class="col-sm-4">
+													<div class="col-sm-6">
 														<div class="card-body no-padding">
 															<!-- Item-->
 															<div class="item d-flex justify-content-between">
@@ -211,7 +211,7 @@
 														</div>
 													</div>
 
-													<div class="col-sm-4"></div>
+													<div class="col-sm-3"></div>
 												</div>
 											</div>
 											<div class="line"></div>

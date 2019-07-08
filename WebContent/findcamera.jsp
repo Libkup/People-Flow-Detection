@@ -148,12 +148,6 @@
                     </div>
                     <div class="col-lg-8">
                       <div class="recent-activities card">
-                        <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard8" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div>
                         <div class="card-header">
                           <h3 class="h4">查看摄像头信息</h3>
                         </div>
@@ -171,7 +165,7 @@
                                                 <option>地点</option>
                                             </select>
                                         </div>
-                                        <input type="text" class="form-control">
+                                        <input id="input" type="text" class="form-control">
                                         <div class="input-group-append">
                                                 <button type="button" class="btn btn-primary" onclick="getCamera()">查询</button>
                                         </div>
@@ -181,6 +175,7 @@
                                 </div>
                             </div>
                           <div class="line"></div>
+                          <div id = "items" style="display:none">
                           <div class="item">
                             <div class="row">
                               <div class="col-3 date-holder text-center">
@@ -190,8 +185,20 @@
                               <div class="col-9 content text-center">
                                 <h5>标识</h5>
                                 <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                                <div class="row">
+                                	<div class="col-4 date-holder text-center">
+                                		<p>历史最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>一小时内最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>摄像头阈值：</p>
+                                	</div>
+                                </div>
                               </div>
                             </div>
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -235,8 +242,54 @@
     <script>
     	
     	function getCamera(){
-    		$.ajax({
-    			
+    			var option = document.getElementById("cameraOption").value;
+        		var input = document.getElementById("input").value;
+        		$.ajax({
+        			type : "POST",
+        			url : "FindCamera",
+        			data : {option : option, input : input},
+        			error : function(){   
+        				alert('error');   
+        			},
+        			success: function(data){
+        				if(data == ""){
+        					alert("未查询到结果");
+        				}else{
+            		    	document.getElementById('items').style.display="";
+            				var user = data.split("||");
+            				var content = "";
+          					for(i = 0;i < user.length-1; i++){
+          						var attributes = user[i].split(",");
+          						content += '<div class="item">';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<br>';
+          						content += '<h5>标识：' + attributes[0] + '</h5>';
+          						content += '</div>';
+          						content += '<div class="col-8 content text-center">';
+          						content += '<h5><b>地点：</b>' + attributes[1] + '</h5>';
+          						content += '<p><b>描述：</b>' + attributes[2] + '</p>';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>历史最高人数：</b>' + attributes[3] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>一小时内最高人数：</b>' + attributes[4] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>摄像头阈值：</b>' + attributes[5] + '</p>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						
+          					}
+            				
+            				//document.getElementById('userItem').innerHTML="";
+            				$("#items").html(content);
+        				}
+        			}
     		})
     	}
     
