@@ -2,7 +2,6 @@
  * 
  */
 function check() {
-	var a = "${sessionScope.verificationCode}";
 
 	if ((document.getElementById("password").value == "")
 			|| (document.getElementById("passwordConfirm").value == "")) {
