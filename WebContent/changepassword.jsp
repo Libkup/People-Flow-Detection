@@ -113,9 +113,10 @@
 
 												<div class="form-group">
 													<form action="SendVerificationCode" method="post"
-														class="form-validate" onSubmit="return checkEmail()">
+														class="form-validate">
 														<div class="input-group">
 															<input id="emailaddress" type="email" name="emailAddress"
+																required data-msg="请输入正确的邮箱"
 																placeholder="${sessionScope.emailAddress}"
 																class="form-control">
 															<div class="input-group-append">
@@ -203,6 +204,5 @@
 	<script src="js/charts-home.js"></script>
 	<script src="js/front.js"></script>
 	<script src="js/check-password.js"></script>
-	<script src="js/check-email.js"></script>
 </body>
 </html>

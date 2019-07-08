@@ -39,10 +39,8 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a class="navbar-brand d-none d-sm-inline-block">
-								<div class="brand-text d-none d-lg-inline-block">
-									<strong>人流量监控平台</strong>
-								</div>
+							<a class="navbar-brand d-none d-sm-inline-block">								
+									<strong>人流量监控平台</strong>							
 							</a>
 						</div>
 					</div>
@@ -70,9 +68,10 @@
 
 												<div class="form-group">
 													<form action="ForgetPassword" method="post"
-														class="form-validate" onSubmit="return checkEmail()">
+														class="form-validate">
 														<div class="input-group">
 															<input id="emailaddress" type="email"
+															  required data-msg="请输入正确的邮箱"
 																name="emailAddress" placeholder="${sessionScope.emailAddress}"
 																class="form-control">
 															<div class="input-group-append">
@@ -120,11 +119,6 @@
 													<button id="button_save" type="submit"
 														class="btn btn-primary">保存更改</button>
 												</div>
-												<!--  
-												<div class="col-sm-6 ">
-													<button class="btn btn-secondary" onclick="location.href='UserIndex'">取消</button>
-												</div>  
-												-->
 											</div>
 										</form>
 										<div class="form-group row">
@@ -175,6 +169,5 @@
 	<!-- Main File-->
 	<script src="js/front.js"></script>
 	<script src="js/check-password.js"></script>
-	<script src="js/check-email.js"></script>
 </body>
 </html>

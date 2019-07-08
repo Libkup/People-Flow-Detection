@@ -15,14 +15,14 @@ import dao.AdminDAO;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/adminLogin")
-public class adminLogin extends HttpServlet {
+@WebServlet("/AdminLogin")
+public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminLogin() {
+    public AdminLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -61,7 +61,7 @@ public class adminLogin extends HttpServlet {
 		HttpSession session = request.getSession();
 		AdminDAO admindao = new AdminDAO();
 		if(!(admindao.verifyExit(email))) {
-			out.print("<script language='javascript'>alert('用户不存在！');window.location.href='login.jsp';</script>");     
+			out.print("<script language='javascript'>alert('用户不存在！');window.location.href='adminlogin.jsp';</script>");     
 		}else {
 		boolean match = admindao.verifyPswd(email,pswd);
 		if (match) {			
@@ -71,7 +71,7 @@ public class adminLogin extends HttpServlet {
             response.sendRedirect("adminindex.jsp");
 //	        request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else{
-			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='login.jsp';</script>"); 
+			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='adminlogin.jsp';</script>"); 
 			}
 				
 		}

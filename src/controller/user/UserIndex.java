@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import dao.CameraDAO;
 import dao.UserDAO;
-import entity.Camera;
-import entity.User;
 
 /**
  * Servlet implementation class UserIndex
