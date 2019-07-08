@@ -105,8 +105,8 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
                           <li><a href="adduser.jsp">添加用户</a></li>
                           <li><a href="deleteuser.jsp">删除用户</a></li>
@@ -283,38 +283,43 @@
     				alert('error');   
     			},
     			success: function(data){
-    				document.getElementById('userFrom').style.display="";
-    				var user = data.split("||");
-    				var content = "";
-  					for(i = 0;i < user.length-1; i++){
-  						var attributes = user[i].split(",");
-  						content += '<div class="item clearfix">';
-  	    				content += '<div class="feed d-flex justify-content-between">';
-  	    				content += '<div class="feed-body d-flex justify-content-between">';
-  	    				content += '<a href="#" class="feed-profile">';
-  	    				content += '<img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">';
-  	    				content += '</a>';
-  	    				content += '<div class="content">';
-  	    				content += '<h5>' + attributes[0] + '</h5>';
-  	    				content += '<span>' + attributes[1] + '</span>';
-  	    				content += '<div class="full-date">';
-  	    				content += '<small>' + attributes[2]  + '</small>';
-  	    				content += '</div>';
-  	    				content += '</div>';
-  	    				content += '</div>';
-  	    				content += '<div class="date text-right">';
-  	    				content += '<small>' + attributes[3] + '</small>';
-  	    				content += '</div>';
-  	    				content += '</div>';
-  	    				content += '<div class="quote has-shadow">';
-  	    				content += '<small>' + attributes[4] + '</small>';
-  	    				content += '</div>';
-  	    				content += '</div>';
-  					}
+    				if(data == ""){
+    					alert("未查询到结果");
+    				}else{
+    					document.getElementById('userFrom').style.display="";
+        				var user = data.split("||");
+        				var content = "";
+      					for(i = 0;i < user.length-1; i++){
+      						var attributes = user[i].split(",");
+      						content += '<div class="item clearfix">';
+      	    				content += '<div class="feed d-flex justify-content-between">';
+      	    				content += '<div class="feed-body d-flex justify-content-between">';
+      	    				content += '<a href="#" class="feed-profile">';
+      	    				content += '<img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">';
+      	    				content += '</a>';
+      	    				content += '<div class="content text-left">';
+      	    				content += '<h5>' + attributes[0] + '</h5>';
+      	    				content += '<span>' + attributes[1] + '</span>';
+      	    				content += '<div class="full-date">';
+      	    				content += '<small>' + attributes[2]  + '</small>';
+      	    				content += '</div>';
+      	    				content += '</div>';
+      	    				content += '</div>';
+      	    				content += '<div class="date text-right">';
+      	    				content += '<small>' + attributes[3] + '</small>';
+      	    				content += '</div>';
+      	    				content += '</div>';
+      	    				content += '<div class="quote has-shadow">';
+      	    				content += '<small>' + attributes[4] + '</small>';
+      	    				content += '</div>';
+      	    				content += '</div>';
+      					}
+        				
+        				//document.getElementById('userItem').innerHTML="";
+        				$("#userItem").html(content);
+        		        console.log(data);
+    				}
     				
-    				//document.getElementById('userItem').innerHTML="";
-    				$("#userItem").html(content);
-    		        console.log(data);
     		    }
     		})
     	}

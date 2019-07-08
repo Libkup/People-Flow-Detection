@@ -105,8 +105,8 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li  class="active"><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li  class="active"><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                       <ul id="exampledropdownDropdown" class="list-unstyled collapse">
                         <li><a href="adduser.jsp">添加用户</a></li>
                         <li><a href="deleteuser.jsp">删除用户</a></li>

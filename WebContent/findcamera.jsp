@@ -105,8 +105,8 @@
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse">
                           <li><a href="adduser.jsp">添加用户</a></li>
                           <li><a href="deleteuser.jsp">删除用户</a></li>
@@ -166,24 +166,21 @@
                                 	
                                     <div class="input-group">
                                         <div>
-                                            <select name="position" class="form-control">
-                                                <option>用户名</option>
-                                                <option>邮箱</option>
-                                                <option>性别</option>
-                                                <option>电话号码</option>
-                                                <option>职位</option>
+                                            <select id="cameraOption" name="cameraOption" class="form-control">
+                                                <option>摄像头标识</option>
+                                                <option>地点</option>
                                             </select>
                                         </div>
                                         <input type="text" class="form-control">
                                         <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
+                                                <button type="button" class="btn btn-primary" onclick="getCamera()">查询</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <div class="line"></div>
+                          <div class="line"></div>
                           <div class="item">
                             <div class="row">
                               <div class="col-3 date-holder text-center">
@@ -195,30 +192,6 @@
                                 <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
                               </div>
                             </div>
-                          </div>
-                          <div class="item">
-                              <div class="row">
-                                <div class="col-3 date-holder text-center">
-                                  <br>
-                                  <h5>地点</h5>
-                                </div>
-                                <div class="col-9 content text-center">
-                                  <h5>标识</h5>
-                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="item">
-                              <div class="row">
-                                <div class="col-3 date-holder text-center">
-                                  <br>
-                                  <h5>地点</h5>
-                                </div>
-                                <div class="col-9 content text-center">
-                                  <h5>标识</h5>
-                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
-                                </div>
-                              </div>
                           </div>
                         </div>
                       </div>
@@ -259,5 +232,12 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+    	
+    	function getCamera(){
+    		
+    	}
+    
+    </script>
   </body>
 </html>
