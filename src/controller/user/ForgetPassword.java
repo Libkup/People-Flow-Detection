@@ -14,16 +14,16 @@ import javax.servlet.http.HttpSession;
 import util.SendEmail;
 
 /**
- * Servlet implementation class SendVerificationCode
+ * Servlet implementation class ForgetPassword
  */
-@WebServlet("/SendVerificationCode")
-public class SendVerificationCode extends HttpServlet {
+@WebServlet("/ForgetPassword")
+public class ForgetPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendVerificationCode() {
+    public ForgetPassword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,17 +43,18 @@ public class SendVerificationCode extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		try {
-			sendVerificationCode(request, response);
+			sendVerificationCode(request,response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	/*
 	 * used to deal send verification code operation
 	 */
 	private void sendVerificationCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
+		HttpSession session =request.getSession();
 		String email = request.getParameter("emailAddress");
 		String verification = SendEmail.getVerificationCode();
 		session.setAttribute("verificationCode", verification);
@@ -67,12 +68,12 @@ public class SendVerificationCode extends HttpServlet {
 		if(email.equals("")) {
 			System.err.println("邮箱不能为空");
 			out.print(
-					"<script language='javascript'>alert('邮箱不能为空!');window.location.href='changepassword.jsp';</script>");
+					"<script language='javascript'>alert('邮箱不能为空!');window.location.href='forgetpassword.jsp';</script>");
 		}
 		else {
 			SendEmail.sendEmail(email, message);
 			
-			String url = "/changepassword.jsp";
+			String url = "/forgetpassword.jsp";
 			RequestDispatcher requestDispatcher=request.getRequestDispatcher(url);//通过request获取转发器
 			requestDispatcher.forward(request, response);
 		}
