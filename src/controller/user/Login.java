@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.CameraDAO;
 import dao.UserDAO;
+import entity.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -61,17 +61,15 @@ public class Login extends HttpServlet {
 		String pswd = request.getParameter("loginPassword");
 		HttpSession session = request.getSession();
 		UserDAO userdao = new UserDAO();
-		CameraDAO cameradao = new CameraDAO();
 		if(!(userdao.verifyExit(email))) {
 			out.print("<script language='javascript'>alert('用户不存在！');window.location.href='login.jsp';</script>");     
 		}else {
 		boolean match = userdao.verifyPswd(email,pswd);
-		if (match) {			
+		if (match) {
+			User user = userdao.getuser(email);
             session.setAttribute("loginUsername",userdao.getname(email));
-            request.setAttribute("loginUsername",userdao.getname(email));
             session.setAttribute("email", email);
-            session.setAttribute("camera1Threshole", String.valueOf(cameradao.getthreshold(1)));
-            session.setAttribute("camera2Threshole", String.valueOf(cameradao.getthreshold(2)));
+            session.setAttribute("User", user);
             request.getRequestDispatcher("UserIndex").forward(request, response);
 		} else{
 			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='login.jsp';</script>"); 
