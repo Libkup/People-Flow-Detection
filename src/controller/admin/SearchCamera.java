@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
-import entity.User;
+import dao.CameraDAO;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class SearchCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/SearchCamera")
+public class SearchCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public SearchCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,14 +41,12 @@ public class SearchUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
+		String name = request.getParameter("name");
+		CameraDAO cameradao = new CameraDAO();
 		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		if(cameradao.verifyExit(name)) {
+			int id = cameradao.getId(name);
+			data = name+","+cameradao.getLocation(id)+","+cameradao.getDescription(id)+","+cameradao.getHighest(id)+","+cameradao.getHighest_hour(id)+","+cameradao.getthreshold(id);
 		}
 		response.getWriter().print(data);
 	}
