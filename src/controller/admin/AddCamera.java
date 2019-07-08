@@ -1,6 +1,8 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
-import entity.User;
+import dao.CameraDAO;
+import entity.Camera;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class AddCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/AddCamera")
+public class AddCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public AddCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +44,29 @@ public class SearchUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		PrintWriter out=response.getWriter();     //初始化out对象
+		CameraDAO cameradao = new CameraDAO();
+		ArrayList <String> list = cameradao.getNameList();
+		Boolean e = true;
+		String name = request.getParameter("name");
+		String location = request.getParameter("location");
+		String description = request.getParameter("description");
+		String rtmpAddress = "rtmp://localhost:1935/live/"+name;
+		for(int i=0;i<list.size();i++) {
+			if(name.equals(list.get(i))) {
+				e = false;
+			}
 		}
-		response.getWriter().print(data);
+		if(e) {
+			Camera camera = new Camera(0, name, location, description, rtmpAddress, 0, 0, 0);
+			cameradao.addCamera(camera);
+			out.print("<script language='javascript'>alert('摄像头添加成功！');window.location.href='addcamera.jsp';</script>");     
+		}else {
+			out.print("<script language='javascript'>alert('摄像头已存在！');window.location.href='addcamera.jsp';</script>");     
+		}
+		
+		
+		
 	}
 
 }

@@ -47,7 +47,6 @@ public class ChangeUser extends HttpServlet {
 		String email = request.getParameter("Email");
 		UserDAO userdao = new UserDAO();
 		User user = userdao.getuser(email);
-		System.out.println(request.getParameter("username"));
 		user.setEmail(request.getParameter("useremail"));
 		user.setName(request.getParameter("username"));
 		user.setGender(request.getParameter("gender"));

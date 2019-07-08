@@ -205,6 +205,66 @@ public class CameraDAO {
 	}
 
 	/**
+	 * This function is used to update the name of target camera
+	 * 
+	 * @param id
+	 * @param name
+	 */
+	public void updateName(int id, String name) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "update camera set name=? where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * This function is used to update the location of target camera
+	 * 
+	 * @param id
+	 * @param location
+	 */
+	public void updatelocation(int id, String location) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "update camera set location=? where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, location);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This function is used to update the description of target camera
+	 * 
+	 * @param id
+	 * @param description
+	 */
+	public void updatedescription(int id, String description) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "update camera set description=? where id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, description);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * This function is used to update the highest value of target camera
 	 * 
 	 * @param id
@@ -381,6 +441,49 @@ public class CameraDAO {
 		return cameras;
 	}
 	
+	/**
+	 * This function is used to delete camera .
+	 * 
+	 * @param name
+	 */
+	public void DeleteCamera(String name) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "delete from camera where name = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This function is use to verify if the camera exits in the database.
+	 * 
+	 * @param String name
+	 * @return boolean 
+	 */
+	public boolean verifyExit(String name) {
+		boolean bool = false;
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "select * from camera where name=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				bool = true;
+				break;
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
 	
 //	/**
 //	 * 

@@ -9,6 +9,36 @@ public class Camera {
 	private int highestHistory;
 	private int highestHour;
 	private int threshold;
+	
+	/**
+	 * @param id
+	 * @param name
+	 * @param location
+	 * @param description
+	 * @param rtmpAddress
+	 * @param highestHistory
+	 * @param highestHour
+	 * @param threshold
+	 */
+	public Camera(int id, String name, String location, String description, String rtmpAddress, int highestHistory,
+			int highestHour, int threshold) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.description = description;
+		this.rtmpAddress = rtmpAddress;
+		this.highestHistory = highestHistory;
+		this.highestHour = highestHour;
+		this.threshold = threshold;
+	}
+	
+	/**
+	 * 
+	 */
+	public Camera() {
+	}
+
 	/**
 	 * @return the id
 	 */
