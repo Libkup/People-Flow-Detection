@@ -81,8 +81,8 @@
 							class="img-fluid rounded-circle">
 					</div>
 					<div class="title">
-						<h1 class="h4">${sessionScope.loginUsername}</h1>
-						<p>email: ${sessionScope.email}</p>
+						<h1 class="h4">${sessionScope.admin.name}</h1>
+						<p>email: ${sessionScope.admin.email}</p>
 					</div>
 				</div>
 				<!-- Sidebar Navidation Menus-->

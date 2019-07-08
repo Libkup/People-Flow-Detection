@@ -51,8 +51,8 @@
 							<div class="content">
 								<form action="AdminLogin" method="post" class="form-validate">
 									<div class="form-group">
-										<input id="login-username" type="text" name="loginAdminName"
-											required data-msg="请输入您的账户"
+										<input id="login-username" type="email" name="loginAdminName"
+											required data-msg="请输入您的邮箱账户"
 											class="input-material"> <label for="login-username"
 											class="label-material">账号 </label>
 									</div>
