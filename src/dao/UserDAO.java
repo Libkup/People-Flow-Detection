@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import util.DBConn;
+import entity.Camera;
 import entity.User;
 
 public class UserDAO {
@@ -126,6 +127,42 @@ public class UserDAO {
 	}
 
 	
+	public ArrayList<Camera> getAddedCamera(String email) {
+		String added_camera = "";
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+	
+			String sql = "select * from user where email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				added_camera = rs.getString("added_camera");
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String a[]  = added_camera.split("-");
+		ArrayList<Integer>  b = new ArrayList<Integer>();
+		for(int i=0;i<a.length;i++){
+		   b.add(Integer.valueOf(a[i]));
+		}
+		CameraDAO cameraDAO = new CameraDAO();
+		ArrayList<Camera> addedCamera = new ArrayList<>();
+		for(Integer id : b){
+			Camera camera = new Camera();
+			camera.setName(cameraDAO.getName(id));
+			camera.setLocation(cameraDAO.getLocation(id));
+			camera.setDescription(cameraDAO.getDescription(id));
+			camera.setHighestHistory(cameraDAO.getHighest(id));
+			camera.setHighestHour(cameraDAO.getHighest_hour(id));
+			camera.setThreshold(cameraDAO.getthreshold(id));
+			addedCamera.add(camera);
+		}
+		return addedCamera;
+	}
+	
 	/**
 	 * This function is used to get name by email
 	 * 
@@ -224,6 +261,21 @@ public class UserDAO {
 			String sql = "update user set password = ? where email = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1,password);
+			ps.setString(2, email);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void upadateAddedCamera(String email, String addedCamera) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "update user set added_camera = ? where email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,addedCamera);
 			ps.setString(2, email);
 			ResultSet rs = ps.executeQuery();
 			DBConn.closeConnection(conn, ps, rs);
