@@ -235,7 +235,9 @@
     <script>
     	
     	function getCamera(){
-    		
+    		$.ajax({
+    			
+    		})
     	}
     
     </script>

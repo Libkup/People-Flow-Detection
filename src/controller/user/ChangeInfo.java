@@ -8,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
 import entity.User;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class ChangeInfo
  */
-@WebServlet("/RegisterServlet")
-public class Register extends HttpServlet {
+@WebServlet("/ChangeInfo")
+public class ChangeInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public ChangeInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,31 +41,25 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		register(request, response);
-		
-	}
-	
-	/**
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String name = request.getParameter("registerUsername");
-		String email = request.getParameter("registerEmail");
-		String pswd = request.getParameter("registerPassword");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();     //初始化out对象
 		UserDAO userdao = new UserDAO();
-		if(userdao.verifyExit(email)) {
-			out.print("<script language='javascript'>alert('邮件已经被注册！');window.location.href='register.jsp';</script>"); 
-		}
-		User user = new User(name,email,pswd,"","","","","");
-		userdao.register(user);
-		
-	
-		out.print("<script language='javascript'>alert('注册成功！');window.location.href='login.jsp';</script>"); 
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
+		User user = userdao.getuser(email);
+		user.setEmail(request.getParameter("useremail"));
+		user.setName(request.getParameter("username"));
+		user.setGender(request.getParameter("gender"));
+		user.setPhoneNumber(request.getParameter("phonenumber"));
+		user.setPosition(request.getParameter("position"));
+		user.setSelfIntroduction(request.getParameter("introduction"));
+		userdao.UpdateUser(user,email);
+		session.setAttribute("email", request.getParameter("useremail"));
+		session.setAttribute("loginUsername",request.getParameter("username"));
+		session.setAttribute("User",user);
+		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='information.jsp';</script>"); 
 	}
+
 }

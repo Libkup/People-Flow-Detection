@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>更改个人密码</title>
+<title>忘记密码</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,62 +39,17 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
-								<strong>人流量监控平台</strong>
+							<a class="navbar-brand d-none d-sm-inline-block">								
+									<strong>人流量监控平台</strong>							
 							</a>
-							<!-- Toggle Button-->
-							<a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
 						</div>
-						<!-- Navbar Menu -->
-						<ul
-							class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-							<!-- Logout    -->
-							<li class="nav-item"><a href="Logout"
-								class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i
-									class="fa fa-sign-out"></i></a></li>
-						</ul>
 					</div>
 				</div>
 			</nav>
 		</header>
 
 		<div class="page-content d-flex align-items-stretch">
-			<!-- Side Navbar -->
-			<nav class="side-navbar">
-				<!-- Sidebar Header-->
-				<div class="sidebar-header d-flex align-items-center">
-					<div class="avatar">
-						<img src="img/avatar-1.jpg" alt="..."
-							class="img-fluid rounded-circle">
-					</div>
-					<div class="title">
-						<h1 class="h4">${sessionScope.loginUsername}</h1>
-						<p>email: ${sessionScope.email}</p>
-					</div>
-				</div>
-				<!-- Sidebar Navidation Menus-->
-				<span class="heading">information</span>
-				<ul class="list-unstyled">
-					<li><a href="UserIndex"> <i class="icon-home"></i>主页
-					</a></li>
-					<li><a href="#exampledropdownDropdown" aria-expanded="true"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
-					</a>
-						<ul id="exampledropdownDropdown"
-							class="list-unstyled collapse show">
-							<li><a href="information.jsp">更改个人信息</a></li>
-							<li class="active"><a href="changepassword.jsp">更改个人密码</a></li>
-						</ul></li>
-				</ul>
-			</nav>
 			<div class="content-inner">
-				<!-- Page Header-->
-				<header class="page-header">
-					<div class="container-fluid">
-						<h2 class="no-margin-bottom">个人信息</h2>
-					</div>
-				</header>
-
 				<!-- Forms Section-->
 				<section class="forms">
 					<div class="container-fluid">
@@ -104,7 +59,7 @@
 							<div class="col-lg-8">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
-										<h3 class="h4">更改你的密码</h3>
+										<h3 class="h4">忘记密码</h3>
 									</div>
 									<div class="card-body">
 										<div class="form-group row">
@@ -112,23 +67,25 @@
 											<div class="col-sm-7">
 
 												<div class="form-group">
-													<form action="SendVerificationCode" method="post"
+													<form action="ForgetPassword" method="post"
 														class="form-validate">
 														<div class="input-group">
-															<input id="emailaddress" type="email" name="emailAddress"
-																required data-msg="请输入正确的邮箱"
-																placeholder="${sessionScope.emailAddress}"
+															<input id="emailaddress" type="email"
+															  required data-msg="请输入正确的邮箱"
+																name="emailAddress" placeholder="${sessionScope.emailAddress}"
 																class="form-control">
 															<div class="input-group-append">
-																<button id="button" type="submit"
+																<button type="submit" id="button"
 																	class="btn btn-primary">发送验证码</button>
 															</div>
 														</div>
 													</form>
 												</div>
+												<!--  
+												<small class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>-->
 											</div>
 										</div>
-										<form action="ChangePassword" method="post"
+										<form action="ChangePasswordForget" method="post"
 											class="form-horizontal" onSubmit="return check()">
 											<div class="line"></div>
 											<div class="form-group row">
@@ -158,21 +115,17 @@
 											<div class="line"></div>
 											<div class="form-group row">
 												<div class="col-sm-6 ">
+													<!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
 													<button id="button_save" type="submit"
 														class="btn btn-primary">保存更改</button>
 												</div>
-												<!--  
-												<div class="col-sm-6 ">
-													<button class="btn btn-secondary" onclick="location.href='UserIndex'">取消</button>
-												</div>  
-												-->
 											</div>
 										</form>
 										<div class="form-group row">
 											<div class="col-sm-6 "></div>
 											<div class="col-sm-6 ">
 												<button class="btn btn-secondary"
-													onclick="location.href='UserIndex'">取消</button>
+													onclick="window.location.href='login.jsp'">取消</button>
 											</div>
 										</div>
 									</div>
@@ -181,27 +134,39 @@
 						</div>
 					</div>
 				</section>
-				<!-- Page Footer-->
-				<footer class="main-footer">
-					<div class="container-fluid">
+			</div>
+		</div>
+
+		<!-- Page Footer-->
+		<footer class="main-footer">
+			<nav>
+				<div class="container-fluid">
+					<div class="container-fluid ">
+						<!-- Navbar Header-->
 						<div class="row">
+							<!-- Navbar Brand -->
 							<div class="col-sm-6">
 								<p>Copyright &copy; 2019.NWPU All rights reserved.</p>
 							</div>
 						</div>
 					</div>
-				</footer>
-			</div>
-		</div>
+				</div>
+			</nav>
+		</footer>
 	</div>
 	<!-- JavaScript files-->
 	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js">
+		
+	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js">
+		
+	</script>
 	<script src="vendor/chart.js/Chart.min.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/charts-home.js"></script>
+	<!-- Main File-->
 	<script src="js/front.js"></script>
 	<script src="js/check-password.js"></script>
 </body>
