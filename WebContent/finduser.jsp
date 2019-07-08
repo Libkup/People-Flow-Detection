@@ -162,10 +162,9 @@
                                 <div class="col-sm-1">
                                 </div>
                                 <div class="col-sm-10">
-                                	<form action="FindUser" method="post">
 	                                    <div class="input-group">
 	                                        <div>
-	                                            <select name="position" class="form-control">
+	                                            <select id="option" name="option" class="form-control">
 	                                                <option>用户名</option>
 	                                                <option>邮箱</option>
 	                                                <option>性别</option>
@@ -173,48 +172,23 @@
 	                                                <option>职位</option>
 	                                            </select>
 	                                        </div>
-	                                        <input name="input_type" type="text" class="form-control">
+	                                        <input id="input_type" name="input_type" type="text" class="form-control">
 	                                        <div class="input-group-append">
-	                                                <button type="submit" class="btn btn-primary">查询</button>
+	                                                <button type="button" class="btn btn-primary" onclick="getUsers()">查询</button>
 	                                        </div>
 	                                    </div>
-	                                 </form>
                                 </div>
                                 <div class="col-sm-1">
                                 </div>
                             </div>
                             <div class="line"></div>
-                          <form class="form-horizontal">
+                          <form id="userFrom" class="form-horizontal" style="display:none;">
                             
                             <div class="form-group row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-8">
                                     <div class="daily-feeds">
-                                        <div class="card-body no-padding">
-                                            <!-- Item-->
-                                            <div class="item clearfix">
-                                                <div class="feed d-flex justify-content-between">
-                                                    <div class="feed-body d-flex justify-content-between">
-                                                        <a href="#" class="feed-profile">
-                                                            <img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">
-                                                        </a>
-                                                        <div class="content">
-                                                            <h5>用户名</h5>
-                                                            <span>邮箱</span>
-                                                            <div class="full-date">
-                                                                <small>电话号码</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="date text-right">
-                                                        <small>职位</small>
-                                                    </div>
-                                                </div>
-                                                <div class="quote has-shadow">
-                                                    <small>个人简介</small>
-                                                </div>
-                                            </div>
-
+                                        <div id = "userItem" class="card-body no-padding">
                                             <!-- Item-->
                                             <div class="item clearfix">
                                                 <div class="feed d-flex justify-content-between">
@@ -296,5 +270,54 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+    	function getUsers(){
+    		var option = document.getElementById("option").value;
+    		var input = document.getElementById("input_type").value;
+    		console.log("999 " + option + " " + input);
+    		$.ajax({
+    			type : "POST",
+    			url : "FindUser",
+    			data : {option : option, input : input},
+    			error : function(){   
+    				alert('error');   
+    			},
+    			success: function(data){
+    				document.getElementById('userFrom').style.display="";
+    				var user = data.split("||");
+    				var content = "";
+  					for(i = 0;i < user.length-1; i++){
+  						var attributes = user[i].split(",");
+  						content += '<div class="item clearfix">';
+  	    				content += '<div class="feed d-flex justify-content-between">';
+  	    				content += '<div class="feed-body d-flex justify-content-between">';
+  	    				content += '<a href="#" class="feed-profile">';
+  	    				content += '<img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">';
+  	    				content += '</a>';
+  	    				content += '<div class="content">';
+  	    				content += '<h5>' + attributes[0] + '</h5>';
+  	    				content += '<span>' + attributes[1] + '</span>';
+  	    				content += '<div class="full-date">';
+  	    				content += '<small>' + attributes[2]  + '</small>';
+  	    				content += '</div>';
+  	    				content += '</div>';
+  	    				content += '</div>';
+  	    				content += '<div class="date text-right">';
+  	    				content += '<small>' + attributes[3] + '</small>';
+  	    				content += '</div>';
+  	    				content += '</div>';
+  	    				content += '<div class="quote has-shadow">';
+  	    				content += '<small>' + attributes[4] + '</small>';
+  	    				content += '</div>';
+  	    				content += '</div>';
+  					}
+    				
+    				//document.getElementById('userItem').innerHTML="";
+    				$("#userItem").html(content);
+    		        console.log(data);
+    		    }
+    		})
+    	}
+    </script>
   </body>
 </html>
