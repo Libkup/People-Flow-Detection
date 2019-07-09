@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>查找用户</title>
+    <title>查看摄像头信息</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -100,27 +100,23 @@
             </div>
             <div class="title">
               <h1 class="h4">${sessionScope.admin.name}</h1>
-              <p>email: ${sessionScope.admimn.email}</p>
+              <p>email: ${sessionScope.admin.email}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
-                        <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
-                          <li><a href="adduser.jsp">添加用户</a></li>
-                          <li><a href="deleteuser.jsp">删除用户</a></li>
-                          <li><a href="changeuser.jsp">更改用户信息 </a></li>
-                          <li  class="active"><a href="finduser.jsp">查找用户</a></li>
-                        </ul>
+                    <li><a href="UserIndex"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                      <ul id="exampledropdownDropdown" class="list-unstyled collapse">
+                        <li><a href="information.jsp">更改个人信息</a></li>
+                        <li><a href="changepassword.jsp">更改个人密码</a></li>
+                      </ul>
                     </li>
-                    <li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-list-1"></i>摄像头管理</a>
-                        <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
-                            <li><a href="addcamera.jsp">添加摄像头</a></li>
-                            <li><a href="deletecamera.jsp">删除摄像头</a></li>
-                            <li><a href="changecamera.jsp">更改摄像头信息 </a></li>
-                            <li><a href="findcamera.jsp">查看摄像头信息</a></li>
-                        </ul>
+                    <li><a href="#exampledropdownDropdown1" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>摄像头管理</a>
+                      <ul id="exampledropdownDropdown1" class="list-unstyled collapse show">
+                        <li  class="active"><a href="userAddCamera.jsp">添加摄像头</a></li>
+                        <li><a href="userDeleteCamera.jsp">删除摄像头</a></li>
+                      </ul>
                     </li>
           </ul>
           <!-- <span class="heading">Extras</span> -->
@@ -135,102 +131,84 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">个人信息</h2>
+              <h2 class="no-margin-bottom">摄像头管理</h2>
             </div>
           </header>
 
-          <section class="forms" > 
+            <section class="forms" > 
                 <div class="container-fluid">
-                  <div class="row" style="text-align: center;">
+                  <div class="row">
                     <!-- Form Elements -->
                     <div class="col-lg-2">
 
                     </div>
                     <div class="col-lg-8">
-                      <div class="card">
-                        <!-- <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div> -->
-                        <div class="card-header d-flex align-items-center">
-                          <h3 class="h4">查找用户</h3>
+                      <div class="recent-activities card">
+                        <div class="card-header">
+                          <h3 class="h4">添加摄像头</h3>
                         </div>
+                        
                         <div class="card-body">
-                        <div class="form-group row">
+                          <div class="form-group row">
                                 <div class="col-sm-1">
                                 </div>
                                 <div class="col-sm-10">
-	                                    <div class="input-group">
-	                                        <div>
-	                                            <select id="option" name="option" class="form-control">
-	                                                <option>用户名</option>
-	                                                <option>邮箱</option>
-	                                                <option>性别</option>
-	                                                <option>电话号码</option>
-	                                                <option>职位</option>
-	                                            </select>
-	                                        </div>
-	                                        <input id="input_type" name="input_type" type="text" class="form-control">
-	                                        <div class="input-group-append">
-	                                                <button type="button" class="btn btn-primary" onclick="getUsers()">查询</button>
-	                                        </div>
-	                                    </div>
+                                	
+                                    <div class="input-group">
+                                        <div>
+                                            <select id="cameraOption" name="cameraOption" class="form-control">
+                                                <option>摄像头标识</option>
+                                                <option>地点</option>
+                                            </select>
+                                        </div>
+                                        <input id="input" type="text" class="form-control">
+                                        <div class="input-group-append">
+                                                <button type="button" class="btn btn-primary" onclick="getCamera()">查询</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <div class="line"></div>
-                          <form id="userFrom" class="form-horizontal" style="display:none;">
-                            
-                            <div class="form-group row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-8">
-                                    <div class="daily-feeds">
-                                        <div id = "userItem" class="card-body no-padding">
-                                            <!-- Item-->
-                                            <div class="item clearfix">
-                                                <div class="feed d-flex justify-content-between">
-                                                    <div class="feed-body d-flex justify-content-between">
-                                                        <a href="#" class="feed-profile">
-                                                            <img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">
-                                                        </a>
-                                                        <div class="content">
-                                                            <h5>用户名</h5>
-                                                            <span>邮箱</span>
-                                                            <div class="full-date">
-                                                                <small>电话号码</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="date text-right">
-                                                        <small>职位</small>
-                                                    </div>
-                                                </div>
-                                                <div class="quote has-shadow">
-                                                    <small>个人简介</small>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                          <div class="line"></div>
+                          <div id = "items" style="display:none">
+                          <div class="item">
+                            <div class="row">
+                              <div class="col-2 date-holder text-center">
+                                <br>
+                                <h5>地点</h5>
+                              </div>
+                              <div class="col-8 content text-center">
+                                <h5>标识</h5>
+                                <p>地方官梵蒂冈</p>
+                                <div class="row">
+                                	<div class="col-4 date-holder text-center">
+                                		<p>历史最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>一小时内最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>摄像头阈值：</p>
+                                	</div>
                                 </div>
-                                <div class="col-sm-2"></div>
+                              </div>
+                              <div class="col-2 date-holder text-center">
+                                <br>
+                                <button id="useremail1" name="useremail1" type="submit"
+														class="btn btn-primary" value=>添加</button>
+                              </div>
                             </div>
-                            <div class="line"></div>
-
-                          </form>
+                          </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="col-lg-2">
 
                     </div>
                   </div>
                 </div>
-              </section>
+                
+            </section>
           
               <!-- Page Footer-->
           
@@ -263,57 +241,78 @@
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
-    	function getUsers(){
-    		var option = document.getElementById("option").value;
-    		var input = document.getElementById("input_type").value;
-    		$.ajax({
-    			type : "POST",
-    			url : "FindUser",
-    			data : {option : option, input : input},
-    			error : function(){   
-    				alert('error');   
-    			},
-    			success: function(data){
-    				if(data == ""){
-    					alert("未查询到结果");
-    				}else{
-    					document.getElementById('userFrom').style.display="";
-        				var user = data.split("||");
-        				var content = "";
-      					for(i = 0;i < user.length-1; i++){
-      						var attributes = user[i].split(",");
-      						content += '<div class="item clearfix">';
-      	    				content += '<div class="feed d-flex justify-content-between">';
-      	    				content += '<div class="feed-body d-flex justify-content-between">';
-      	    				content += '<a href="#" class="feed-profile">';
-      	    				content += '<img src="img/avatar-3.jpg" alt="person" class="img-fluid rounded-circle">';
-      	    				content += '</a>';
-      	    				content += '<div class="content text-left">';
-      	    				content += '<h5>' + attributes[0] + '</h5>';
-      	    				content += '<span>' + attributes[1] + '</span>';
-      	    				content += '<div class="full-date">';
-      	    				content += '<small>' + attributes[2]  + '</small>';
-      	    				content += '</div>';
-      	    				content += '</div>';
-      	    				content += '</div>';
-      	    				content += '<div class="date text-right">';
-      	    				content += '<small>' + attributes[3] + '</small>';
-      	    				content += '</div>';
-      	    				content += '</div>';
-      	    				content += '<div class="quote has-shadow">';
-      	    				content += '<small>' + attributes[4] + '</small>';
-      	    				content += '</div>';
-      	    				content += '</div>';
-      					}
-        				
-        				//document.getElementById('userItem').innerHTML="";
-        				$("#userItem").html(content);
-        		        console.log(data);
-    				}
-    				
-    		    }
+    window.onload = getCamera();
+    	function getCamera(){
+    			var option = document.getElementById("cameraOption").value;
+        		var input = document.getElementById("input").value;
+        		$.ajax({
+        			type : "POST",
+        			url : "UserSearchCamera",
+        			data : {option : option, input : input},
+        			error : function(){   
+        				alert('error');   
+        			},
+        			success: function(data){
+        				if(data == ""){
+        					alert("未查询到结果");
+        				}else{
+            		    	document.getElementById('items').style.display="";
+            				var user = data.split("||");
+            				var content = "";
+          					for(i = 0;i < user.length-1; i++){
+          						var attributes = user[i].split(",");
+          						content += '<div class="item">';
+          						content += '<div class="row">';
+          						content += '<div class="col-2 date-holder text-center">';
+          						content += '<br>';
+          						content += '<h5>标识：' + attributes[0] + '</h5>';
+          						content += '</div>';
+          						content += '<div class="col-8 content text-center">';
+          						content += '<h5><b>地点：</b>' + attributes[1] + '</h5>';
+          						content += '<p><b>描述：</b>' + attributes[2] + '</p>';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>历史最高人数：</b>' + attributes[3] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>一小时内最高人数：</b>' + attributes[4] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>摄像头阈值：</b>' + attributes[5] + '</p>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '<div class="col-2 date-holder text-center">';
+          						content += '<br>';
+          						content += '<button id="' + attributes[0] + '" type="button" class="btn btn-primary" onclick="addCamera(this)">添加</button>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						
+          					}
+            				
+            				//document.getElementById('userItem').innerHTML="";
+            				$("#items").html(content);
+        				}
+        			}
     		})
     	}
+    
+    	function addCamera(obj){
+    		var cameraName = obj.id;
+    		console.log(cameraName);
+    		$.ajax({
+				type : 'POST', // 请求类型, 默认为 GET
+				url : "UserAddCamera", // 	必需。规定把请求发送到哪个 URL。
+				data: {cameraName: cameraName}, 
+				success : function(result) { // 可选。请求成功时执行的回调函数。
+					alert("添加成功")
+					location.reload();
+					getCamera();
+				}
+			});
+    	}
+    	
     </script>
   </body>
 </html>

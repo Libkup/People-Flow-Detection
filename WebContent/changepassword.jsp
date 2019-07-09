@@ -78,13 +78,19 @@
 					<li><a href="UserIndex"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="true"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
-					</a>
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
 						<ul id="exampledropdownDropdown"
 							class="list-unstyled collapse show">
 							<li><a href="information.jsp">更改个人信息</a></li>
 							<li class="active"><a href="changepassword.jsp">更改个人密码</a></li>
-						</ul></li>
+						</ul>
+					</li>
+					<li><a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>摄像头管理</a>
+                      <ul id="exampledropdownDropdown1" class="list-unstyled collapse">
+                        <li><a href="userAddCamera.jsp">添加摄像头</a></li>
+                        <li><a href="userDeleteCamera.jsp">删除摄像头</a></li>
+                      </ul>
+                    </li>
 				</ul>
 			</nav>
 			<div class="content-inner">

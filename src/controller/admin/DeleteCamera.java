@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
-import entity.User;
+import dao.CameraDAO;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class DeleteCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/DeleteCamera")
+public class DeleteCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public DeleteCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +42,11 @@ public class SearchUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
-		}
-		response.getWriter().print(data);
+		PrintWriter out=response.getWriter();     //初始化out对象
+		String name = request.getParameter("cameraname1");
+		CameraDAO cameradao = new CameraDAO();
+		cameradao.DeleteCamera(name);
+		out.print("<script language='javascript'>alert('摄像头删除成功！');window.location.href='deletecamera.jsp';</script>"); 
 	}
 
 }

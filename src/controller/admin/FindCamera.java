@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
-import entity.User;
+import dao.CameraDAO;
+import entity.Camera;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class FindCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/FindCamera")
+public class FindCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public FindCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +40,25 @@ public class SearchUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		String option = request.getParameter("option");
+		String input = request.getParameter("input");
+		CameraDAO cameraDAO = new CameraDAO();
+		ArrayList<Camera> cameras = new ArrayList<>();
+		switch (option) {
+		case "摄像头标识":
+			cameras = cameraDAO.getCameraByName(input);
+			break;
+		case "地点":
+			cameras = cameraDAO.getCameraByLocation(input);
+		default:
+			break;
 		}
-		response.getWriter().print(data);
+		String result = "";
+		for(Camera camera : cameras){
+			result += camera.getName() + "," + camera.getLocation() + "," + camera.getDescription() + ","
+			+ camera.getHighestHistory() + "," + camera.getHighestHour() + "," + camera.getThreshold() +"||";
+		}
+		response.getWriter().print(result);
 	}
 
 }

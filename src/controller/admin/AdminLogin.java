@@ -8,21 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.AdminDAO;
 import dao.UserDAO;
 import entity.User;
 
 /**
- * Servlet implementation class ChangeUser
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/ChangeUser")
-public class ChangeUser extends HttpServlet {
+@WebServlet("/AdminLogin")
+public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeUser() {
+    public AdminLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,21 +42,38 @@ public class ChangeUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		login(request, response);
+	}
+	
+	/**
+	 * This function : 1 (account not exited)  2 (password not correct) 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();     //初始化out对象
-		String email = request.getParameter("Email");
-		UserDAO userdao = new UserDAO();
-		User user = userdao.getuser(email);
-		user.setEmail(request.getParameter("useremail"));
-		user.setName(request.getParameter("username"));
-		user.setGender(request.getParameter("gender"));
-		user.setPhoneNumber(request.getParameter("phonenumber"));
-		user.setPosition(request.getParameter("position"));
-		user.setSelfIntroduction(request.getParameter("introduction"));
-		userdao.UpdateUser(user,email);
-		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='changeuser.jsp';</script>"); 
+		String email = request.getParameter("loginAdminName");
+		String pswd = request.getParameter("loginPassword");
+		HttpSession session = request.getSession();
+		AdminDAO admindao = new AdminDAO();
+		if(!(admindao.verifyExit(email))) {
+			out.print("<script language='javascript'>alert('用户不存在！');window.location.href='adminlogin.jsp';</script>");     
+		}else {
+		boolean match = admindao.verifyPswd(email,pswd);
+		if (match) {
+            session.setAttribute("admin",admindao.getadmin(email));
+            response.sendRedirect("adminindex.jsp");
+		} else{
+			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='adminlogin.jsp';</script>"); 
+			}
+				
+		}
 	}
 
 }

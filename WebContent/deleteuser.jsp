@@ -31,6 +31,7 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 </head>
 <body>
 	<div class="page">
@@ -81,8 +82,8 @@
 							class="img-fluid rounded-circle">
 					</div>
 					<div class="title">
-						<h1 class="h4">${sessionScope.loginUsername}</h1>
-						<p>email: ${sessionScope.email}</p>
+						<h1 class="h4">${sessionScope.admin.name}</h1>
+						<p>email: ${sessionScope.admin.email}</p>
 					</div>
 				</div>
 				<!-- Sidebar Navidation Menus-->
@@ -318,6 +319,9 @@
 					Email : value
 				},
 				success : function(result) {
+					if(result == ""){
+    					alert("未查询到结果");}
+					else{
 					var resultArr = result.split(",");
 					$("#username").html(resultArr[0]);
 					$("#useremail").html(resultArr[1]);
@@ -332,6 +336,7 @@
 					document.getElementById("lin2").style.display = "";//显
 					document.getElementById("deleteuser").style.display = "";//显
 				}
+				}	
 			});
 		};
 	</script>

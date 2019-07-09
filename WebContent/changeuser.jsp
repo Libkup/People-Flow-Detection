@@ -67,14 +67,14 @@
               <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
             </div>
             <div class="title">
-              <h1 class="h4">${sessionScope.loginUsername}</h1>
-              <p>email: ${sessionScope.email}</p>
+              <h1 class="h4">${sessionScope.admin.name}</h1>
+              <p>email: ${sessionScope.admin.email}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse show">
                           <li><a href="adduser.jsp">添加用户</a></li>
                           <li><a href="deleteuser.jsp">删除用户</a></li>
@@ -324,6 +324,9 @@
 				url : "SearchUser", 
 				data: {Email: value}, 
 				success : function(result) {
+					if(result == ""){
+    					alert("未查询到结果");}
+					else{
 					var resultArr = result.split(",");
 					document.getElementById("lin1").style.display="";//显
 					document.getElementById("information").style.display="";//显
@@ -335,6 +338,7 @@
 					document.getElementById("phonenumber").value=resultArr[3];
 					document.getElementById("position").value=resultArr[4];
 					document.getElementById("introduction").value=resultArr[5];
+					}
 				}
 			});
 		};

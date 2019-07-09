@@ -1,27 +1,29 @@
-package controller.admin;
+package controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.CameraDAO;
 import dao.UserDAO;
-import entity.User;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class UserAddCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/UserAddCamera")
+public class UserAddCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public UserAddCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +41,20 @@ public class SearchUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		String cameraName = request.getParameter("cameraName");
+		UserDAO userDAO = new UserDAO();
+		String email = (String) request.getSession().getAttribute("email");
+		ArrayList<Integer> addedCamera = userDAO.getadded_camera(email);
+		CameraDAO cameraDAO = new CameraDAO();
+		addedCamera.add(cameraDAO.getId(cameraName));
+		String temp = "";
+		for(int i = 0;i < addedCamera.size()-1; i ++){
+			temp += addedCamera.get(i) + "-";
 		}
-		response.getWriter().print(data);
+		temp += addedCamera.get(addedCamera.size()-1);
+//		System.out.println(temp);
+		userDAO.upadateAddedCamera(email, temp);
+//		response.getWriter().print("success");
 	}
 
 }

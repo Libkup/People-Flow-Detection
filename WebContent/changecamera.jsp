@@ -63,14 +63,14 @@
               <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
             </div>
             <div class="title">
-              <h1 class="h4">${sessionScope.loginUsername}</h1>
-              <p>email: ${sessionScope.email}</p>
+              <h1 class="h4">${sessionScope.admin.name}</h1>
+              <p>email: ${sessionScope.admin.email}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse">
                           <li><a href="adduser.jsp">添加用户</a></li>
                           <li><a href="deleteuser.jsp">删除用户</a></li>
@@ -109,36 +109,47 @@
                           <h3 class="h4">更改摄像头信息</h3>
                         </div>
                         <div class="card-body">
-                          <form class="form-horizontal">
-                            <div class="form-group row">
+                          <form action="ChangeCamera" method="post" class="form-horizontal">
+                          	<div class="form-group row">
+												<label class="col-sm-4 form-control-label">标识</label>
+												<div class="col-sm-7">
+													<div class="form-group">
+														<div class="input-group">
+
+															<input id="name" name="name" type="text" class="form-control">
+															<div class="input-group-append">
+																<button type="button" class="btn btn-primary"  onclick="SearchCameraInfo()" >查询</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+							<div id="lin1" style="display: none;" class="line"></div>
+                            <div id="text1" style="display: none;" class="form-group row">
                               <label class="col-sm-4 form-control-label">标识</label>
                               <div class="col-sm-7">
-                                <input type="text" placeholder="长度不超过20位" class="form-control">
+                                <input id="cameraname" name="cameraname" type="text" class="form-control">
                               </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
+                            <div id="lin2" style="display: none;" class="line"></div>
+                            <div id="text2" style="display: none;" class="form-group row">
                                 <label class="col-sm-4 form-control-label">地址</label>
                                 <div class="col-sm-7">
-                                    <input type="email" placeholder="请输入地址" class="form-control">
+                                    <input id="location" name="location" type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
+                            <div id="lin3" style="display: none;" class="line"></div>
+                            <div id="text3" style="display: none;" class="form-group row">
                                 <label class="col-sm-4 form-control-label">描述</label>
                                 <div class="col-sm-7">
-                                    <input type="" placeholder="请输入摄像头描述" class="form-control">
+                                    <input type="text" id="description" name="description" class="form-control">
                                 </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="form-group row">
+                            <div id="lin4" style="display: none;" class="line"></div>
+                            <div id="text4" style="display: none;" class="form-group row">
                                 <div class="col-sm-6 ">
                                     <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
-                                    <button type="submit" class="btn btn-primary">确认更改</button>
-                                </div>
-                                <div class="col-sm-6 ">
-                                    <button type="submit" class="btn btn-secondary">取消</button>
-                                    <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+                                    <button  type="submit" class="btn btn-primary">确认更改</button>
                                 </div>
                             </div>
                           </form>
@@ -175,5 +186,36 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+		function SearchCameraInfo() {
+			var value = document.getElementById("name").value;
+			$.ajax({
+				type : 'POST',
+				url : "SearchCamera",
+				data : {
+					name : value
+				},
+				success : function(result) {
+					console.log(result)
+					if(result == ""){
+    					alert("未查询到结果");}
+					else{
+					var resultArr = result.split(",");
+					document.getElementById("lin1").style.display = "";//显
+					document.getElementById("text1").style.display = "";//显
+					document.getElementById("lin2").style.display = "";//显
+					document.getElementById("text2").style.display = "";//显
+					document.getElementById("lin3").style.display = "";//显
+					document.getElementById("text3").style.display = "";//显
+					document.getElementById("lin4").style.display = "";//显
+					document.getElementById("text4").style.display = "";//显
+					document.getElementById("cameraname").value=resultArr[0];
+					document.getElementById("location").value=resultArr[1];
+					document.getElementById("description").value=resultArr[2];
+					}
+				}
+			});
+		};
+	</script>
   </body>
 </html>

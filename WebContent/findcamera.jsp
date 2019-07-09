@@ -50,8 +50,40 @@
               </div>
               <!-- Navbar Menu -->
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- Search-->
+                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                <!-- Notifications-->
+                
+                <!-- Messages                        -->
+                <!-- <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
+                  </ul>
+                </li> -->
+                <!-- Languages dropdown    -->
+                <!-- <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+                  <ul aria-labelledby="languages" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French                                         </a></li>
+                  </ul>
+                </li> -->
                 <!-- Logout    -->
-                <li class="nav-item"><a href="Logout" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item"><a href="LogoutServlet" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>
@@ -67,14 +99,14 @@
               <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
             </div>
             <div class="title">
-              <h1 class="h4">${sessionScope.loginUsername}</h1>
-              <p>email: ${sessionScope.email}</p>
+              <h1 class="h4">${sessionScope.admin.name}</h1>
+              <p>email: ${sessionScope.admin.email}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">information</span>
           <ul class="list-unstyled">
-                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理 </a></li>
-                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息</a>
+                    <li><a href="adminindex.jsp"> <i class="icon-home"></i>主页 </a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理</a>
                         <ul id="exampledropdownDropdown" class="list-unstyled collapse">
                           <li><a href="adduser.jsp">添加用户</a></li>
                           <li><a href="deleteuser.jsp">删除用户</a></li>
@@ -116,12 +148,6 @@
                     </div>
                     <div class="col-lg-8">
                       <div class="recent-activities card">
-                        <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard8" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div>
                         <div class="card-header">
                           <h3 class="h4">查看摄像头信息</h3>
                         </div>
@@ -134,24 +160,22 @@
                                 	
                                     <div class="input-group">
                                         <div>
-                                            <select name="position" class="form-control">
-                                                <option>用户名</option>
-                                                <option>邮箱</option>
-                                                <option>性别</option>
-                                                <option>电话号码</option>
-                                                <option>职位</option>
+                                            <select id="cameraOption" name="cameraOption" class="form-control">
+                                                <option>摄像头标识</option>
+                                                <option>地点</option>
                                             </select>
                                         </div>
-                                        <input type="text" class="form-control">
+                                        <input id="input" type="text" class="form-control">
                                         <div class="input-group-append">
-                                                <button type="button" class="btn btn-primary">查询</button>
+                                                <button type="button" class="btn btn-primary" onclick="getCamera()">查询</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                 </div>
                             </div>
-                            <div class="line"></div>
+                          <div class="line"></div>
+                          <div id = "items" style="display:none">
                           <div class="item">
                             <div class="row">
                               <div class="col-3 date-holder text-center">
@@ -160,33 +184,21 @@
                               </div>
                               <div class="col-9 content text-center">
                                 <h5>标识</h5>
-                                <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
+                                <p></p>
+                                <div class="row">
+                                	<div class="col-4 date-holder text-center">
+                                		<p>历史最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>一小时内最高人数：</p>
+                                	</div>
+                                	<div class="col-4 date-holder text-center">
+                                		<p>摄像头阈值：</p>
+                                	</div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div class="item">
-                              <div class="row">
-                                <div class="col-3 date-holder text-center">
-                                  <br>
-                                  <h5>地点</h5>
-                                </div>
-                                <div class="col-9 content text-center">
-                                  <h5>标识</h5>
-                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="item">
-                              <div class="row">
-                                <div class="col-3 date-holder text-center">
-                                  <br>
-                                  <h5>地点</h5>
-                                </div>
-                                <div class="col-9 content text-center">
-                                  <h5>标识</h5>
-                                  <p>这边填描述，速度发货速度立刻就概括了的距离喀什觉得</p>
-                                </div>
-                              </div>
                           </div>
                         </div>
                       </div>
@@ -227,5 +239,60 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+    	
+    	function getCamera(){
+    			var option = document.getElementById("cameraOption").value;
+        		var input = document.getElementById("input").value;
+        		$.ajax({
+        			type : "POST",
+        			url : "FindCamera",
+        			data : {option : option, input : input},
+        			error : function(){   
+        				alert('error');   
+        			},
+        			success: function(data){
+        				if(data == ""){
+        					alert("未查询到结果");
+        				}else{
+            		    	document.getElementById('items').style.display="";
+            				var user = data.split("||");
+            				var content = "";
+          					for(i = 0;i < user.length-1; i++){
+          						var attributes = user[i].split(",");
+          						content += '<div class="item">';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<br>';
+          						content += '<h5>标识：' + attributes[0] + '</h5>';
+          						content += '</div>';
+          						content += '<div class="col-8 content text-center">';
+          						content += '<h5><b>地点：</b>' + attributes[1] + '</h5>';
+          						content += '<p><b>描述：</b>' + attributes[2] + '</p>';
+          						content += '<div class="row">';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>历史最高人数：</b>' + attributes[3] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>一小时内最高人数：</b>' + attributes[4] + '</p>';
+          						content += '</div>';
+          						content += '<div class="col-4 date-holder text-center">';
+          						content += '<p><b>摄像头阈值：</b>' + attributes[5] + '</p>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						content += '</div>';
+          						
+          					}
+            				
+            				//document.getElementById('userItem').innerHTML="";
+            				$("#items").html(content);
+        				}
+        			}
+    		})
+    	}
+    
+    </script>
   </body>
 </html>

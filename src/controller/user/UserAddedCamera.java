@@ -1,6 +1,7 @@
-package controller.admin;
+package controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CameraDAO;
 import dao.UserDAO;
-import entity.User;
+import entity.Camera;
 
 /**
- * Servlet implementation class SearchUser
+ * Servlet implementation class UserAddedCamera
  */
-@WebServlet("/SearchUser")
-public class SearchUser extends HttpServlet {
+@WebServlet("/UserAddedCamera")
+public class UserAddedCamera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUser() {
+    public UserAddedCamera() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +41,16 @@ public class SearchUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String email = request.getParameter("Email");
-		User user = new User();
-		UserDAO userdao = new UserDAO();
-		String data = "";
-		if(userdao.verifyExit(email)) {
-			user = userdao.getuser(email);
-			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
-					+user.getPosition()+","+user.getSelfIntroduction();
+		String email = (String) request.getSession().getAttribute("email");
+		UserDAO userDAO = new UserDAO();
+		ArrayList<Camera> addedCamera = userDAO.getAddedCamera(email);
+		String result = "";
+		CameraDAO cameraDAO = new CameraDAO();
+		for(Camera  camera : addedCamera){
+			result += camera.getName() + "," + camera.getLocation() + "," + camera.getDescription() + ","
+					+ camera.getHighestHistory() + "," + camera.getHighestHour() + "," + camera.getThreshold() +"||";
 		}
-		response.getWriter().print(data);
+		response.getWriter().print(result);
 	}
 
 }
