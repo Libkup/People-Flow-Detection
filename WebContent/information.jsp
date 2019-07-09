@@ -174,7 +174,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 form-control-label">性别</label>
                                 <div class="col-sm-7">
-                                    <select  name="gender" value="${sessionScope.User.gender}" class="form-control mb-3">
+                                    <select id="select" name="gender"  class="form-control mb-3">
                                         <option>男</option>
                                         <option>女</option>
                                     </select>
@@ -246,5 +246,8 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+    document.getElementById("select").value = ${sessionScope.User.gender};
+    </script>
   </body>
 </html>

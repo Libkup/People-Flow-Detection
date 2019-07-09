@@ -449,4 +449,109 @@ public class UserDAO {
 		return users;
 	}
 	
+	public ArrayList<User> getAllUser (){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	/**
+	 * This function is used to insert a online user's .
+	 * 
+	 * @param user
+	 */
+	public void AddOnlineUser(User user) {
+		String name = user.getName();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		String gender = user.getGender();
+		String phoneNumber = user.getPhoneNumber();
+		String position = user.getPosition();
+		String selfIntroduction = user.getSelfIntroduction();
+		String added_camera = user.getAdded_camera();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "insert into useronline values(?,?,?,?,?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, password);
+			ps.setString(4, gender);
+			ps.setString(5, phoneNumber);
+			ps.setString(6, position);
+			ps.setString(7,selfIntroduction);
+			ps.setString(8,added_camera);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This function is used to delete online user .
+	 * 
+	 * @param email
+	 */
+	public void DeleteOnlineUser(String email) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "delete from useronline where email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<User> getAllOnlineUser (){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from useronline ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
 }

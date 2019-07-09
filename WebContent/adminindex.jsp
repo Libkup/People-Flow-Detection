@@ -96,10 +96,10 @@
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
 					<li class="active"><a href="adminindex.jsp"> <i
-							class="icon-home"></i>用户管理
+							class="icon-home"></i>个人信息
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理
 					</a>
 						<ul id="exampledropdownDropdown" class="list-unstyled collapse">
 							<li><a href="adduser.jsp">添加用户</a></li>
@@ -154,7 +154,7 @@
 										</div>
 									</div>
 									<div class="number">
-										<strong>25</strong>
+										<strong>${sessionScope.online_user}</strong>
 									</div>
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 										</div>
 									</div>
 									<div class="number">
-										<strong>70</strong>
+										<strong>${sessionScope.camera_count}</strong>
 									</div>
 								</div>
 							</div>
@@ -194,7 +194,7 @@
 										</div>
 									</div>
 									<div class="number">
-										<strong>40</strong>
+										<strong>${sessionScope.user_count}</strong>
 									</div>
 								</div>
 							</div>

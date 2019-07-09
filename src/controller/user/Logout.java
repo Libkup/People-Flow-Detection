@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDAO;
+
 /**
  * Servlet implementation class Logout
  */
@@ -32,6 +34,9 @@ public class Logout extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		if (request.getSession(false) != null && request.getSession().getAttribute("LoginUsername") != null) {
 			// used to clear the session
+			String email = (String) request.getSession().getAttribute("email");
+			UserDAO userdao = new UserDAO();
+			userdao.DeleteOnlineUser(email);
 			request.getSession().invalidate();
 		}
 		response.sendRedirect("login.jsp");
