@@ -27,10 +27,7 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 </head>
 <body>
 	<div class="page">
@@ -136,17 +133,16 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">用户名</label>
 												<div class="col-sm-7">
-													<input type="text" name="UserName" placeholder="长度不超过20位"
-														class="form-control">
+													<input type="text" name="UserName" placeholder="长度不超过20位" id="username"
+														class="form-control" required="required">
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">邮箱</label>
 												<div class="col-sm-7">
-													<input type="email" name="UserEmail" placeholder="请输入邮箱地址"
-														class="form-control"> <small
-														class="help-block-none">邮箱地址不正确，请输入正确的邮箱地址</small>
+													<input type="email" name="UserEmail" placeholder="请输入邮箱地址" id="email"
+														class="form-control" required="required"> 
 												</div>
 											</div>
 
@@ -154,7 +150,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">性别</label>
 												<div class="col-sm-7">
-													<select name="gender" class="form-control mb-3">
+													<select name="gender" class="form-control mb-3" id="gender">
 														<option>男</option>
 														<option>女</option>
 													</select>
@@ -164,7 +160,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">电话号码</label>
 												<div class="col-sm-7">
-													<input type="text" name="PhoneNumber" placeholder="请输入电话号码"
+													<input type="text" name="PhoneNumber" placeholder="请输入电话号码" required="required" id="phonenumber"
 														class="form-control">
 												</div>
 											</div>
@@ -172,7 +168,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">职位</label>
 												<div class="col-sm-7">
-													<select name="position" class="form-control mb-3">
+													<select name="position" class="form-control mb-3" id="position">
 														<option>职位1</option>
 														<option>职位2</option>
 														<option>职位3</option>
@@ -183,14 +179,15 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">个人简介</label>
 												<div class="col-sm-7">
-													<input type="text" name="Introduction"
-														placeholder="请输入个人简介" class="form-control">
+													<textarea id="introduction" name="Introduction" placeholder="请输入个人简介(不超过100字)" rows="3" cols="70" required></textarea>
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
-												<!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
-												<button type="submit" class="btn btn-primary">保存更改</button>
+												<div class="col-sm-6 ">
+													<!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
+													<button type="submit" class="btn btn-primary">保存更改</button>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -234,5 +231,97 @@
 	<script src="js/charts-home.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
+	<script>
+		$(function() {
+			$("#username").blur(function() {
+				var temp = $(this).val();
+				var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,10}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的用户名');
+						$("#username").val("");
+						document.getElementById("username").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+
+			$("#email").blur(function() {
+				var temp = $(this).val();
+				var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的邮箱');
+						$("#email").val("");
+						document.getElementById("email").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+
+			$("#phonenumber").blur(function() {
+				var temp = $(this).val();
+				var reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的手机号码');
+						$("#phonenumber").val("");
+						document.getElementById("phonenumber").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+
+			$("#introduction").blur(function() {
+				var temp = $(this).val();
+				var reg = /[^\s]{1,100}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的简介');
+						$("#introduction").val("");
+						document.getElementById("introduction").focus();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+		});
+		
+	</script>
 </body>
 </html>

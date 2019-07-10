@@ -27,10 +27,7 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 </head>
 <body>
 	<div class="page">
@@ -228,10 +225,11 @@
 		$(function() {
 			$("#username").blur(function() {
 				var temp = $(this).val();
-				var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{2,10}$/;
+				var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,10}$/;
 				if (temp != "") {
 					if (!reg.test(temp)) {
-						document.getElementById("username").focus();
+						alert('请输入正确格式的用户名');
+						$("#username").val("");
 						document.getElementById("username").select();
 				        $(this).css({
 				            'outline': 'none',

@@ -52,18 +52,18 @@
 								<form action="AdminLogin" method="post" class="form-validate">
 									<div class="form-group">
 										<input id="login-username" type="email" name="loginAdminName"
-											required data-msg="请输入您的邮箱账户"
-											class="input-material"> <label for="login-username"
-											class="label-material">账号 </label>
+											required data-msg="请输入您的邮箱账户" class="input-material">
+										<label for="login-username" class="label-material">账号
+										</label>
 									</div>
 									<div class="form-group">
-										<input id="login-password" type="password"
-											name="loginPassword" required
-											data-msg="请输入您的密码" class="input-material">
-										<label for="login-password" class="label-material">密码</label>
+										<input id="origin" type="password" name="loginPassword2"
+											required data-msg="请输入您的密码" class="input-material"> <label
+											for="login-password" class="label-material">密码</label>
+										<input type="hidden" id="after" name="loginPassword"> 
 									</div>
-									<input type="submit" value="登录" id="button"
-										class="btn btn-primary">
+									<input
+										type="submit" value="登录" id="button" class="btn btn-primary">
 								</form>
 							</div>
 						</div>
@@ -85,5 +85,17 @@
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
+	<script type="text/javascript" src="js/jquery.md5.js"></script>
+	<script>
+		$(function() {
+			$("#origin").blur(function() {
+				var before = $(this).val();
+				if (before != "") {
+					var beforeVal = $.md5(before);
+					$("#after").val(beforeVal);
+				}
+			});
+		});
+	</script>
 </body>
 </html>

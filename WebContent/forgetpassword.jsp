@@ -100,14 +100,14 @@
 												<label class="col-sm-4 form-control-label">密码</label>
 												<div class="col-sm-7">
 													<input id="password" type="password" placeholder="请输入密码（6-16位，同时包含字母数字）"
-														name="password2" class="form-control">
+														name="password2" class="form-control" required="required">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label"></label>
 												<div class="col-sm-7">
 													<input id="passwordConfirm" type="password"
-														placeholder="请再次输入密码（6-16位，同时包含字母数字）" name="passwordConfirm2"
+														placeholder="请再次输入密码（6-16位，同时包含字母数字）" name="passwordConfirm2" required="required"
 														class="form-control">
 												</div>
 											</div>
@@ -174,27 +174,47 @@
 		$("#password").blur(function() {
 			var before = $(this).val();
 			var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
-			if(!reg.test(before)){
-				
-				alert('请输入正确格式的密码');
-				before.val()="";
-			}
 			if(before != ""){
-				var beforeVal = $.md5(before);
-				$("#after1").val(beforeVal);
+				if(!reg.test(before)){		
+					alert('请输入正确格式的密码');
+					$("#password").val("");
+					document.getElementById("password").select();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else{
+					var beforeVal = $.md5(before);
+					$("#after1").val(beforeVal);
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
+				}
 			}
 		});
 		$("#passwordConfirm").blur(function() {
 			var before2 = $(this).val();
 			var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
-			if(!reg.test(before2)){
-				
-				alert('请输入正确格式的密码');
-				before2.val()="";
-			}
 			if(before2 != ""){
-				var beforeVal2 = $.md5(before2);
-				$("#after2").val(beforeVal2);
+				if(!reg.test(before2)){
+					alert('请输入正确格式的密码');
+					$("#passwordConfirm").val("");
+					document.getElementById("passwordConfirm").select();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else if(reg.test(before2)){
+					var beforeVal2 = $.md5(before2);
+					$("#after2").val(beforeVal2);
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
+				}
 			}
 		});
 	});

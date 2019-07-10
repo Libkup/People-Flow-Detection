@@ -55,12 +55,7 @@
 							<!-- Navbar Brand -->
 							<a href="adminindex.jsp"
 								class="navbar-brand d-none d-sm-inline-block">
-								<div class="brand-text d-none d-lg-inline-block">
 									<strong>人流量监控平台</strong>
-								</div>
-								<div class="brand-text d-none d-sm-inline-block d-lg-none">
-									<strong>BD</strong>
-								</div>
 							</a>
 							<!-- Toggle Button-->
 							<a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
