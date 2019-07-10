@@ -23,9 +23,6 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
     <div class="page">
@@ -133,11 +130,6 @@
                                     <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle">
                                     <div class="status bg-green"></div>
                                 </div>
-                                <!-- <div class="client-title">
-                                    <h3>Jason Doe</h3>
-                                    <span>Web Developer</span>
-                                    <a href="#">Follow</a>
-                                </div> -->
                                 <div class="line"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
@@ -158,7 +150,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="text" id="username" name="username" placeholder="请输入用户名" class="form-control">
+                                                            <input type="text" id="username" name="username" placeholder="请输入用户名" class="form-control" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +168,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="email" id="useremail" name="useremail" placeholder="请输入邮箱地址" class="form-control">
+                                                            <input type="email" id="useremail" name="useremail" placeholder="请输入邮箱地址" class="form-control" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -194,7 +186,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <select name="gender" id="gender"  class="form-control">
+                                                            <select name="gender" id="gender"  class="form-control" style = "width:100px;"> 
                                                                 <option>男</option>
                                                                 <option>女</option>
                                                             </select>
@@ -215,7 +207,7 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <input type="text" id="phonenumber" name="phonenumber" placeholder="请输入电话号码" class="form-control">
+                                                            <input type="text" id="phonenumber" name="phonenumber" placeholder="请输入电话号码" class="form-control" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -233,9 +225,10 @@
                                                         <div class="col-sm-4">
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <select name="position" id="position" class="form-control">
+                                                            <select name="position" id="position" class="form-control" style = "width:100px;">
                                                                 <option>职位1</option>
                                                                 <option>职位2</option>
+                                                                <option>职位3</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -253,9 +246,10 @@
                                                     <div class="form-group row">
                                                         <div class="col-sm-4">
                                                         </div>
+
                                                         <div class="col-sm-8">
-                                                            <input type="text" id="introduction" name="introduction" placeholder="请输入个人简介" class="form-control">
-                                                        </div>
+															<textarea id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" cols="40" required="required"></textarea>
+														</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,6 +260,7 @@
                                 
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <div id="lin2" style="display:none;" class="line"></div>
                             <div id="changeuser" style="display:none;" class="form-group row">
@@ -278,11 +273,8 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-lg-2">
-
                     </div>
-                  </div>
+                    <div class="col-lg-2">
                 </div>
               </section>
           
@@ -315,33 +307,158 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
-    <script src="js/front.js"></script>
-    <script>
+    <script src="js/front.js"></script><script>
 		function settingUserInformation(){
 			var value = document.getElementById("Email").value;
-			$.ajax({
-				type : 'POST', 
-				url : "SearchUser", 
-				data: {Email: value}, 
-				success : function(result) {
-					if(result == ""){
-    					alert("未查询到结果");}
+			if(value == ""){
+				alert('查询条件不能为空');
+			}
+			else{
+				$.ajax({
+					type : 'POST', 
+					url : "SearchUser", 
+					data: {Email: value}, 
+					success : function(result) {
+						if(result == ""){
+	    					alert("未查询到结果");
+	    					document.getElementById("Email").value = "";
+	    					document.getElementById("Email").select();
+							document.getElementById("lin1").style.display = "none";//显
+							document.getElementById("information").style.display = "none";//显
+							document.getElementById("lin2").style.display = "none";//显
+							document.getElementById("changeuser").style.display = "none";//显
+	    					}
+						else{
+						var resultArr = result.split(",");
+						document.getElementById("lin1").style.display="";//显
+						document.getElementById("information").style.display="";//显
+						document.getElementById("lin2").style.display="";//显
+						document.getElementById("changeuser").style.display="";//显
+						document.getElementById("username").value=resultArr[0];
+						document.getElementById("useremail").value=resultArr[1];
+						document.getElementById("gender").value=resultArr[2];
+						document.getElementById("phonenumber").value=resultArr[3];
+						document.getElementById("position").value=resultArr[4];
+						document.getElementById("introduction").value=resultArr[5];
+						document.getElementById("Email").value="";
+						}
+					}
+				});
+			}
+		};
+		
+		$("#Email").blur(function() {
+			var temp = $(this).val();
+			var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+			if (temp != "") {
+				if (!reg.test(temp)) {
+					alert('请输入正确格式的邮箱');
+					$("#Email").val("");
+					document.getElementById("Email").select();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else{
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
+				}
+			}
+		});
+		
+		$(function() {
+			$("#username").blur(function() {
+				var temp = $(this).val();
+				var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,10}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的用户名');
+						$("#username").val("");
+						document.getElementById("username").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
 					else{
-					var resultArr = result.split(",");
-					document.getElementById("lin1").style.display="";//显
-					document.getElementById("information").style.display="";//显
-					document.getElementById("lin2").style.display="";//显
-					document.getElementById("changeuser").style.display="";//显
-					document.getElementById("username").value=resultArr[0];
-					document.getElementById("useremail").value=resultArr[1];
-					document.getElementById("gender").value=resultArr[2];
-					document.getElementById("phonenumber").value=resultArr[3];
-					document.getElementById("position").value=resultArr[4];
-					document.getElementById("introduction").value=resultArr[5];
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
 					}
 				}
 			});
-		};
+
+			$("#useremail").blur(function() {
+				var temp = $(this).val();
+				var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的邮箱');
+						$("#useremail").val("");
+						document.getElementById("useremail").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+
+			$("#phonenumber").blur(function() {
+				var temp = $(this).val();
+				var reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的手机号码');
+						$("#phonenumber").val("");
+						document.getElementById("phonenumber").select();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+
+			$("#introduction").blur(function() {
+				var temp = $(this).val();
+				var reg = /[^\s]{1,100}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的简介');
+						$("#introduction").val("");
+						document.getElementById("introduction").focus();
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': 'rgba(255, 0, 0, 0.8)'
+				        });
+					}
+					else{
+				        $(this).css({
+				            'outline': 'none',
+				            'border-color': '#ccc'
+				        });
+					}
+				}
+			});
+		});
+		
 	</script>
-  </body>
+	</body>
 </html>

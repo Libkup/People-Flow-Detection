@@ -27,10 +27,7 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 
 </head>
 <body>
@@ -111,13 +108,7 @@
 							<li><a href="findcamera.jsp">查看摄像头信息</a></li>
 						</ul></li>
 				</ul>
-				<!-- <span class="heading">Extras</span> -->
-				<!-- <ul class="list-unstyled">
-            <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
-          </ul> -->
+
 			</nav>
 			<div class="content-inner">
 				<!-- Page Header-->
@@ -134,12 +125,7 @@
 							<div class="col-lg-2"></div>
 							<div class="col-lg-8">
 								<div class="card">
-									<!-- <div class="card-close">
-                          <div class="dropdown">
-                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                          </div>
-                        </div> -->
+
 									<div class="card-header d-flex align-items-center">
 										<h3 class="h4">删除用户</h3>
 									</div>
@@ -167,11 +153,6 @@
 														class="img-fluid rounded-circle">
 													<div class="status bg-green"></div>
 												</div>
-												<!-- <div class="client-title">
-                                    <h3>Jason Doe</h3>
-                                    <span>Web Developer</span>
-                                    <a href="#">Follow</a>
-                                </div> -->
 												<div class="line"></div>
 												<div class="form-group row">
 													<div class="col-sm-4"></div>
@@ -284,10 +265,6 @@
 							<div class="col-sm-6">
 								<p>Copyright &copy; 2019.NWPU All rights reserved.</p>
 							</div>
-							<div class="col-sm-6 text-right">
-								<p></p>
-								<!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-							</div>
 						</div>
 					</div>
 				</footer>
@@ -312,33 +289,70 @@
 		function settingUserInformation() {
 			var value = document.getElementById("Email").value;
 			console.log("1111" + value);
-			$.ajax({
-				type : 'POST',
-				url : "SearchUser",
-				data : {
-					Email : value
-				},
-				success : function(result) {
-					if(result == ""){
-    					alert("未查询到结果");}
-					else{
-					var resultArr = result.split(",");
-					$("#username").html(resultArr[0]);
-					$("#useremail").html(resultArr[1]);
-					$("#gender").html(resultArr[2]);
-					$("#phonenumber").html(resultArr[3]);
-					$("#position").html(resultArr[4]);
-					$("#introduction").html(resultArr[5]);
-					document.getElementById("useremail1").value = resultArr[1];
-					document.getElementById("Email").value = "";
-					document.getElementById("lin1").style.display = "";//显
-					document.getElementById("information").style.display = "";//显
-					document.getElementById("lin2").style.display = "";//显
-					document.getElementById("deleteuser").style.display = "";//显
-				}
-				}	
-			});
+			if (value == "") {
+				alert('查询条件不能为空');
+				document.getElementById("Email").select();
+				$(this).css({
+					'outline' : 'none',
+					'border-color' : 'rgba(255, 0, 0, 0.8)'
+				});
+			} else {
+				$
+						.ajax({
+							type : 'POST',
+							url : "SearchUser",
+							data : {
+								Email : value
+							},
+							success : function(result) {
+								if (result == "") {
+									alert("未查询到结果");
+									document.getElementById("useremail1").value = "";
+									document.getElementById("Email").value = "";
+									document.getElementById("lin1").style.display = "none";//显
+									document.getElementById("information").style.display = "none";//显
+									document.getElementById("lin2").style.display = "none";//显
+									document.getElementById("deleteuser").style.display = "none";//显
+								} else {
+									var resultArr = result.split(",");
+									$("#username").html(resultArr[0]);
+									$("#useremail").html(resultArr[1]);
+									$("#gender").html(resultArr[2]);
+									$("#phonenumber").html(resultArr[3]);
+									$("#position").html(resultArr[4]);
+									$("#introduction").html(resultArr[5]);
+									document.getElementById("useremail1").value = resultArr[1];
+									document.getElementById("Email").value = "";
+									document.getElementById("lin1").style.display = "";//显
+									document.getElementById("information").style.display = "";//显
+									document.getElementById("lin2").style.display = "";//显
+									document.getElementById("deleteuser").style.display = "";//显
+								}
+							}
+						});
+			}
 		};
+
+		$("#Email").blur(function() {
+			var temp = $(this).val();
+			var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+			if (temp != "") {
+				if (!reg.test(temp)) {
+					alert('请输入正确格式的邮箱');
+					$("#Email").val("");
+					document.getElementById("Email").select();
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : 'rgba(255, 0, 0, 0.8)'
+					});
+				} else {
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : '#ccc'
+					});
+				}
+			}
+		});
 	</script>
 </body>
 </html>

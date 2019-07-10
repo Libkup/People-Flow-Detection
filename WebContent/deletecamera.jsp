@@ -27,11 +27,6 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- Tweaks for older IEs-->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
 </head>
 <body>
 	<div class="page">
@@ -111,14 +106,6 @@
 							<li><a href="findcamera.jsp">查看摄像头信息</a></li>
 						</ul></li>
 				</ul>
-				<!-- <span class="heading">Extras</span> -->
-				<!-- <ul class="list-unstyled">
-
-            <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
-          </ul> -->
 			</nav>
 			<div class="content-inner">
 				<!-- Page Header-->
@@ -155,11 +142,6 @@
 											</div>
 											<div id="lin1" style="display: none;" class="line"></div>
 											<div id="text1" style="display: none;" class="card-body text-center">
-												<!-- <div class="client-title">
-                                    <h3>Jason Doe</h3>
-                                    <span>Web Developer</span>
-                                    <a href="#">Follow</a>
-                                </div> -->
 												<div class="line"></div>
 												<div class="form-group row">
 													<div class="col-sm-3"></div>
@@ -298,34 +280,71 @@
 	<script>
 		function SearchCameraInfo() {
 			var value = document.getElementById("name").value;
-			$.ajax({
-				type : 'POST',
-				url : "SearchCamera",
-				data : {
-					name : value
-				},
-				success : function(result) {
-					console.log(result)
-					if(result == ""){
-    					alert("未查询到结果");}
-					else{
-					var resultArr = result.split(",");
-					$("#cameraname").html(resultArr[0]);
-					$("#location").html(resultArr[1]);
-					$("#description").html(resultArr[2]);
-					$("#history").html(resultArr[3]);
-					$("#hour").html(resultArr[4]);
-					$("#threshold").html(resultArr[5]);
-					document.getElementById("cameraname1").value = resultArr[0];
-					document.getElementById("name").value = "";
-					document.getElementById("lin1").style.display = "";//显
-					document.getElementById("text1").style.display = "";//显
-					document.getElementById("lin2").style.display = "";//显
-					document.getElementById("deletecamera").style.display = "";//显
+			if(value==""){
+				alert('查询条件不能为空');
+				document.getElementById("name").select();
+				$(this).css({
+					'outline' : 'none',
+					'border-color' : 'rgba(255, 0, 0, 0.8)'
+				});
+			}
+			else{
+				$.ajax({
+					type : 'POST',
+					url : "SearchCamera",
+					data : {
+						name : value
+					},
+					success : function(result) {
+						console.log(result)
+						if(result == ""){
+	    					alert("未查询到结果");
+	    					document.getElementById("name").value = "";
+							document.getElementById("lin1").style.display = "none";//隐
+							document.getElementById("text1").style.display = "none";
+							document.getElementById("lin2").style.display = "none";
+							document.getElementById("deletecamera").style.display = "none";
+	    					}
+						else{
+						var resultArr = result.split(",");
+						$("#cameraname").html(resultArr[0]);
+						$("#location").html(resultArr[1]);
+						$("#description").html(resultArr[2]);
+						$("#history").html(resultArr[3]);
+						$("#hour").html(resultArr[4]);
+						$("#threshold").html(resultArr[5]);
+						document.getElementById("cameraname1").value = resultArr[0];
+						document.getElementById("name").value = "";
+						document.getElementById("lin1").style.display = "";//显
+						document.getElementById("text1").style.display = "";//显
+						document.getElementById("lin2").style.display = "";//显
+						document.getElementById("deletecamera").style.display = "";//显
+						}
 					}
-				}
-			});
+				});
+			}
 		};
+		
+		$("#name").blur(function() {
+			var temp = $(this).val();
+			var reg = /^[0-9a-zA-Z]{1,10}$/;
+			if (temp != "") {
+				if (!reg.test(temp)) {
+					alert('请输入正确格式的标识');
+					$("#name").val("");
+					document.getElementById("name").select();
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : 'rgba(255, 0, 0, 0.8)'
+					});
+				} else {
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : '#ccc'
+					});
+				}
+			}
+		});
 	</script>
 </body>
 </html>
