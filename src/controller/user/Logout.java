@@ -32,11 +32,12 @@ public class Logout extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		if (request.getSession(false) != null && request.getSession().getAttribute("LoginUsername") != null) {
+		if (request.getSession(false) != null && request.getSession().getAttribute("loginUsername") != null) {
 			// used to clear the session
 			String email = (String) request.getSession().getAttribute("email");
+			System.out.println(email);
 			UserDAO userdao = new UserDAO();
-			userdao.DeleteOnlineUser(email);
+			userdao.upadateStatus(email, 0);
 			request.getSession().invalidate();
 		}
 		response.sendRedirect("login.jsp");

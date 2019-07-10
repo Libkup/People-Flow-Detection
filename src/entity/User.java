@@ -5,13 +5,23 @@ public class User extends Person {
 	private String position;
 	private String selfIntroduction;
 	private String added_camera;
+	private int status;
 	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public User(String name, String email, String password, String gender, String phoneNumber, String position,
-			String selfIntroduction,String added_camera) {
+			String selfIntroduction,String added_camera,int status) {
 		super(name, email, password, gender, phoneNumber);
 		this.position = position;
 		this.selfIntroduction = selfIntroduction;
 		this.added_camera = added_camera;
+		this.status = status;
 	}
 	
 	public User() {

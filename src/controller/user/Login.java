@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 		boolean match = userdao.verifyPswd(email,pswd);
 		if (match) {
 			User user = userdao.getuser(email);
-			userdao.AddOnlineUser(user);
+			userdao.upadateStatus(email, 1);
             session.setAttribute("loginUsername",userdao.getname(email));
             session.setAttribute("email", email);
             session.setAttribute("User", user);
