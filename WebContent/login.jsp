@@ -49,7 +49,8 @@
 					<div class="col-lg-6 bg-white">
 						<div class="form d-flex align-items-center">
 							<div class="content">
-								<form action="Login" method="post" class="form-validate">
+								<form action="Login" method="post" class="form-validate"
+									onSubmit="return check()">
 									<div class="form-group">
 										<input id="login-username" type="email" name="loginUsername"
 											required data-msg="请输入您的注册邮箱" class="input-material">
@@ -57,13 +58,15 @@
 										</label>
 									</div>
 									<div class="form-group">
-										<input id="login-password" type="password"
-											name="loginPassword" required data-msg="请输入您的密码"
+										<input id="origin" type="password"
+											name="loginPassword2" required data-msg="请输入您的密码"
 											class="input-material"> <label for="login-password"
 											class="label-material">密码</label>
 									</div>
-									<input type="submit" value="登录" id="button"
+									<input type="hidden" id="after" name="loginPassword">
+									<input type="submit" value="登录" id="button-login"
 										class="btn btn-primary">
+									
 								</form>
 								<a href="forgetpassword.jsp" class="forgot-pass">忘记密码?</a>
 							</div>
@@ -86,5 +89,17 @@
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
+	<script type="text/javascript" src="js/jquery.md5.js"></script>
+	<script>
+		$(function() {
+			$("#origin").blur(function() {
+				var before = $(this).val();
+				if(before != ""){
+					var beforeVal = $.md5(before);
+					$("#after").val(beforeVal);
+				}
+			});
+		});
+	</script>
 </body>
 </html>

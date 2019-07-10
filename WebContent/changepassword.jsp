@@ -124,7 +124,7 @@
 															<input id="emailaddress" type="email" name="emailAddress"
 																required data-msg="请输入正确的邮箱"
 																placeholder="${sessionScope.emailAddress}"
-																class="form-control">
+																class="form-control" value="${sessionScope.emailAddress}">
 															<div class="input-group-append">
 																<button id="button" type="submit"
 																	class="btn btn-primary">发送验证码</button>
@@ -142,6 +142,7 @@
 												<div class="col-sm-7">
 													<input type="text" id="verificationCode"
 														name="verificationcode" placeholder="请输入验证码"
+														required="required"
 														class="form-control">
 												</div>
 											</div>
@@ -150,6 +151,7 @@
 												<label class="col-sm-4 form-control-label">密码</label>
 												<div class="col-sm-7">
 													<input id="password" type="password" placeholder="请输入密码"
+													required="required"
 														name="password" class="form-control">
 												</div>
 											</div>
@@ -158,6 +160,7 @@
 												<div class="col-sm-7">
 													<input id="passwordConfirm" type="password"
 														placeholder="请再次输入密码" name="passwordConfirm"
+														required="required"
 														class="form-control">
 												</div>
 											</div>
@@ -167,20 +170,13 @@
 													<button id="button_save" type="submit"
 														class="btn btn-primary">保存更改</button>
 												</div>
-												<!--  
 												<div class="col-sm-6 ">
-													<button class="btn btn-secondary" onclick="location.href='UserIndex'">取消</button>
-												</div>  
-												-->
+													<button type="button" class="btn btn-secondary" onclick="location.href='UserIndex'">取消</button>
+												</div>
 											</div>
+											<input type="hidden" id="after1" name="password">
+											<input type="hidden" id="after2" name="passwordConfirm">
 										</form>
-										<div class="form-group row">
-											<div class="col-sm-6 "></div>
-											<div class="col-sm-6 ">
-												<button class="btn btn-secondary"
-													onclick="location.href='UserIndex'">取消</button>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -210,5 +206,44 @@
 	<script src="js/charts-home.js"></script>
 	<script src="js/front.js"></script>
 	<script src="js/check-password.js"></script>
+	<script type="text/javascript" src="js/jquery.md5.js"></script>
+	<script>
+	$(function() {
+		$("#password").blur(function() {
+			var before = $(this).val();
+			var reg = /^[0-9a-zA-Z]{6,16}$/;
+			if(before != ""){
+				if(!reg.test(before)){					
+					alert('请输入正确格式的密码');
+					$("#password").val("");
+					document.getElementById("password").focus();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				var beforeVal = $.md5(before);
+				$("#after1").val(beforeVal);
+		        $(this).css({
+		            'outline': 'none',
+		            'border-color': '#ccc'
+		        });
+			}
+		});
+		$("#passwordConfirm").blur(function() {
+			var before = $(this).val();
+			var reg = /^[0-9a-zA-Z]{6,16}$/;
+			if(before != ""){
+				if(!reg.test(before)){					
+					alert('请输入正确格式的密码');
+					$("#passwordConfirm").val("");
+					document.getElementById("passwordConfirm").focus();
+				}
+				var beforeVal = $.md5(before);
+				$("#after2").val(beforeVal);
+			}
+		});
+	});
+	</script>
 </body>
 </html>
