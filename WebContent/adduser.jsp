@@ -50,7 +50,7 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a href="adminindex.jsp"
+							<a href="AdminIndex"
 								class="navbar-brand d-none d-sm-inline-block"> <strong>人流量监控平台</strong>>
 							</a>
 							<!-- Toggle Button-->
@@ -87,10 +87,10 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li><a href="adminindex.jsp"> <i class="icon-home"></i>用户管理
+					<li><a href="AdminIndex"> <i class="icon-home"></i>主页
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="true"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>个人信息
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>用户管理
 					</a>
 						<ul id="exampledropdownDropdown"
 							class="list-unstyled collapse show">
@@ -115,7 +115,7 @@
 				<!-- Page Header-->
 				<header class="page-header">
 					<div class="container-fluid">
-						<h2 class="no-margin-bottom">个人信息</h2>
+						<h2 class="no-margin-bottom">用户管理</h2>
 					</div>
 				</header>
 
