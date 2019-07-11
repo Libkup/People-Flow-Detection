@@ -64,7 +64,7 @@
 											class="label-material">密码</label>
 									</div>
 									<input type="hidden" id="after" name="loginPassword">
-									<input type="submit" value="登录" id="button-login"
+									<input type="submit" value="登录" id="button_login"
 										class="btn btn-primary">
 									
 								</form>
@@ -100,6 +100,17 @@
 				}
 			});
 		});
+		
+		$("#origin").bind('keyup', function(event) {
+			　　if (event.keyCode == "13") {
+					var before = $(this).val();
+					if(before != ""){
+						var beforeVal = $.md5(before);
+						$("#after").val(beforeVal);
+			　　　			$("#button_login").click();
+					}
+			　　}
+			});
 	</script>
 </body>
 </html>
