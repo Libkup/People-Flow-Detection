@@ -322,7 +322,6 @@
 					success : function(result) {
 						if(result == ""){
 	    					alert("未查询到结果");
-	    					document.getElementById("Email").value = "";
 	    					document.getElementById("Email").select();
 							document.getElementById("lin1").style.display = "none";//显
 							document.getElementById("information").style.display = "none";//显
@@ -341,7 +340,6 @@
 						document.getElementById("phonenumber").value=resultArr[3];
 						document.getElementById("position").value=resultArr[4];
 						document.getElementById("introduction").value=resultArr[5];
-						document.getElementById("Email").value="";
 						}
 					}
 				});

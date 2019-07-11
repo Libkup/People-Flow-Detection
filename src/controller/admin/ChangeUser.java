@@ -48,7 +48,7 @@ public class ChangeUser extends HttpServlet {
 		UserDAO userdao = new UserDAO();
 		if(!email.equals(request.getParameter("useremail"))&&userdao.verifyExit(request.getParameter("useremail"))) {
 			out.print("<script language='javascript'>alert('该邮箱已被占用！');window.location.href='changeuser.jsp';</script>"); 
-		}
+		}else {
 		User user = userdao.getuser(email);
 		user.setEmail(request.getParameter("useremail"));
 		user.setName(request.getParameter("username"));
@@ -57,7 +57,8 @@ public class ChangeUser extends HttpServlet {
 		user.setPosition(request.getParameter("position"));
 		user.setSelfIntroduction(request.getParameter("introduction"));
 		userdao.UpdateUser(user,email);
-		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='changeuser.jsp';</script>"); 
+		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='changeuser.jsp';</script>");
+		}
 	}
 
 }
