@@ -380,7 +380,6 @@
         				if(data == ""){
         					alert("未查询到结果");
         				}else{
-        					alert(data);
         					document.getElementById('videos').style.display="";
         					var addressAndTime = data.split("|");
         					var videoAddress = addressAndTime[0].split(",");

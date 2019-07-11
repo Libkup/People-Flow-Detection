@@ -73,10 +73,24 @@ public class test {
 	         CameraDAO cameraDAO = new CameraDAO();
 	         ArrayList<Camera> cameras = cameraDAO.getCameraByName("");
 	 		 ExecutorService exec = Executors.newCachedThreadPool();
+	 		 ArrayList<Record> records = new ArrayList<>();
 	         for(Camera camera : cameras){
-	 			exec.execute(new Record(camera.getId(), camera.getName(),camera.getRtmpAddress()));
+	        	 	Record record = new Record(camera.getId(), camera.getName(),camera.getRtmpAddress());
+//	        	 	status.add(record.getThreadStatus());
+	        	 	records.add(record);
+//	        	 	exec.execute(record);
+	        	 	record.start();
 	         }
-		  
+	         while(true){
+	        	 for(Record record : records){
+	        		 if(record.getCurrentTime()!=null)
+	        			 if(new Date().after(new Date(record.getCurrentTime().getTime() + 60000))){
+	        				 record.stopRecord();
+	        			 } 
+	        	 }
+	        	 Thread.sleep(5000);
+	         }
+	         
 //		  File file = new File("F:/savedVideo");
 //		  File[] files;
 //	        if (file.exists()) {
