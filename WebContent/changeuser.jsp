@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-lg-8">
                       <div class="card">
-                         <form action="ChangeUser" method="post" class="form-validate" >
+                         <form action="ChangeUser" method="post" class="form-validate" onSubmit="return check()">
                         <div class="card-header d-flex align-items-center">
                           <h3 class="h4">更改用户信息</h3>
                         </div>
@@ -249,7 +249,7 @@
                                                         </div>
 
                                                         <div class="col-sm-8">
-															<textarea id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" cols="40" required="required"></textarea>
+															<textarea id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" class="form-control"  required="required"></textarea>
 														</div>
                                                     </div>
                                                 </div>
@@ -439,26 +439,32 @@
 
 			$("#introduction").blur(function() {
 				var temp = $(this).val();
-				var reg = /[^\s]{1,100}$/;
-				if (temp != "") {
-					if (!reg.test(temp)) {
-						alert('请输入正确格式的简介');
-						$("#introduction").val("");
-						document.getElementById("introduction").focus();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
-					}
+				var length =$(this).val().length;
+				if(parseInt(length)>100){
+					alert('请输入正确格式的简介');
+					$("#introduction").val("");
+					document.getElementById("introduction").focus();
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : 'rgba(255, 0, 0, 0.8)'
+					});
+				}else {
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : '#ccc'
+					});
 				}
 			});
 		});
+		
+		function check() {
+
+			if (document.getElementById("introduction").value.length>100) {
+				alert('请输入正确格式的简介！');
+				return false;
+			} 
+			return true;
+		};
 		
 	</script>
 	</body>

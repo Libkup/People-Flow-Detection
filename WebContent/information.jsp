@@ -116,15 +116,14 @@
 										<h3 class="h4">更新你的个人信息</h3>
 									</div>
 									<div class="card-body">
-										<form action="ChangeInfo" method="post"
+										<form action="ChangeInfo" method="post" name="myform"
 											class="form-horizontal" onSubmit="return check()">
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">用户名</label>
 												<div class="col-sm-7">
 													<input id="username" type="text" name="username"
 														placeholder="长度小于10位" value="${sessionScope.User.name}"
-														required="required"
-														class="form-control">
+														required="required" class="form-control">
 												</div>
 											</div>
 											<div class="line"></div>
@@ -133,8 +132,7 @@
 												<div class="col-sm-7">
 													<input id="email" type="email" name="useremail"
 														placeholder="请输入邮箱地址" value="${sessionScope.User.email}"
-														required="required"
-														class="form-control">
+														required="required" class="form-control">
 												</div>
 											</div>
 
@@ -142,8 +140,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">性别</label>
 												<div class="col-sm-7">
-													<select id="gender" name="gender"
-														class="form-control mb-3">
+													<select id="gender" name="gender" class="form-control mb-3">
 														<option>${sessionScope.User.gender}</option>
 														<option>男</option>
 														<option>女</option>
@@ -156,16 +153,14 @@
 												<div class="col-sm-7">
 													<input type="text" name="phonenumber" id="phonenumber"
 														value="${sessionScope.User.phoneNumber}"
-														required="required"
-														class="form-control">
+														required="required" class="form-control">
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">职位</label>
 												<div class="col-sm-7">
-													<select name="position"
-														class="form-control mb-3">
+													<select name="position" class="form-control mb-3">
 														<option>${sessionScope.User.position}</option>
 														<option>职位1</option>
 														<option>职位2</option>
@@ -177,7 +172,10 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">个人简介</label>
 												<div class="col-sm-7">
-													<textarea  id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" class="form-control" required> ${sessionScope.User.selfIntroduction}</textarea>
+													<textarea
+														 id="introduction" name="introduction"
+														placeholder="请输入个人简介(不超过100字)" rows="3"
+														class="form-control" required> ${sessionScope.User.selfIntroduction}</textarea>
 												</div>
 											</div>
 											<div class="line"></div>
@@ -231,16 +229,15 @@
 						alert('请输入正确格式的用户名');
 						$("#username").val("");
 						document.getElementById("username").select();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
 					}
 				}
 			});
@@ -253,16 +250,15 @@
 						alert('请输入正确格式的邮箱');
 						$("#email").val("");
 						document.getElementById("email").select();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
 					}
 				}
 			});
@@ -275,43 +271,48 @@
 						alert('请输入正确格式的手机号码');
 						$("#phonenumber").val("");
 						document.getElementById("phonenumber").select();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
 					}
 				}
 			});
 
 			$("#introduction").blur(function() {
 				var temp = $(this).val();
-				var reg = /[^\s]{1,100}$/;
-				if (temp != "") {
-					if (!reg.test(temp)) {
-						alert('请输入正确格式的简介');
-						$("#introduction").val("");
-						document.getElementById("introduction").focus();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
-					}
+				var length =$(this).val().length;
+				if(parseInt(length)>100){
+					alert('请输入正确格式的简介');
+					$("#introduction").val("");
+					document.getElementById("introduction").focus();
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : 'rgba(255, 0, 0, 0.8)'
+					});
+				}else {
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : '#ccc'
+					});
 				}
 			});
 		});
 		
+		function check() {
+
+			if (document.getElementById("introduction").value.length>100) {
+				alert('请输入正确格式的简介！');
+				return false;
+			} 
+			return true;
+		};
+
 	</script>
 </body>
 </html>
