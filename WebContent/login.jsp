@@ -107,8 +107,8 @@
 					if(before != ""){
 						var beforeVal = $.md5(before);
 						$("#after").val(beforeVal);
-			　　　			$("#button_login").click();
 					}
+		　　　			$("#button_login").click();
 			　　}
 			});
 	</script>

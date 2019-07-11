@@ -102,9 +102,9 @@
 					var before = $(this).val();
 					if(before != ""){
 						var beforeVal = $.md5(before);
-						$("#after").val(beforeVal);			　　　　		
-			　　　			$("#button").click();
-					}
+						$("#after").val(beforeVal);	
+					}		　　　　		
+		　　　			$("#button").click();
 			　　}
 			});
 	</script>
