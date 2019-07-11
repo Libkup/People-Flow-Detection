@@ -37,8 +37,10 @@ public class ChartDataUpdate extends HttpServlet {
 		String[] witchChart = charts.split(",");
 		CameralogDAO cameralogDAO = new CameralogDAO();
 		String datas = "";
-		for(int i = 0; i < witchChart.length; i ++){
-			datas = datas + cameralogDAO.getValues(Integer.valueOf((String) witchChart[i].subSequence(11, witchChart[i].length())))+",";
+		if(!charts.equals("")){
+			for(int i = 0; i < witchChart.length; i ++){
+				datas = datas + cameralogDAO.getValues(Integer.valueOf((String) witchChart[i].subSequence(11, witchChart[i].length())))+",";
+			}
 		}
 		response.getWriter().print(datas);
 	}
