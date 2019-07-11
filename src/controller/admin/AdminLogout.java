@@ -30,7 +30,7 @@ public class AdminLogout extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		if (request.getSession(false) != null && request.getSession().getAttribute("admin") != null) {
 			// used to clear the session
-			request.getSession().invalidate();
+			request.getSession().removeAttribute("admin");
 		}
 		response.sendRedirect("adminlogin.jsp");
 	}
