@@ -46,6 +46,9 @@ public class ChangeUser extends HttpServlet {
 		PrintWriter out=response.getWriter();     //初始化out对象
 		String email = request.getParameter("Email");
 		UserDAO userdao = new UserDAO();
+		if(!email.equals(request.getParameter("useremail"))&&userdao.verifyExit(request.getParameter("useremail"))) {
+			out.print("<script language='javascript'>alert('该邮箱已被占用！');window.location.href='changeuser.jsp';</script>"); 
+		}
 		User user = userdao.getuser(email);
 		user.setEmail(request.getParameter("useremail"));
 		user.setName(request.getParameter("username"));

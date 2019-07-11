@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +43,7 @@ public class SearchUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();     //初始化out对象
 		String email = request.getParameter("Email");
 		User user = new User();
 		UserDAO userdao = new UserDAO();
@@ -50,6 +52,14 @@ public class SearchUser extends HttpServlet {
 			user = userdao.getuser(email);
 			data = user.getName()+","+user.getEmail()+","+user.getGender()+","+user.getPhoneNumber()+","
 					+user.getPosition()+","+user.getSelfIntroduction();
+		}else {
+			String path = request.getServletPath();//得到请求的url
+			if(path.endsWith("deleteuser.jsp")) {
+				out.print("<script language='javascript'>alert('用户不存在！');window.location.href='deleteuser.jsp';</script>"); 
+			}else if(path.endsWith("changeuser.jsp")) {
+				out.print("<script language='javascript'>alert('用户不存在！');window.location.href='changeuser.jsp';</script>"); 
+			}
+			
 		}
 		response.getWriter().print(data);
 	}
