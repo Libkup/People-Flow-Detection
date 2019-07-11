@@ -71,7 +71,8 @@ public class Login extends HttpServlet {
             session.setAttribute("loginUsername",userdao.getname(email));
             session.setAttribute("email", email);
             session.setAttribute("User", user);
-            request.getRequestDispatcher("UserIndex").forward(request, response);
+            response.sendRedirect("UserIndex");
+//            request.getRequestDispatcher("UserIndex");
 		} else{
 			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='login.jsp';</script>"); 
 			}

@@ -48,7 +48,7 @@ public class AddUser extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();     //初始化out对象
-		User user = new User(request.getParameter("UserName"), request.getParameter("UserEmail"), "123456",request.getParameter("gender"), request.getParameter("PhoneNumber"),request.getParameter("position"), request.getParameter("Introduction"), "",0);
+		User user = new User(request.getParameter("UserName"), request.getParameter("UserEmail"), "e10adc3949ba59abbe56e057f20f883e",request.getParameter("gender"), request.getParameter("PhoneNumber"),request.getParameter("position"), request.getParameter("Introduction"), "",0);
 		UserDAO userdao  = new UserDAO();
 		if(userdao.verifyExit(request.getParameter("UserEmail"))) {
 			out.print("<script language='javascript'>alert('用户已存在！');window.location.href='adduser.jsp';</script>");     

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +47,9 @@ public class PeopleCount extends HttpServlet {
 			int currentCount = 0; 
 			if(session.getAttribute(cameraDAO.getName(Integer.valueOf(idsArray[i]))) != null)
 				currentCount = (int) session.getAttribute(cameraDAO.getName(Integer.valueOf(idsArray[i])));
+			ServletContext app01 = this.getServletContext();
+	        app01.getAttribute(cameraDAO.getName(Integer.valueOf(idsArray[i])));
+			System.out.println("get " + app01.getAttribute(cameraDAO.getName(Integer.valueOf(idsArray[i]))));
 			int highestHistory = cameraDAO.getHighest(Integer.valueOf(idsArray[i]));
 			int hightestHour = cameraDAO.getHighest_hour(Integer.valueOf(idsArray[i]));
 			int predict = cameralogDAO.getPredict(Integer.valueOf(idsArray[i]));
@@ -73,7 +77,10 @@ public class PeopleCount extends HttpServlet {
 		cameralog.setTime(time);
 		cameralogDAO.updateCameralog(cameralog);
 		HttpSession session = request.getSession();
+		System.out.println("post " + count);
 		session.setAttribute(nameFormEdge, count);
+		ServletContext app01 = this.getServletContext();
+        app01.setAttribute(nameFormEdge, count); 
 	}
 
 }

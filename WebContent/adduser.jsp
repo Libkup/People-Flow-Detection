@@ -108,6 +108,7 @@
 							<li><a href="changecamera.jsp">更改摄像头信息 </a></li>
 							<li><a href="findcamera.jsp">查看摄像头信息</a></li>
 						</ul></li>
+					<li><a href="HistoricalVideo"> <i class="icon-home"></i>历史视频 </a></li>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -179,7 +180,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">个人简介</label>
 												<div class="col-sm-7">
-													<textarea id="introduction" name="Introduction" placeholder="请输入个人简介(不超过100字)" rows="3" cols="70" required></textarea>
+													<textarea id="introduction" name="Introduction" placeholder="请输入个人简介(不超过100字)" rows="3" required></textarea>
 												</div>
 											</div>
 											<div class="line"></div>

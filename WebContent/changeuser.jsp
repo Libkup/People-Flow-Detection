@@ -87,6 +87,7 @@
                             <li><a href="findcamera.jsp">查看摄像头信息</a></li>
                         </ul>
                     </li>
+                    <li><a href="HistoricalVideo"> <i class="icon-home"></i>历史视频 </a></li>
           </ul>
         </nav>
         <div class="content-inner">

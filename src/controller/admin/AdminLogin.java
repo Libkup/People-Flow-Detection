@@ -66,7 +66,8 @@ public class AdminLogin extends HttpServlet {
 		boolean match = admindao.verifyPswd(email,pswd);
 		if (match) {
             session.setAttribute("admin",admindao.getadmin(email));
-            request.getRequestDispatcher("AdminIndex").forward(request, response);
+            response.sendRedirect("AdminIndex");
+//            request.getRequestDispatcher("AdminIndex").forward(request, response);
 		} else{
 			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='adminlogin.jsp';</script>"); 
 			}

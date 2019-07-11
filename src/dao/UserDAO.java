@@ -120,12 +120,16 @@ public class UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String a[]  = added_camera.split("-");
 		ArrayList<Integer>  b = new ArrayList<Integer>();
+		if(added_camera.equals("") || added_camera == null)
+			return b;
+		String a[] = added_camera.split("-");
+		System.out.println(a.length);
 		for(int i=0;i<a.length;i++){
-		   b.add(Integer.valueOf(a[i]));
+			b.add(Integer.valueOf(a[i]));
 		}
 		return b;
+		
 	}
 
 	
