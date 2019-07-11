@@ -35,7 +35,6 @@ public class Logout extends HttpServlet {
 		if (request.getSession(false) != null && request.getSession().getAttribute("loginUsername") != null) {
 			// used to clear the session
 			String email = (String) request.getSession().getAttribute("email");
-			System.out.println(email);
 			UserDAO userdao = new UserDAO();
 			userdao.upadateStatus(email, 0);
 			request.getSession().removeAttribute("User");

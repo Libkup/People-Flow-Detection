@@ -130,7 +130,7 @@
 										<h3 class="h4">添加用户</h3>
 									</div>
 									<div class="card-body">
-										<form action="AddUser" method="post" class="form-horizontal">
+										<form action="AddUser" method="post" class="form-horizontal" onSubmit= "return check()">
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">用户名</label>
 												<div class="col-sm-7">
@@ -180,7 +180,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">个人简介</label>
 												<div class="col-sm-7">
-													<textarea id="introduction" name="Introduction" placeholder="请输入个人简介(不超过100字)" rows="3" required></textarea>
+													<textarea id="introduction" name="Introduction" placeholder="请输入个人简介(不超过100字)" rows="3" class="form-control" required></textarea>
 												</div>
 											</div>
 											<div class="line"></div>
@@ -302,26 +302,33 @@
 
 			$("#introduction").blur(function() {
 				var temp = $(this).val();
-				var reg = /[^\s]{1,100}$/;
-				if (temp != "") {
-					if (!reg.test(temp)) {
-						alert('请输入正确格式的简介');
-						$("#introduction").val("");
-						document.getElementById("introduction").focus();
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': 'rgba(255, 0, 0, 0.8)'
-				        });
-					}
-					else{
-				        $(this).css({
-				            'outline': 'none',
-				            'border-color': '#ccc'
-				        });
-					}
+				var length =$(this).val().length;
+				if(parseInt(length)>100){
+					alert('请输入正确格式的简介');
+					$("#introduction").val("");
+					document.getElementById("introduction").focus();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else{
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
 				}
 			});
 		});
+		
+		function check() {
+
+			if (document.getElementById("introduction").value.length>100) {
+				alert('请输入正确格式的简介！');
+				return false;
+			} 
+			return true;
+		};
 		
 	</script>
 </body>

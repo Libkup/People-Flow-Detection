@@ -315,7 +315,7 @@
 				}
 				else{
 					document.getElementById("camera" + buttonid + "Threshold").value = "";
-					alert('请输入小于4位的阈值');
+					alert('请输入小于4位的正整数');
 				}
 			}
 			else{
