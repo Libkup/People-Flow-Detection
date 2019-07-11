@@ -122,7 +122,7 @@
 												<label class="col-sm-4 form-control-label">用户名</label>
 												<div class="col-sm-7">
 													<input id="username" type="text" name="username"
-														placeholder="长度2-10位" value="${sessionScope.User.name}"
+														placeholder="长度小于10位" value="${sessionScope.User.name}"
 														required="required"
 														class="form-control">
 												</div>
@@ -177,7 +177,7 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">个人简介</label>
 												<div class="col-sm-7">
-													<textarea id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" cols="70" required> ${sessionScope.User.selfIntroduction}</textarea>
+													<textarea  id="introduction" name="introduction" placeholder="请输入个人简介(不超过100字)" rows="3" class="form-control" required> ${sessionScope.User.selfIntroduction}</textarea>
 												</div>
 											</div>
 											<div class="line"></div>
