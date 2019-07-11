@@ -157,6 +157,26 @@
 							<!-- Item -->
 							<div class="col-xl-3 col-sm-6">
 								<div class="item d-flex align-items-center">
+									<div class="icon bg-green">
+										<i class="icon-bill"></i>
+									</div>
+									<div class="title">
+										<span>用户 <br>总人数
+										</span>
+										<div class="progress">
+											<div role="progressbar" style="width: 40%; height: 4px;"
+												aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+												class="progress-bar bg-green"></div>
+										</div>
+									</div>
+									<div class="number">
+										<strong>${sessionScope.user_count}</strong>
+									</div>
+								</div>
+							</div>
+							<!-- Item -->
+							<div class="col-xl-3 col-sm-6">
+								<div class="item d-flex align-items-center">
 									<div class="icon bg-red">
 										<i class="icon-padnote"></i>
 									</div>
@@ -177,31 +197,11 @@
 							<!-- Item -->
 							<div class="col-xl-3 col-sm-6">
 								<div class="item d-flex align-items-center">
-									<div class="icon bg-green">
-										<i class="icon-bill"></i>
-									</div>
-									<div class="title">
-										<span>全平台 <br>最高人数
-										</span>
-										<div class="progress">
-											<div role="progressbar" style="width: 40%; height: 4px;"
-												aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
-												class="progress-bar bg-green"></div>
-										</div>
-									</div>
-									<div class="number">
-										<strong>${sessionScope.user_count}</strong>
-									</div>
-								</div>
-							</div>
-							<!-- Item -->
-							<div class="col-xl-3 col-sm-6">
-								<div class="item d-flex align-items-center">
 									<div class="icon bg-orange">
 										<i class="icon-check"></i>
 									</div>
 									<div class="title">
-										<span>Open <br>Cases
+										<span>监控 <br>最高人数
 										</span>
 										<div class="progress">
 											<div role="progressbar" style="width: 50%; height: 4px;"
@@ -210,7 +210,7 @@
 										</div>
 									</div>
 									<div class="number">
-										<strong>50</strong>
+										<strong>${sessionScope.highest_history}</strong>
 									</div>
 								</div>
 							</div>

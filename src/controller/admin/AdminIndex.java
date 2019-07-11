@@ -40,16 +40,20 @@ public class AdminIndex extends HttpServlet {
 		int camera_count = cameradao.getNameList().size();
 		int user_count = userdao.getAllUser().size();
 		int online_user = 0;
+		int highest_history = 0;
 		System.out.println(online_user);
 		for(int i=0;i<userdao.getAllUser().size();i++) {
 			if(userdao.getAllUser().get(i).getStatus()==1) {
 				online_user++;
-				System.out.println(online_user);
 			}
+		}
+		for(int i=0;i<cameradao.getHistory_Hour_List().size();i++) {
+			if(cameradao.getHistory_Hour_List().get(i)>=highest_history) highest_history=cameradao.getHistory_Hour_List().get(i);
 		}
 		session.setAttribute("online_user", online_user);
 		session.setAttribute("camera_count", camera_count);
 		session.setAttribute("user_count", user_count);
+		session.setAttribute("highest_history", highest_history);
 		request.getRequestDispatcher("adminindex.jsp").forward(request, response);
 	}
 

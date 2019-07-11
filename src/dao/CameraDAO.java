@@ -340,6 +340,32 @@ public class CameraDAO {
 	}
 	
 	/**
+	 * This function is used to get a list of camera highest_history
+	 * 
+	 * @return list <Integer>
+	 */
+	public ArrayList<Integer>  getHistory_Hour_List() {
+		int highest_history = 0;
+		ArrayList <Integer> list = new ArrayList<Integer> ();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from camera";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				highest_history = rs.getInt("highest_history");
+				list.add(highest_history);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	
+	/**
 	 * This function is used to get a list of camera name
 	 * 
 	 * @return list <String>
