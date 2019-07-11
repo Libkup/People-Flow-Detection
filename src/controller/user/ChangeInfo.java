@@ -48,6 +48,9 @@ public class ChangeInfo extends HttpServlet {
 		UserDAO userdao = new UserDAO();
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
+		if(!email.equals(request.getParameter("useremail"))&&userdao.verifyExit(request.getParameter("useremail"))) {
+			out.print("<script language='javascript'>alert('该邮箱已被占用！');window.location.href='information.jsp';</script>"); 
+		}else {
 		User user = userdao.getuser(email);
 		user.setEmail(request.getParameter("useremail"));
 		user.setName(request.getParameter("username"));
@@ -60,6 +63,7 @@ public class ChangeInfo extends HttpServlet {
 		session.setAttribute("loginUsername",request.getParameter("username"));
 		session.setAttribute("User",user);
 		out.print("<script language='javascript'>alert('用户信息修改成功！');window.location.href='information.jsp';</script>"); 
+	}
 	}
 
 }
