@@ -53,7 +53,7 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a href="adminindex.jsp"
+							<a href="AdminIndex"
 								class="navbar-brand d-none d-sm-inline-block">
 									<strong>人流量监控平台</strong>
 							</a>
@@ -90,7 +90,7 @@
 				<!-- Sidebar Navidation Menus-->
 				<span class="heading">information</span>
 				<ul class="list-unstyled">
-					<li class="active"><a href="adminindex.jsp"> <i
+					<li class="active"><a href="AdminIndex"> <i
 							class="icon-home"></i>个人信息
 					</a></li>
 					<li><a href="#exampledropdownDropdown" aria-expanded="false"

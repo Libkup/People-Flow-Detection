@@ -62,7 +62,7 @@ public class LoginFilter implements Filter {
 					return;
 				}
 			}
-			if(path.endsWith("index.jsp")||path.endsWith("changepassword.jsp")||path.endsWith("information.jsp")||path.endsWith("userAddCamera.jsp")||path.endsWith("userDeleteCamera.jsp")) {
+			if((path.endsWith("index.jsp")||path.endsWith("changepassword.jsp")||path.endsWith("information.jsp")||path.endsWith("userAddCamera.jsp")||path.endsWith("userDeleteCamera.jsp"))&&!path.endsWith("adminindex.jsp")) {
 				//查看session是否存在对象，有对象的话也不需要过滤
 				User user =  (User) request.getSession().getAttribute("User");
 				if(user==null){

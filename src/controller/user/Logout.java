@@ -38,7 +38,7 @@ public class Logout extends HttpServlet {
 			System.out.println(email);
 			UserDAO userdao = new UserDAO();
 			userdao.upadateStatus(email, 0);
-			request.getSession().invalidate();
+			request.getSession().removeAttribute("User");
 		}
 		response.sendRedirect("login.jsp");
 	}
