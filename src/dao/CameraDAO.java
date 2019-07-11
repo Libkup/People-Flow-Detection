@@ -410,6 +410,7 @@ public class CameraDAO {
 				camera.setHighestHistory(rs.getInt("highest_history"));
 				camera.setHighestHour(rs.getInt("highest_hour"));
 				camera.setThreshold(rs.getInt("threshold"));
+				camera.setRtmpAddress(rs.getString("rtmp_address"));
 				cameras.add(camera);
 			}
 			DBConn.closeConnection(conn, ps, rs);

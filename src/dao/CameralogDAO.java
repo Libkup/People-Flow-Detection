@@ -337,4 +337,30 @@ public class CameralogDAO {
 		}
 		return biggest;
 	}
+	
+	public String getCameraStatus(int id){
+		String result = "";
+		try{
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			String sql = "select count from cameralog where id=? and time between date_add(now(), interval - 1 second) and now()";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				result = String.valueOf(rs.getInt("count"));
+//				System.out.println("count" + rs.getInt("count"));
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		if(result.equals(""))
+			return "close";
+		else
+			return "open";
+	}
 }
