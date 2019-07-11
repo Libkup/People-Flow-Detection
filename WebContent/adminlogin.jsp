@@ -98,15 +98,15 @@
 		});
 		
 		$("#origin").bind('keyup', function(event) {
-			　　if (event.keyCode == "13") {
-					var before = $(this).val();
-					if(before != ""){
-						var beforeVal = $.md5(before);
-						$("#after").val(beforeVal);	
-					}		　　　　		
-		　　　			$("#button").click();
-			　　}
-			});
+			if(event.keyCode == "13"){
+				var before = $(this).val();
+				if(before != ""){
+					var beforeVal = $.md5(before);
+					$("#after").val(beforeVal);	
+				}		　　　　		
+	　　　			$("#button").click();
+			}
+		});
 	</script>
 </body>
 </html>

@@ -58,15 +58,14 @@
 										</label>
 									</div>
 									<div class="form-group">
-										<input id="origin" type="password"
-											name="loginPassword2" required data-msg="请输入您的密码"
-											class="input-material"> <label for="login-password"
-											class="label-material">密码</label>
+										<input id="origin" type="password" name="loginPassword2"
+											required data-msg="请输入您的密码" class="input-material"> <label
+											for="login-password" class="label-material">密码</label>
 									</div>
-									<input type="hidden" id="after" name="loginPassword">
-									<input type="submit" value="登录" id="button_login"
+									<input type="hidden" id="after" name="loginPassword"> <input
+										type="submit" value="登录" id="button_login"
 										class="btn btn-primary">
-									
+
 								</form>
 								<a href="forgetpassword.jsp" class="forgot-pass">忘记密码?</a>
 							</div>
@@ -102,15 +101,15 @@
 		});
 		
 		$("#origin").bind('keyup', function(event) {
-			　　if (event.keyCode == "13") {
-					var before = $(this).val();
-					if(before != ""){
-						var beforeVal = $.md5(before);
-						$("#after").val(beforeVal);
-					}
-		　　　			$("#button_login").click();
-			　　}
-			});
+			if(event.keyCode == "13"){
+				var before = $(this).val();
+				if(before != ""){
+					var beforeVal = $.md5(before);
+					$("#after").val(beforeVal);
+				}
+	　　　			$("#button_login").click();
+			}
+		});
 	</script>
 </body>
 </html>
