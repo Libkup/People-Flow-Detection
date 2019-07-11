@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AdminDAO;
-import dao.UserDAO;
-import entity.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -68,7 +66,7 @@ public class AdminLogin extends HttpServlet {
 		boolean match = admindao.verifyPswd(email,pswd);
 		if (match) {
             session.setAttribute("admin",admindao.getadmin(email));
-            response.sendRedirect("adminindex.jsp");
+            request.getRequestDispatcher("AdminIndex").forward(request, response);
 		} else{
 			out.print("<script language='javascript'>alert('用户名和密码不匹配！');window.location.href='adminlogin.jsp';</script>"); 
 			}

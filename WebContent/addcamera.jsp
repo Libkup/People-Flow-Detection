@@ -127,27 +127,29 @@
 										<h3 class="h4">添加摄像头</h3>
 									</div>
 									<div class="card-body">
-										<form action="AddCamera" method="post" class="form-horizontal" >
+										<form action="AddCamera" method="post" class="form-horizontal">
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">标识</label>
 												<div class="col-sm-7">
-													<input name="name" type="text" placeholder="长度不超过20位"
-														class="form-control">
+													<input name="name" type="text" placeholder="长度不超过10位"
+														required="required" id="name" class="form-control">
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">地址</label>
 												<div class="col-sm-7">
-													<input name="location" type="text" placeholder="请输入地址"
-														class="form-control">
+													<input name="location" type="text" placeholder="请输入地址（小于20位）"
+														required="required" id="location" class="form-control">
 												</div>
 											</div>
 											<div class="line"></div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">描述</label>
 												<div class="col-sm-7">
-													<input name="description" type="text" placeholder="请输入摄像头描述" class="form-control">
+													<input name="description" type="text"
+														placeholder="请输入摄像头描述" class="form-control"
+														required="required" id="description">
 												</div>
 											</div>
 											<div class="line"></div>
@@ -195,5 +197,72 @@
 	<script src="js/charts-home.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
+	<script>
+		$(function() {
+			$("#name").blur(function() {
+				var temp = $(this).val();
+				var reg = /^[0-9a-zA-Z]{1,10}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的标识');
+						$("#name").val("");
+						document.getElementById("name").select();
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
+					}
+				}
+			});
+
+			$("#location").blur(function() {
+				var temp = $(this).val();
+				var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,20}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的地址');
+						$("#location").val("");
+						document.getElementById("location").select();
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
+					}
+				}
+			});
+
+
+			$("#description").blur(function() {
+				var temp = $(this).val();
+				var reg = /[^\s]{1,100}$/;
+				if (temp != "") {
+					if (!reg.test(temp)) {
+						alert('请输入正确格式的描述');
+						$("#description").val("");
+						document.getElementById("description").focus();
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : 'rgba(255, 0, 0, 0.8)'
+						});
+					} else {
+						$(this).css({
+							'outline' : 'none',
+							'border-color' : '#ccc'
+						});
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

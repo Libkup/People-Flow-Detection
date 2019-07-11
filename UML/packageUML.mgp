@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="controller.admin" x="235" y="140">
+        <DependencyLink destination="dao"/>
+        <DependencyLink destination="entity"/>
+    </Package>
+    <Package name="controller.user" x="247" y="312">
+        <DependencyLink destination="dao"/>
+        <DependencyLink destination="util"/>
+        <DependencyLink destination="entity"/>
+    </Package>
+    <Package name="dao" x="817" y="133">
+        <DependencyLink destination="util"/>
+        <DependencyLink destination="entity"/>
+    </Package>
+    <Package name="entity" x="606" y="406"/>
+    <Package name="util" x="653" y="552"/>
+</PackageAnalysis>

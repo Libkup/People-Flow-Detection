@@ -46,44 +46,12 @@
               <!-- Navbar Header-->
               <div class="navbar-header">
                 <!-- Navbar Brand --><a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
-                  <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
-                  <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
+                  <strong>人流量监控平台</strong>
+                  </a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
               </div>
               <!-- Navbar Menu -->
-              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                <!-- Search-->
-                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
-                <!-- Notifications-->
-                
-                <!-- Messages                        -->
-                <!-- <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
-                  </ul>
-                </li> -->
-                <!-- Languages dropdown    -->
-                <!-- <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-                  <ul aria-labelledby="languages" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French                                         </a></li>
-                  </ul>
-                </li> -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center"> 
                 <!-- Logout    -->
                 <li class="nav-item"><a href="Logout" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
@@ -118,26 +86,9 @@
                         <li><a href="userDeleteCamera.jsp">删除摄像头</a></li>
                       </ul>
                     </li>
-                    <!-- <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li> -->
-                    <!-- <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li> -->
-                    <!-- <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li> -->
-                    <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-                      <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                      </ul>
-                    </li> -->
-                    <!-- <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li> -->
           </ul>
           
-          <!-- <span class="heading">Extras</span>
-          <ul class="list-unstyled">
-            <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
-            <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
-          </ul> -->
+ 
         </nav>
         <div class="content-inner">
           <!-- Page Header-->
@@ -217,7 +168,7 @@
 		                    <div class="card-body">
 		                      <div class="form-group">
 		                         <div class="input-group">
-		                            <input id="camera${data[4] }Threshold" type="text" class="form-control" placeholder="大于零的数字">
+		                            <input id="camera${data[4] }Threshold" type="text" class="form-control" placeholder="大于零的数字" required="required">
 		                              <div class="input-group-append">
 		                                <button id="button${data[4] }" type="button" onclick="check(this)" class="btn btn-primary">Go!</button>
 		                              </div>
@@ -233,7 +184,7 @@
 		                    <div class="card-body">
 		                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
 		                      data-setup="{}">
-		                      <source src="${data[2] }" type="rtmp/flv"> </p>
+		                      <source src="${data[2] }" type="rtmp/flv"> 
 		                      </video>
 		                    </div>
 		                  </div>
@@ -349,19 +300,55 @@
 		function check(obj) {
 			var buttonid = obj.id.substr(6);
 			var value = document.getElementById("camera" + buttonid + "Threshold").value;
-			$.ajax({
-				type : 'POST', // 请求类型, 默认为 GET
-				url : "ThresholdSetting", // 	必需。规定把请求发送到哪个 URL。
-				data: {Threshold: buttonid + "@" + value}, 
-				success : function(result) { // 可选。请求成功时执行的回调函数。
-					$("#camera" + buttonid + "CurrentThreshole").html("当前阈值：" + result + "人");
-					document.getElementById("camera1Threshold").value = "";
+			if(value != ""){
+				var reg = /^\d{1,4}$/;
+				if(reg.test(value)){
+					$.ajax({
+						type : 'POST', // 请求类型, 默认为 GET
+						url : "ThresholdSetting", // 	必需。规定把请求发送到哪个 URL。
+						data: {Threshold: buttonid + "@" + value}, 
+						success : function(result) { // 可选。请求成功时执行的回调函数。
+							$("#camera" + buttonid + "CurrentThreshole").html("当前阈值：" + result + "人");
+							document.getElementById("camera" + buttonid + "Threshold").value = "";
+						}
+					});
 				}
-			});
+				else{
+					document.getElementById("camera" + buttonid + "Threshold").value = "";
+					alert('请输入小于4位的阈值');
+				}
+			}
+			else{
+				alert('阈值不能为空');
+			}
 		}
 		
 	</script>
 	<!-- Main File-->
-    
+	<!--  
+    	<script>
+		$(function() {
+			$("#camera${data[4] }Threshold").blur(function() {
+				var temp = $(this).val();
+				var reg = /^[0-9]{1,4}$/;
+				if (!reg.test(temp)) {
+					$("#camera${data[4] }Threshold").val("");
+					alert('请输入正确的搜索条件');
+					document.getElementById("camera${data[4] }Threshold").select();
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : 'rgba(255, 0, 0, 0.8)'
+					});
+				} else {
+					$(this).css({
+						'outline' : 'none',
+						'border-color' : '#ccc'
+					});
+				}
+
+			});
+		});
+	</script>
+	-->
   </body>
 </html>

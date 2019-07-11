@@ -39,8 +39,7 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a class="navbar-brand d-none d-sm-inline-block">								
-									<strong>人流量监控平台</strong>							
+							<a class="navbar-brand d-none d-sm-inline-block"> <strong>人流量监控平台</strong>
 							</a>
 						</div>
 					</div>
@@ -70,9 +69,9 @@
 													<form action="ForgetPassword" method="post"
 														class="form-validate">
 														<div class="input-group">
-															<input id="emailaddress" type="email"
-															  required data-msg="请输入正确的邮箱"
-																name="emailAddress" placeholder="${sessionScope.emailAddress}"
+															<input id="emailaddress" type="email" required
+																data-msg="请输入正确的邮箱" name="emailAddress"
+																placeholder="${sessionScope.emailAddress}"
 																class="form-control">
 															<div class="input-group-append">
 																<button type="submit" id="button"
@@ -100,15 +99,15 @@
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label">密码</label>
 												<div class="col-sm-7">
-													<input id="password" type="password" placeholder="请输入密码"
-														name="password" class="form-control">
+													<input id="password" type="password" placeholder="请输入密码（6-16位，同时包含字母数字）"
+														name="password2" class="form-control" required="required">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 form-control-label"></label>
 												<div class="col-sm-7">
 													<input id="passwordConfirm" type="password"
-														placeholder="请再次输入密码" name="passwordConfirm"
+														placeholder="请再次输入密码（6-16位，同时包含字母数字）" name="passwordConfirm2" required="required"
 														class="form-control">
 												</div>
 											</div>
@@ -119,15 +118,15 @@
 													<button id="button_save" type="submit"
 														class="btn btn-primary">保存更改</button>
 												</div>
+												<div class="col-sm-6 ">
+													<button type="button" class="btn btn-secondary"
+														onclick="window.location.href='login.jsp'">取消</button>
+												</div>
 											</div>
+											<input type="hidden" id="after1" name="password">
+											<input type="hidden" id="after2" name="passwordConfirm">
 										</form>
-										<div class="form-group row">
-											<div class="col-sm-6 "></div>
-											<div class="col-sm-6 ">
-												<button class="btn btn-secondary"
-													onclick="window.location.href='login.jsp'">取消</button>
-											</div>
-										</div>
+
 									</div>
 								</div>
 							</div>
@@ -169,5 +168,56 @@
 	<!-- Main File-->
 	<script src="js/front.js"></script>
 	<script src="js/check-password.js"></script>
+	<script type="text/javascript" src="js/jquery.md5.js"></script>
+	<script>
+	$(function() {
+		$("#password").blur(function() {
+			var before = $(this).val();
+			var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+			if(before != ""){
+				if(!reg.test(before)){		
+					alert('请输入正确格式的密码');
+					$("#password").val("");
+					document.getElementById("password").select();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else{
+					var beforeVal = $.md5(before);
+					$("#after1").val(beforeVal);
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
+				}
+			}
+		});
+		$("#passwordConfirm").blur(function() {
+			var before2 = $(this).val();
+			var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+			if(before2 != ""){
+				if(!reg.test(before2)){
+					alert('请输入正确格式的密码');
+					$("#passwordConfirm").val("");
+					document.getElementById("passwordConfirm").select();
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': 'rgba(255, 0, 0, 0.8)'
+			        });
+				}
+				else if(reg.test(before2)){
+					var beforeVal2 = $.md5(before2);
+					$("#after2").val(beforeVal2);
+			        $(this).css({
+			            'outline': 'none',
+			            'border-color': '#ccc'
+			        });
+				}
+			}
+		});
+	});
+	</script>
 </body>
 </html>

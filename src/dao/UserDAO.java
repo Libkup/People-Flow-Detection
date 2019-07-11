@@ -77,9 +77,10 @@ public class UserDAO {
 		String position = user.getPosition();
 		String selfIntroduction = user.getSelfIntroduction();
 		String added_camera = user.getAdded_camera();
+		int status = user.getStatus();
 		try {
 			Connection conn = DBConn.getINSTANCE().getConnection();
-			String sql = "insert into user values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, email);
@@ -89,6 +90,7 @@ public class UserDAO {
 			ps.setString(6, position);
 			ps.setString(7,selfIntroduction);
 			ps.setString(8,added_camera);
+			ps.setInt(9, status);
 			ResultSet rs = ps.executeQuery();
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {
@@ -283,7 +285,20 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public void upadateStatus(String email, int status) {
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+			
+			String sql = "update user set status = ? where email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,status);
+			ps.setString(2, email);
+			ResultSet rs = ps.executeQuery();
+			DBConn.closeConnection(conn, ps, rs);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * This function is used to delete user .
 	 * 
@@ -449,4 +464,31 @@ public class UserDAO {
 		return users;
 	}
 	
+	public ArrayList<User> getAllUser (){
+		ArrayList<User> users = new ArrayList<>();
+		try {
+			Connection conn = DBConn.getINSTANCE().getConnection();
+
+			String sql = "select * from user ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setPhoneNumber(rs.getString("phone_number"));
+				user.setPosition(rs.getString("position"));
+				user.setSelfIntroduction(rs.getString("self_introduction"));
+				user.setAdded_camera(rs.getString("added_camera"));
+				user.setStatus(rs.getInt("status"));
+				users.add(user);
+			}
+			DBConn.closeConnection(conn, ps, rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
 }

@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import entity.Camera;
-import entity.User;
 import util.DBConn;
 
 public class CameraDAO {
@@ -332,7 +331,6 @@ public class CameraDAO {
 			ps.setInt(6,highest_hour);
 			ps.setInt(7,threshold);
 			ResultSet rs = ps.executeQuery();
-			id = rs.getInt(1);
 			DBConn.closeConnection(conn, ps, rs);
 		} catch (Exception e) {
 			e.printStackTrace();

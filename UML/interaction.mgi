@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass name="controller.user.ForgetPassword" x="1446" y="-284">
+        <Communication destinationClassName="util.SendEmail"/>
+    </CommunicationClass>
+    <CommunicationClass name="entity.Camera" x="2040" y="153"/>
+    <CommunicationClass name="controller.admin.FindUser" x="273" y="-361">
+        <Communication destinationClassName="entity.User"/>
+        <Communication destinationClassName="dao.UserDAO"/>
+        <Communication destinationClassName="entity.Person"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.ChangeInfo" x="-258" y="537">
+        <Communication destinationClassName="entity.User"/>
+        <Communication destinationClassName="dao.UserDAO"/>
+        <Communication destinationClassName="entity.Person"/>
+    </CommunicationClass>
+    <CommunicationClass name="dao.CameralogDAO" x="693" y="534">
+        <Communication destinationClassName="util.DBConn"/>
+        <Communication destinationClassName="entity.Cameralog"/>
+    </CommunicationClass>
+    <CommunicationClass name="dao.CameraDAO" x="1633" y="155">
+        <Communication destinationClassName="util.DBConn"/>
+        <Communication destinationClassName="entity.Camera"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.Login" x="912" y="690">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.ChangePasswordForget"
+        x="49" y="835">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.admin.SearchUser" x="561" y="393">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.ChangePassword" x="-270" y="799">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.PeopleCount" x="1578" y="613">
+        <Communication destinationClassName="dao.CameralogDAO"/>
+        <Communication destinationClassName="dao.CameraDAO"/>
+        <Communication destinationClassName="entity.Cameralog"/>
+    </CommunicationClass>
+    <CommunicationClass name="util.DBConn" x="722" y="297"/>
+    <CommunicationClass name="controller.user.SendVerificationCode"
+        x="1633" y="-467">
+        <Communication destinationClassName="util.SendEmail"/>
+    </CommunicationClass>
+    <CommunicationClass name="entity.User" x="-22" y="-232">
+        <Extension destinationClassName="entity.Person"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.admin.DeleteUser" x="536" y="223">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.ChartDataUpdate" x="569" y="680">
+        <Communication destinationClassName="dao.CameralogDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.user.ThresholdSetting" x="1615" y="26">
+        <Communication destinationClassName="dao.CameraDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="controller.admin.AddUser" x="-520" y="530">
+        <Communication destinationClassName="dao.UserDAO"/>
+    </CommunicationClass>
+    <CommunicationClass name="dao.UserDAO" x="129" y="364">
+        <Communication destinationClassName="util.DBConn"/>
+        <Communication destinationClassName="entity.User"/>
+        <Communication destinationClassName="entity.Person"/>
+    </CommunicationClass>
+    <CommunicationClass name="util.SendEmail" x="1669" y="-277"/>
+    <CommunicationClass name="dao.AdminDAO" x="952" y="-554">
+        <Communication destinationClassName="util.DBConn"/>
+        <Communication destinationClassName="entity.Person"/>
+    </CommunicationClass>
+    <CommunicationClass name="entity.Cameralog" x="1309" y="90"/>
+    <CommunicationClass name="entity.Person" x="459" y="-258"/>
+    <CommunicationClass name="controller.admin.ChangeUser" x="-576" y="96">
+        <Communication destinationClassName="entity.User"/>
+        <Communication destinationClassName="dao.UserDAO"/>
+        <Communication destinationClassName="entity.Person"/>
+    </CommunicationClass>
+</ClassDiagram>
