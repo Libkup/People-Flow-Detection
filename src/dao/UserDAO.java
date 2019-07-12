@@ -151,8 +151,10 @@ public class UserDAO {
 		}
 		String a[]  = added_camera.split("-");
 		ArrayList<Integer>  b = new ArrayList<Integer>();
-		for(int i=0;i<a.length;i++){
-		   b.add(Integer.valueOf(a[i]));
+		if(!added_camera.equals("")){
+			for(int i=0;i<a.length;i++){
+			   b.add(Integer.valueOf(a[i]));
+			}
 		}
 		CameraDAO cameraDAO = new CameraDAO();
 		ArrayList<Camera> addedCamera = new ArrayList<>();

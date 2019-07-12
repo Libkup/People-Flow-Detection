@@ -218,22 +218,7 @@
 					</div>
 				</section>
 
-				<section class="dashboard-header">
-					<div class="container-fluid">
-						<div class="row">
-							<!-- Statistics -->
-							<div class="statistics col-lg-3 col-12"></div>
-							<!-- Line Chart            -->
-							<div class="chart col-lg-6 col-12">
-								<div
-									class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
-									<canvas id="lineCahrt"></canvas>
-								</div>
-							</div>
-							<div class="chart col-lg-3 col-12"></div>
-						</div>
-					</div>
-				</section>
+			
 
 				<!-- Page Footer-->
 				<footer class="main-footer">

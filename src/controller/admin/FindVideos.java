@@ -65,9 +65,6 @@ public class FindVideos extends HttpServlet {
 		ArrayList<String> videosAddress = new ArrayList<>();
 		ArrayList<String> tArrayList = new ArrayList<>();
 		for(int i = 0; i < files.length; i++){
-			System.out.println(files[i].length());
-			if(files[i].length() < 3000)
-				continue;
 			if(files[i].getName().startsWith(option)){
 				String starttemp = files[i].getName().split("--")[1];
 				String endtemp = files[i].getName().split("--")[2];
@@ -94,16 +91,19 @@ public class FindVideos extends HttpServlet {
 						dendtemp += endtemps[j] + " ";
 					}
 				}
-				System.out.println(starttemp);
+//				System.out.println(starttemp);
 				System.out.println(dstarttemp);
 				System.out.println(dendtemp);
 				dendtemp.replace(".mp4", " ");
-				tArrayList.add(option + ":" + dstarttemp + " --- " + dendtemp);
+				
 				Date startFromFile = new Date(dstarttemp);
 				Date endFromFile = new Date(dendtemp);
 				if(startFromFile.after(startFromUser) && startFromFile.before(endFromUser) 
-						||endFromFile.after(startFromUser) && endFromFile.before(endFromUser))
+						||endFromFile.after(startFromUser) && endFromFile.before(endFromUser)){
+					tArrayList.add(option + ":" + dstarttemp + " --- " + dendtemp);
 					videosAddress.add(files[i].getName());
+				}
+					
 			}
 		}
 		System.out.println(startTime + " " + endTime);
