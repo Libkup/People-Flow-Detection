@@ -84,6 +84,7 @@ public class test {
 	         while(true){
 	        	 for(Record record : records){
 	        		 if(record.getCurrentTime()!=null)
+	        			 
 	        			 if(new Date().after(new Date(record.getCurrentTime().getTime() + 60000))){
 	        				 record.stopRecord();
 	        			 } 
