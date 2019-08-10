@@ -217,6 +217,8 @@ public class CameralogDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if(predict < 0)
+			predict = 0;
 		return predict;
 	}
 	

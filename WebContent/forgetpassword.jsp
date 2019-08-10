@@ -39,7 +39,7 @@
 						<!-- Navbar Header-->
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
-							<a class="navbar-brand d-none d-sm-inline-block"> <strong>人流量监控平台</strong>
+							<a class="navbar-brand d-none d-sm-inline-block"> <strong>视频监控云监管平台</strong>
 							</a>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 					<div class="container-fluid">
 						<div class="row" style="text-align: center;">
 							<!-- Form Elements -->
-							<div class="col-lg-2"></div>
+							<div class="col-lg-3"></div>
 							<div class="col-lg-8">
 								<div class="card">
 									<div class="card-header d-flex align-items-center">
@@ -71,11 +71,11 @@
 														<div class="input-group">
 															<input id="emailaddress" type="email" required
 																data-msg="请输入正确的邮箱" name="emailAddress"
-																placeholder="${sessionScope.emailAddress}"
+																value="${sessionScope.emailAddress}"
 																class="form-control">
 															<div class="input-group-append">
 																<button type="submit" id="button"
-																	class="btn btn-primary">发送验证码</button>
+																	class="btn btn-primary" onclick="send()">发送验证码</button>
 															</div>
 														</div>
 													</form>
@@ -170,6 +170,9 @@
 	<script src="js/check-password.js"></script>
 	<script type="text/javascript" src="js/jquery.md5.js"></script>
 	<script>
+	function send(){
+		alert('发送成功！')
+	}
 	$(function() {
 		$("#password").blur(function() {
 			var before = $(this).val();

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/daterangepicker-bs3.css">
     <link rel="stylesheet" href="css/daterangepicker-1.3.7.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/zxf_page.css"/>
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="css/fontastic.css">
     <!-- Google fonts - Poppins -->
@@ -50,7 +51,7 @@
               <!-- Navbar Header-->
               <div class="navbar-header">
                 <!-- Navbar Brand --><a href="AdminIndex" class="navbar-brand d-none d-sm-inline-block">
-                  <div class="brand-text d-none d-lg-inline-block"><strong>人流量监控平台</strong></div>
+                  <div class="brand-text d-none d-lg-inline-block"><strong>视频监控云监管平台</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
               </div>
@@ -196,7 +197,7 @@
 																		<div id="reportrange" class="pull-left dateRange"
 																			style="height: 40px">
 																			
-																			<span id="time">time</span> 
+																			<span id="time">2019/07/01 00:00:00 - 2019/07/01 23:59:59</span> 
 																			
 																		</div>
 																		
@@ -220,7 +221,7 @@
 																		
 																		<div class="input-group-append">
 																			<button type="button" class="btn btn-primary"
-																				onclick="getVideos()">查询</button>
+																				onclick="getVideos(1)">查询</button>
 																		</div>
 																		
 																	</div>
@@ -255,6 +256,8 @@
 		              </div>
 		            </div>
 		          </section>
+		          
+		    <div class="zxf_pagediv"></div>
           <!-- Page Footer-->
           <footer class="main-footer">
             <div class="container-fluid">
@@ -285,6 +288,7 @@
     <script src="js/moment.js"></script>
     <script src="js/daterangepicker-1.3.7.js"></script>
     <script src="js/videojs-ie8.min.js"></script>
+    <script src="js/zxf_page.js"></script>
     <script src="js/video.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
@@ -363,8 +367,10 @@
 	      	   //设置日期菜单被选项  --结束--
 	})
     
+		var globalNumbers = 10;
+	    var currentNumber = 1;
     	
-    	function getVideos(){
+    	function getVideos(x){
     			var option = document.getElementById("cameraOption").value;
     			var times = document.getElementById("time").innerText;
     			var startTime = times.split("-")[0];
@@ -372,7 +378,7 @@
         		$.ajax({
         			type : "POST",
         			url : "FindVideos",
-        			data : {option: option, startTime : startTime, endTime : endTime},
+        			data : {option: option, startTime : startTime, endTime : endTime, page : x},
         			error : function(){   
         				alert('error');   
         			},
@@ -384,6 +390,8 @@
         					var addressAndTime = data.split("|");
         					var videoAddress = addressAndTime[0].split(",");
         					var videoTime = addressAndTime[1].split(",");
+        					globalNumbers = addressAndTime[2].split(",")[0];
+        					currentNumber = addressAndTime[2].split(",")[1];
             				var content = "";
           					for(i = 0;i < videoAddress.length-1; i++){
           						content += '<div class="col-lg-6">';
@@ -399,11 +407,19 @@
           						content += '</div>';
           					}
         					$("#videos").html(content);
+        					$(".zxf_pagediv").createPage({
+        						pageNum: globalNumbers,
+        						current: currentNumber,
+        						backfun: function(e) {
+        							//console.log(e);//回调
+        						}
+        					});
+        					
         				}
         			}
     		})
     	}
-    
+    	
     </script>
   </body>
 </html>

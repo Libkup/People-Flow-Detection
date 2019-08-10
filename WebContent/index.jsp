@@ -46,7 +46,7 @@
               <!-- Navbar Header-->
               <div class="navbar-header">
                 <!-- Navbar Brand --><a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
-                  <strong>人流量监控平台</strong>
+                  <strong>视频监控云监管平台</strong>
                   </a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
               </div>
@@ -135,20 +135,20 @@
 		                <div class="statistics col-lg-2 col-12">
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-orange"><i class="fa fa-paper-plane-o"></i></div>
-		                    <div class="text"><strong id="Camera${data[4] }currentCount">147</strong><br><small>当前人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }currentCount">0</strong><br><small>当前人数</small></div>
 		                  </div>
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
-		                    <div class="text"><strong id="Camera${data[4] }historyHighest">234</strong><br><small>历史最高人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }historyHighest">0</strong><br><small>历史最高人数</small></div>
 		                  </div>
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
-		                    <div class="text"><strong id="Camera${data[4] }hourHighest">152</strong><br><small>近一小时最高人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }hourHighest">0</strong><br><small>近一小时最高人数</small></div>
 		                  </div>
 		                  
 		                  <div class="statistic d-flex align-items-center bg-white has-shadow">
 		                    <div class="icon bg-blue"><i class="fa fa-circle-thin"></i></div>
-		                    <div class="text"><strong id="Camera${data[4] }prediction">147</strong><br><small>预测未来2分钟内人数</small></div>
+		                    <div class="text"><strong id="Camera${data[4] }prediction">0</strong><br><small>预测未来2分钟内人数</small></div>
 		                  </div>
 		                  <div class="articles card">
 		                  	<div class="card-body no-padding">
@@ -160,6 +160,23 @@
 		                     </div>
 		                   </div>
 		                </div>
+		                <div class="chart col-lg-5 col-12">
+		                  
+		                  <div class="line-chart-example card">
+		                    <!-- <canvas id="lineCahrt"></canvas> -->
+		                    <div class="card-header d-flex align-items-center">
+		                      <h3 class="h4">监控视频</h3>
+		                    </div>
+		                    <div class="card-body">
+		                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
+		                      data-setup="{}">
+		                      <source src="${data[2] }" type="rtmp/flv"> 
+		                      <source src="http://192.168.43.165:8081/hls/demo.m3u8" type="application/x-mpegURL"> 
+		                      </video>
+		                    </div>
+		                  </div>
+		               </div>
+		
 		                <div class="chart col-lg-5 col-12">
 		                  <div class="card">
 		                    <div class="card-header d-flex align-items-center">
@@ -176,22 +193,6 @@
 		                       </div>
 		                    </div>
 		                  </div>
-		                  <div class="line-chart-example card">
-		                    <!-- <canvas id="lineCahrt"></canvas> -->
-		                    <div class="card-header d-flex align-items-center">
-		                      <h3 class="h4">监控视频</h3>
-		                    </div>
-		                    <div class="card-body">
-		                      <video class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto"  width="600" height="400" poster="img/timg.jpg"
-		                      data-setup="{}">
-		                      <source src="${data[2] }" type="rtmp/flv"> 
-		                      </video>
-		                    </div>
-		                  </div>
-		               </div>
-		
-		                <div class="chart col-lg-5 col-12">
-		                  
 		                  <div class="line-chart-example card">
 		                    <div class="card-header d-flex align-items-center">
 		                      <h3 class="h4">近十分钟人流量</h3>

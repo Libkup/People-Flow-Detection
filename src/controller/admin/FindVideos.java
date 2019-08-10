@@ -36,6 +36,8 @@ public class FindVideos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String current = request.getParameter("current");
+		System.out.println(current);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -47,16 +49,17 @@ public class FindVideos extends HttpServlet {
 		String option = request.getParameter("option");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
+		int page = Integer.valueOf(request.getParameter("page"));
 		String path = "F:/savedVideo";
 		File file = new File(path);
 		File[] files = null;
 		if (file.exists()) {
 			files = file.listFiles();
-            if (null != files) {
-                for (File file2 : files) {
-                     System.out.println("文件:" + file2.getName());
-                }
-            }
+//            if (null != files) {
+//                for (File file2 : files) {
+//                     System.out.println("文件:" + file2.getName());
+//                }
+//            }
         } else {
             System.out.println("文件不存在!");
         }
@@ -92,8 +95,8 @@ public class FindVideos extends HttpServlet {
 					}
 				}
 //				System.out.println(starttemp);
-				System.out.println(dstarttemp);
-				System.out.println(dendtemp);
+//				System.out.println(dstarttemp);
+//				System.out.println(dendtemp);
 				dendtemp.replace(".mp4", " ");
 				
 				Date startFromFile = new Date(dstarttemp);
@@ -106,13 +109,36 @@ public class FindVideos extends HttpServlet {
 					
 			}
 		}
-		System.out.println(startTime + " " + endTime);
+//		System.out.println(startTime + " " + endTime);
 		String result = "";
-		for(String string : videosAddress)
+		int count = 0;
+		for(String string : videosAddress){
+			count ++;
+			if(count <= (page-1)*8)
+				continue;
+			if(count == page*8+1)
+				break;
 			result += string + ",";
+			
+		}
+			
 		result += "|";
-		for(String string : tArrayList)
+		count = 0;
+		for(String string : tArrayList){
+			count ++;
+			if(count <= (page-1)*8)
+				continue;
+			if(count == page*8+1)
+				break;
 			result += string + ",";
+			
+		}
+		count = 0;	
+		for(String string : tArrayList){
+			count ++;
+		}
+		result += "|";
+		result += (int)count/8+1 + "," + page;
 		response.getWriter().print(result);
 		System.out.println(result);
 	}

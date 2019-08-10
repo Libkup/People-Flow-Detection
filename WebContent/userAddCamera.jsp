@@ -42,7 +42,7 @@
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
 							<a href="adminindex.jsp"
-								class="navbar-brand d-none d-sm-inline-block"> <strong>人流量监控平台</strong>
+								class="navbar-brand d-none d-sm-inline-block"> <strong>视频监控云监管平台</strong>
 							</a>
 							<!-- Toggle Button-->
 							<a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -235,6 +235,7 @@
 								var user = data.split("||");
 								var content = "";
 								for (i = 0; i < user.length - 1; i++) {
+									
 									var attributes = user[i].split(",");
 									content += '<div class="item">';
 									content += '<div class="row">';

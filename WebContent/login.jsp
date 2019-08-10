@@ -39,7 +39,7 @@
 						<div class="info d-flex align-items-center">
 							<div class="content">
 								<div class="logo">
-									<h1>人流量监管平台</h1>
+									<h1>视频监控云监管云平台</h1>
 								</div>
 								<p>明察秋毫,尽在掌控。安防天下,有备无患。</p>
 							</div>

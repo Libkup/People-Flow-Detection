@@ -40,8 +40,10 @@ public class UserDeleteCamera extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String cameraName = request.getParameter("cameraName");
-		System.out.println(cameraName);
 		UserDAO userDAO = new UserDAO();
 		String email = (String) request.getSession().getAttribute("email");
 		ArrayList<Integer> addedCamera = userDAO.getadded_camera(email);

@@ -54,6 +54,7 @@ public class LoginFilter implements Filter {
 	        List<String> list= new ArrayList<String>(); //将不需要过滤的请求存放到集合中
 			list.add("/login.jsp");//登录页面
 			list.add("/adminlogin.jsp");//登录页面
+			list.add("/forgetpassword.jsp");//登录页面
 			String path = request.getServletPath();//得到请求的url
 			//循环集合把不需要过滤的请求放行
 			for(String l : list){

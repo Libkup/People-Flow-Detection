@@ -40,7 +40,7 @@
 						<div class="navbar-header">
 							<!-- Navbar Brand -->
 							<a href="UserIndex" class="navbar-brand d-none d-sm-inline-block">
-								<strong>人流量监控平台</strong>
+								<strong>视频监控云监管平台</strong>
 							</a>
 							<!-- Toggle Button-->
 							<a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
